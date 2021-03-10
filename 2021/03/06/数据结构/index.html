@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":"ture","mediumzoom":false,"lazyload":"ture","pangu":"ture","comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本笔记主要记录了部分难以理解知识点和说明，内含相关例题和本人的理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构">
+<meta property="og:url" content="http://example.com/2021/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="ThreePanda">
+<meta property="og:description" content="本笔记主要记录了部分难以理解知识点和说明，内含相关例题和本人的理解。">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/date-structure/1.png">
+<meta property="og:image" content="http://example.com/date-structure/2.png">
+<meta property="article:published_time" content="2021-03-06T10:17:41.920Z">
+<meta property="article:modified_time" content="2021-03-10T15:03:49.001Z">
+<meta property="article:author" content="三只Panda">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/date-structure/1.png">
+
+<link rel="canonical" href="http://example.com/2021/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>数据结构 | ThreePanda</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ThreePanda</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索、尝试、飞行</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="三只Panda">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThreePanda">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-06 18:17:41" itemprop="dateCreated datePublished" datetime="2021-03-06T18:17:41+08:00">2021-03-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-10 23:03:49" itemprop="dateModified" datetime="2021-03-10T23:03:49+08:00">2021-03-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本笔记主要记录了部分难以理解知识点和说明，内含相关例题和本人的理解。</p>
+<span id="more"></span>
+
+<h2 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h2><p>目前而言，数据结构并没有一个官方的定义。<strong>但数据结构往往与算法同出同进。</strong><br>以下，通过三个例子来更进一步了解数据结构。</p>
+<h3 id="三个例子，三个结论"><a href="#三个例子，三个结论" class="headerlink" title="三个例子，三个结论"></a>三个例子，三个结论</h3><p>一、如何在书架上摆放图书？<br>其实际操作中往往涉及两个方面：</p>
+<ul>
+<li>新书如何插入？</li>
+<li>怎样找到指定的书？</li>
+</ul>
+<p>第一种：按照书名的拼音顺序排放。<br>查找方法：二分查找。<br>假如需要查找的书为《数据结构》，开头首字母为s。则先取出目前书库中拍最中间一本，假如为《离散数学》，字母为l。l在s之前，则该书之前的所有书跳过，在其后再取中间一本观察首字母，直到确定了s开头书的位置。确定后则在该范围内持续二分，不是的书跳过，直到找到《数据结构》。</p>
+<p>解决查找问题后，怎样来插入呢？</p>
+<p>如果插入《阿Q正传》，a开头的书本，插入时则需要所有书本排序向后移动一位。图书个数少则无事，倘若大数量，则并不利于插入。</p>
+<p>第二种：把书架划分成几区域，分别摆放不同类别的书。每种类别中，书以首字母拼音排序。<br>这种方法最大的好处是：无论我在哪个类里面进行什么操作，总归而言，规模要比第一种方法小了不少。无论是利用二分查找，还是顺序插入，所进行的操作要大大小于第一种。</p>
+<p>在确定了方法之后，就需要考虑实践的问题：</p>
+<ul>
+<li>空间如何分配？</li>
+<li>类别还应该分多细？</li>
+</ul>
+<p>空间如分多，一时半会用不完。如果分少，则需要不停的加空间。类别分的粗，那跟没分一样。类别分的细，例如三万种，那会给找书和后期维护带来很多麻烦。</p>
+<p>由此可以得出，<strong>问题解决方法的效率，跟数据的组织方式有关。</strong></p>
+<hr>
+<p>二、写程序实现一个函数p，使得传入一个正整数n，能输出从1到n的全部正整数。<br>第一种：循环函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">p</span> <span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种：递归函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">p</span> <span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        p(n<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;n&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*解释一下这个递归的原理。当n等于5时，函数运行起来递归命令执行5次。</span></span><br><span class="line"><span class="comment">但注意，每次执行if函数中的递归，其if函数体并没有结束。</span></span><br><span class="line"><span class="comment">即处在等待递归函数运行结束执行cout命令上。</span></span><br><span class="line"><span class="comment">因此，n=5时-&gt;if判断真，执行第一行递归带入n=4（等待递归结果）</span></span><br><span class="line"><span class="comment">-&gt;if判断真，执行第二行递归带入n=3（等待递归结果）</span></span><br><span class="line"><span class="comment">-&gt;···带入n=0（等待递归结果）</span></span><br><span class="line"><span class="comment">-&gt;if判断假，返回上一层递归执行结束</span></span><br><span class="line"><span class="comment">-&gt;上一层递归函数结束，执行cout，n=1···。*/</span></span><br></pre></td></tr></table></figure>
+<p>看上去两种函数代码行数相同，内容也不难理解。好像递归函数连临时变量都不需要，应该是要比循环函数执行的更快。</p>
+<p>实际上是这样么？将两个函数实际运行，分别对不同的n实验（10的n次方）。发现，当n值越大，递归函数所占用的内存越多，最后因内存分割问题导致程序崩溃。而循环函数无影响。</p>
+<p>因此，在编程中，为避免无用的内存占用，<u>应尽量避免在大计算内容中使用递归函数。</u></p>
+<p>由此可以得出，<strong>问题解决方法的效率，跟空间的利用效率有关。</strong></p>
+<hr>
+<p>三、写程序计算给定n的多项式在给定x处的值。<br><img data-src="/date-structure/1.png" alt="多项式"><br>根据数学共识可以写出如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">double</span> a[],<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> p=a[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p+=a[i]*<span class="built_in">pow</span>(x,i);<span class="comment">//这样要cmath头文件</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将已知的a和x以及项数分别输入，通过循坏累加，可以求得函数解。<br><img data-src="/date-structure/2.png" alt="化简后多项式"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">double</span> a[],<span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> p=a[n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        p+=a[i<span class="number">-1</span>]+(x*p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时将函数由内而外求和，用该种方法执行速度远大于第一种.</p>
+<p>为了验证速度，可以用上c语言中的clock()函数。可以捕捉clock()函数开始到结束被调用所用的时间。这个时间单位上clock tick，即“时钟打点”。是机器时钟每秒走过的时钟打点数。</p>
+<p><u>如果clock()函数返回为0，说明不够一个单位，此时可以让函数重复运行几次，求其平均值即可。</u></p>
+<p>验证如下：(验证clock应写一个函数，避免重复代码)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;//必要头文件</span></span></span><br><span class="line"><span class="keyword">clock_t</span> start,stop;</span><br><span class="line"><span class="keyword">double</span> dua;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">double</span> a[]=&#123;<span class="number">1.2</span>,<span class="number">3.4</span>,<span class="number">6</span>,<span class="number">5.4</span>,<span class="number">5.7</span>,<span class="number">7</span>,<span class="number">65</span>&#125;;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line"><span class="keyword">double</span> x;</span><br><span class="line"><span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">start=clock();</span><br><span class="line"><span class="keyword">double</span> i=f(n,a,x);</span><br><span class="line">stop=clock();</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">dua=((<span class="keyword">double</span>)(stop-start));</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;dua&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">start=clock();</span><br><span class="line"><span class="keyword">double</span> l=b(n,a,x);</span><br><span class="line">stop=clock();</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;l&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">dua=((<span class="keyword">double</span>)(stop-start));</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;dua&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<p>执行结果：n=5，x=4时</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">9083</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">12</span></span><br><span class="line"><span class="attribute">9083</span>.<span class="number">6</span></span><br><span class="line"><span class="attribute">1</span></span><br></pre></td></tr></table></figure>
+<p>由此可以得出，<strong>问题解决方法的效率，跟算法的巧妙程度有关。</strong></p>
+<hr>
+<h3 id="概念总结：数据结构"><a href="#概念总结：数据结构" class="headerlink" title="概念总结：数据结构"></a>概念总结：数据结构</h3><p>数据结构包括：</p>
+<h4 id="1-数据对象在计算机中的组织方式"><a href="#1-数据对象在计算机中的组织方式" class="headerlink" title="1.数据对象在计算机中的组织方式"></a>1.<u>数据对象在计算机中的组织方式</u></h4><ul>
+<li>逻辑结构 -&gt; 数据元素之间的逻辑关系。<br>包括四种：<ul>
+<li>集合：任何两个元素没有逻辑关系，每个元素都是孤立的。</li>
+<li>线性结构：<u>元素存在一对一关系</u>，一个紧挨一个，整个结构像一条“链”，故称为“线性结构”。<br>如考试成绩表。</li>
+<li>树形结构：<u>数据元素存在一对多关系</u>，元素间逻辑关系呈分支、层次状态。通常称“双亲”与“子女”关系。<br>如家谱、行政组织结构。</li>
+<li>图状结构：<u>元素呈现多对多关系</u>，即<strong>元素间的逻辑关系是任意的</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>非逻辑结构</strong>：（1）、（3）、（4）</p>
+<ul>
+<li><p>例子</p>
+<ul>
+<li><p>如书架放书的方式。如果书架为一长条，一本挨着一本。对每本书给一个编号，一个编号对一本书，构成了<u>一对一线性结构</u>。</p>
+</li>
+<li><p>如果将图书分类，给每一个类一个编号，则形成了<u>一对多树形结构</u>。</p>
+</li>
+<li><p>如果统计一本书有那些人买过，这个人还买过那本书。则一本书对应多个人，一个人又对应多本书，形成了<u>多对多图状结构</u>。</p>
+</li>
+</ul>
+</li>
+<li><p>存储结构<br>包括四种：</p>
+<ul>
+<li>顺序存储：<u>将元素依次存储在一组连续的存储单元中</u>，元素逻辑关系由存储单元位置直接体现。<br>常用于一维数组实现。</li>
+<li>链接存储：<u>将数据元素存储在一组任意的存储单元中</u>，用附加的<u>指针域</u>表示元素之间的逻辑关系。<br>常用一个数据元素及附加的指针一起称做一个节点。<u>高级语言中用指针变量来实现</u>。</li>
+<li>索引存储：<u>在存储数据元素同时建立附加的索引表</u>。<br>若每个数据元素在引索表中均有一个引索项，则为<u>稠密引索</u>。若一个引索项对应一组数据元素，则为<u>稀疏引索</u>。</li>
+<li>散列存储：<u>依据数据元素的关键字，利用事先设计好的函数计算存储地址后将其存入</u>。<br>该函数称为<u>散列函数</u>，计算出的地址为<u>散列地址</u>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-数据对象必定与一系列加在其上的操作相关联"><a href="#2-数据对象必定与一系列加在其上的操作相关联" class="headerlink" title="2.数据对象必定与一系列加在其上的操作相关联"></a>2.数据对象必定与一系列加在其上的操作相关联</h4><h4 id="3-完成上述操作的方法即为算法"><a href="#3-完成上述操作的方法即为算法" class="headerlink" title="3.完成上述操作的方法即为算法"></a>3.完成上述操作的方法即为算法</h4><hr>
+<h3 id="数据类型与抽象数据类型的区别"><a href="#数据类型与抽象数据类型的区别" class="headerlink" title="数据类型与抽象数据类型的区别"></a>数据类型与抽象数据类型的区别</h3><ul>
+<li><p>抽象<br>  因为外部只知道它做什么，而不知道它如何做，更不知道数据的内部表示细节。</p>
+</li>
+<li><p>数据类型<br>  是一个值的集合以及定义在这个值集上的一组操作的总称。<br>  <strong>例子</strong>：C++中的整型变量，其<u>值的集合</u>为某个区间的整数（不同机器不同），一般为-2147483648 ～ 2147483647  (-2^31 –&gt; 2^31-1)，<u>定义在其上的操作为</u>加、减、乘、除等运算。</p>
+<ul>
+<li><p>为什么有数据类型？<br>计算机中内存是有限的，为了提高内存使用效率，不浪费空间，需要设计出数据类型来划定多大数据占多大内存空间，就有了数据类型。<br>  <strong>例子</strong>：计算机计算1+1并不需要多么大的空间，但是计算10000000000+1000000000就得需要有个比较大的空间来放。还有有时候会计算小数，小数的位数不一样，需要的空间也就不一样。数字1和字母a也需要区分啊，于是开发者就想出了“数据类型”这一招，用来描述不同的数据的集合。</p>
+</li>
+<li><p>按“值”可否拆解，数据类型可分为两类：</p>
+<ul>
+<li>原子类型：其值不可分解，通常由语言直接提供，像C++中的int,float,double等等。</li>
+<li>结构类型：值可以分解为若干部分（分量），是程序员自定义的，比如数组类型、结构体、类等等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>抽象数据类型（可理解为c++中的类定义的数据类型）<br>  只是<u>一个数学模型以及定义在模型上的一组操作</u>。通常是对数据的抽象，定义了数据的取值范围以及对数据操作的集合。<u>描述数据类型的方法不依赖于具体实现</u>，即其定义取决于它的一组逻辑特征，而其在计算机内部如何表示和实现无关，向外体现的仅仅是其作用。也就是，<strong>只要它的数学特征不变，都不影响其外部使用</strong>。与此同时，<strong>抽象数据类型的范畴更广</strong>。它不再局限于处理器中已定义好并实现的数据类型，<u>还包括开发者在设计软件时自己定义的数据类型（c++类）</u>，大大提高了软件的重用度。</p>
+<ul>
+<li><p>抽象数据类型在程序设计中的应用<br>  软件的不同功能要对应不同的模块，实现独立，在此基础上定义<u>一组数据和施于这些数据上的一些操作</u>，并在<u>模块内部给出这些数据的表示和操作的细节</u>，而在模块外部使用的只是抽象的数据及抽象的操作。（面向对象的程序设计方法）<br>  <strong>例子</strong>：就像“超级玛丽”这个经典的任天堂游戏，里面的游戏主角是马里奥，我们给他定义了基本操作，前进、后退、跳、打子弹等。这就是一个抽象数据类型，定义了一个数据对象、对象中各元素之间的关系及对数据元素的操作。至于，到底是哪些操作，这只能由设计者根据实际需要来定。像马里奥可能开始只能走和跳，后来发现应该增加一种打子弹的操作，再后来又有了按住打子弹键后前进就有跑的操作。这都是根据实际情况来定的。<br>  <strong>抽象数据类型体现了程序设计中问题分解和信息隐藏的特征。</strong>它把问题分解为多个规模较小且容易处理的问题，然后把每个功能模块的实现为一个独立单元，通过一次或多次调用来实现整个问题。</p>
+</li>
+<li><p>有些时候，抽象数据类型和数据类型实质上是一个概念。<br>  <strong>例子</strong>：整数类型是一个抽象数据类型，在不同处理器上对于整数类型实现的方法不同，但其定义的数学特征没有发生改变，在用户角度上都是相同的。<u>因此，抽象的意义在于：数据类型的数学抽象特征。</u></p>
+</li>
+<li><p>抽象数据类型的特征：实现与操作分离，从而实现封装，达到信息隐藏的目的。</p>
+</li>
+</ul>
+</li>
+<li><p>两者区别<br>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/permition/article/details/102886366">参考链接</a></p>
+<ul>
+<li><u>数据抽象的意义在于数据类型的数学抽象特性</u>。抽象数据类型和数据类型实质上都是概念，只不过抽象数据类型是对数据类型的进一步抽象。不仅限于各种不同的计算机处理器中已经实现的数据类型，还包括为解决更为复杂的问题而由用户自定义的复杂数据类型。不仅限于各种不同的计算机处理器中已经实现的数据类型，还包括为解决更为复杂的问题而由用户自定义的复杂数据类型。如：C++中的类就是抽象数据类型的一种具体实现。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>算法是<u>对特定问题求解步骤的描述</u>，是<u>指令的有限序列</u>，其实每条指令表示一个或多个操作。</p>
+<h3 id="算法的特征和描述"><a href="#算法的特征和描述" class="headerlink" title="算法的特征和描述"></a>算法的特征和描述</h3><ul>
+<li><p>算法的5个特征</p>
+<ul>
+<li>有穷性：对于<u>合法的输入</u>，必须在执行有穷步骤后结束，且每步骤都在有限时间内完成。</li>
+<li>确定性：<u>每条指令都必须有确切含义</u>，不可有二义性。任何条件下，对相同的输入只能得到相同的结果。</li>
+<li>可行性：算法中描述的操作<u>均可通过已实现的基本运算的有限次执行来实现</u>。</li>
+<li>输入：需有<u>零个或多个输入</u>。</li>
+<li>输出：需有<u>一个或多个输出</u>，且应是算法对输入加工后合乎逻辑的结果。</li>
+</ul>
+</li>
+<li><p>算法的描述方式</p>
+<ul>
+<li>自然语言：简单且便于阅读，但容易导致二义性。<br>  <strong>例子</strong>：今天能穿多少穿多少。</li>
+<li>程序流程图、NS图</li>
+<li>某种程序设计语言：不直观，往往需要加注释。</li>
+<li>伪码语言：不依赖于任何一种计算机语言以及具体的实现手段<br>  <strong>例子</strong>：选择排序算法的伪码描述。  <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">void</span> <span class="variable">selectionSort</span> <span class="punctuation">(</span><span class="variable">int</span> <span class="variable">list</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="operator">,</span><span class="variable">int</span> <span class="built_in">N</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="operator">//</span>将<span class="built_in">N</span>个整数<span class="built_in">List</span><span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="operator">...</span><span class="built_in">List</span><span class="punctuation">[</span><span class="built_in">N</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">]</span>进行非递减排序</span><br><span class="line">    <span class="variable">for</span> <span class="punctuation">(</span><span class="variable">int</span> <span class="variable">i</span><span class="operator">=</span><span class="number">0</span><span class="operator">;</span><span class="variable">i</span><span class="operator">&lt;</span><span class="built_in">N</span><span class="operator">;</span><span class="variable">i</span><span class="operator">++</span><span class="punctuation">)</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">        从<span class="built_in">List</span><span class="punctuation">[</span><span class="variable">i</span><span class="punctuation">]</span>到<span class="built_in">List</span><span class="punctuation">[</span><span class="built_in">N</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">]</span>中找到最小元，并将其位置赋给<span class="variable">MinPosition</span>；</span><br><span class="line">        <span class="operator">//</span>也可这样写<span class="operator">:</span> <span class="variable">MinPosition</span> <span class="operator">=</span> <span class="variable">ScanForMIn</span><span class="punctuation">(</span><span class="built_in">List</span><span class="operator">,</span><span class="variable">i</span><span class="operator">,</span><span class="built_in">N</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line">        将未排序部分的最小元换到有序部分的最后位置；</span><br><span class="line">        <span class="operator">//</span><span class="variable">Swap</span><span class="punctuation">(</span><span class="built_in">List</span><span class="punctuation">[</span><span class="variable">i</span><span class="punctuation">]</span><span class="operator">,</span><span class="built_in">List</span><span class="punctuation">[</span><span class="variable">MinPositon</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+  看上去像C++，但最关键的部分是用自然语言描述的。<br>  排序原理：从未排序的一组数据里选择出最小的一个数，将其赋给一个已经排好序的子序列的后面，以此类推之后得到一个从小到大排好序的序列。<br>  一个很重要的特点是：<u>抽象</u>。体现在：List虽然看着像数组，但若传入一个链表仍可行。Swap好像是以函数形式写的，但实际上是否用函数还不一定。<br>  这些细节，在抽象下是不关心的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法的评价与好算法特征"><a href="#算法的评价与好算法特征" class="headerlink" title="算法的评价与好算法特征"></a>算法的评价与好算法特征</h3><ul>
+<li>时间复杂度T(n) -&gt;Time<ul>
+<li>定义：算法写成的程序在运行时从开始到结束所用的时间，即<u>该算法每条语句的执行时间之和</u>。语句执行时间是指(执行次数)*(一次所需时间)。<br>由于程序运行速度与所处的电脑性能以及编译程序生成的目标代码质量有关。因此<u>假设实行每条语句的时间均为单位时间</u>。</li>
+<li>与效率的关系：时间复杂度过高的低效算法可能导致我们在有生之年都等不到运行结果。<strong>一般输入数据的规模有关</strong>。</li>
+</ul>
+</li>
+<li>空间复杂度S(n) -&gt;Space<ul>
+<li>定义：根据算法写成的程序在执行时所占用的存储单元的长度。</li>
+<li>与效率的关系：空间复杂度过高的算法可能导致使用的内存超限，造成程序非正常中断。<strong>一般输入数据的规模有关</strong>。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/02/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" rel="prev" title="离散数学笔记">
+      <i class="fa fa-chevron-left"></i> 离散数学笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">什么是数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%8C%E4%B8%89%E4%B8%AA%E7%BB%93%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">三个例子，三个结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">概念总结：数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.数据对象在计算机中的组织方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%BF%85%E5%AE%9A%E4%B8%8E%E4%B8%80%E7%B3%BB%E5%88%97%E5%8A%A0%E5%9C%A8%E5%85%B6%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3%E8%81%94"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.数据对象必定与一系列加在其上的操作相关联</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%8C%E6%88%90%E4%B8%8A%E8%BF%B0%E6%93%8D%E4%BD%9C%E7%9A%84%E6%96%B9%E6%B3%95%E5%8D%B3%E4%B8%BA%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.完成上述操作的方法即为算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">数据类型与抽象数据类型的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%9A%84%E7%89%B9%E5%BE%81%E5%92%8C%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">算法的特征和描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E4%B8%8E%E5%A5%BD%E7%AE%97%E6%B3%95%E7%89%B9%E5%BE%81"><span class="nav-number">2.2.</span> <span class="nav-text">算法的评价与好算法特征</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="三只Panda"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">三只Panda</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ThreePanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ThreePanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三只Panda</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
