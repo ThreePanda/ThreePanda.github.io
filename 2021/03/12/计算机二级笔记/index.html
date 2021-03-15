@@ -29,7 +29,7 @@
 <meta property="og:description" content="总结了我在未来教育题库中遇到的不稳固的知识点和对题目的理解。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-12T10:27:41.211Z">
-<meta property="article:modified_time" content="2021-03-13T05:26:41.103Z">
+<meta property="article:modified_time" content="2021-03-15T16:58:59.600Z">
 <meta property="article:author" content="三只Panda">
 <meta property="article:tag" content="计算机二级C++">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-13 13:26:41" itemprop="dateModified" datetime="2021-03-13T13:26:41+08:00">2021-03-13</time>
+                <time title="Modified: 2021-03-16 00:58:59" itemprop="dateModified" datetime="2021-03-16T00:58:59+08:00">2021-03-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,8 +229,49 @@
 <h2 id="选择题方面"><a href="#选择题方面" class="headerlink" title="选择题方面"></a>选择题方面</h2><ul>
 <li><p>概念方面</p>
 <ul>
+<li>进程：指一个具有一定独立功能的程序关于某个数据合集的一次运动活动。<ul>
+<li>是可以并发执行的程序的<u>执行过程</u>，是<u>控制程序管理下的基本的多道程序单位</u>。</li>
+</ul>
+</li>
 <li>指令周期：计算机完成一条指令花费的时间称为一个指令周期.其越短指令执行越快。</li>
 <li>顺序程序：具有顺序性、封闭性和可再生性的特点。使得程序设计者可以控制程序执行的过程（执行顺序、执行时间），对程序中间结果和状态可以提前预估。由此可以更方便的进行程序的测试和调试。</li>
+<li>虚拟内存：从硬盘存储空间中划出一部分来完成内存的工作。<u>计算机所支持的最大内存是由该计算机的地址位数决定的</u>，也就是计算机的最大寻址能力。32位机的寻址能力为2的32次方，大约为4G。64位为TB级单位，视不同系统而定。</li>
+<li><u>软性应首先满足用户的功能需求</u>。即软件产品必须提供用户所需的功能，如果做不到这一点，声明产品都没有意义。</li>
+<li>关于数据常量的默认定义：42（int），4.2（double），42L（long）</li>
+<li>必须用大括号括起来的程序段：<u>函数的函数体</u>。<ul>
+<li>switch和if语句的分支，循环语句都是不必要的。</li>
+</ul>
+</li>
+<li>cpu功能<ul>
+<li>cpu包括运算器和控制器两部分<ul>
+<li>运算器负责对数据进行加工，即<u>对数据进行算术和逻辑运算</u>。</li>
+<li>控制器负责对程序所规定的指令进行分析，<u>控制并协调输入、输出操作或对内存的访问</u>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>*的作用：<ul>
+<li>定义指针变量（定义之后变量变量不再有*）</li>
+<li>取指针所指向的内存单元的值(*p单独出现往往是此意)</li>
+</ul>
+</li>
+<li>&amp;的作用<ul>
+<li>取对应元素的地址</li>
+<li>表引用（出现在等号左边和函数形参中,直接访问内存中变量，可以不用为其分配内存空间）</li>
+</ul>
+</li>
+<li>变量的存储类型：静态存储和动态存储<ul>
+<li>有四个关键字：auto（自动的）、extern（外部的）、register（寄存器的）、static（静态的）</li>
+<li>若没有说明存储类型，则默认为auto</li>
+</ul>
+</li>
+<li>软件：是指与计算机系统操作有关的计算机程序、规程、规则，以及可能有的文件、文档及数据。<u>即程序、数据和文档的集合</u>。</li>
+<li>结构化程序的三种基本控制结构：顺序结构、选择（分支）结构和重复（循环）结构。</li>
+<li>要是用外存储器中的信息，应先将其掉入内存储器<ul>
+<li>外存储器中的数据只有被读入内存储器中才能被cpu读取。</li>
+<li>cpu不能直接访问外存储器</li>
+</ul>
+</li>
 <li>结构化程序设计强调：程序易读性。<ul>
 <li>结构化程序设计目的：通过设计结构良好的程序，以程序静态的良好的结构保证程序动态执行的正确性，<u>使程序易理解、易调试、易维护、以提高软件的开发的效率，减少出错率</u>。</li>
 </ul>
@@ -238,48 +279,106 @@
 <li>系统软件：管理计算机的资源，提高计算机的使用效率，为用户提供各种服务的软件。如操作系统、数据库管理系统、编译程序、汇编程序、网络软件等。</li>
 <li>c++标识符：必须以_或字母开头，不能为c++已有的关键字。特别注意enum是关键字。</li>
 <li>函数调用：<u>标准c++规定</u>函数调用前必须要声明。</li>
-<li>内联函数：一般函数调用时，要将程序执行权转移到被调用函数中，待调用函数执行结束，然后在返回调用它的函数中。内联函数调用时，<u>是将调用表达式用内联函数体进行替换，即不再进行执行权转移</u>。<ul>
+<li>内联函数：一般函数调用时，要将程序执行权转移到被调用函数中，待调用函数执行结束，然后在返回调用它的函数中。内联函数调用时，<u>是将调用表达式用内联函数体进行替换，即不再进行执行权转移</u>。<strong>类似于c中的宏，取代了c中带参数的宏</strong>。<ul>
 <li>在类中，所有类内调用的函数均为内联函数形式。(不需要加inline关键字)</li>
 <li><u>编译系统并非对内联函数必须使用内联，而是根据具体情况而定。</u>即内联函数是通过编译器来实现的。</li>
 </ul>
 </li>
-<li>运算符重载：<ul>
+</ul>
+</li>
+<li><p>与类有关的操作</p>
+<ul>
+<li><p>类外声明函数：</p>
+<ul>
+<li>void class::fun(){}</li>
+</ul>
+</li>
+<li><p>”对象“概念描述：</p>
+<ul>
+<li>是由描述该对象属性的<u>数据</u>以及可以对这些数据施加的所有<u>操作</u><u>封装在一起</u>构成的统一体。</li>
+<li>对象间的通信是靠消息传递。一个对象通过向另一对象发送消息来请求其服务。</li>
+<li>类是对象的抽象，<u>一个对象则是其对应类的一个实例</u>。</li>
+</ul>
+</li>
+<li><p>运算符重载：</p>
+<ul>
 <li>c++不允许用户自己定义新的运算符，<u>只能对已有的运算符进行重载</u>。</li>
 <li>不能重载的运算符只有5个。(=、()、[]、-&gt;)</li>
 <li>重载不能改变运算符运算对象的个数。</li>
 <li>重载运算符的函数不能有默认的参数。</li>
 <li><u>重载不能改变运算符的优先级和结合性</u>。</li>
-<li>重载的运算符<u>必须和用户定义的自定义类型的对象一起使用，且至少应有一个是类对象。<strong>不允许参数全部是c++标准类型</strong></u>。即不能对基本类型的数据（如int）的数据，重新定义“+”运算符的含义。</li>
+<li>重载的运算符<u>必须和用户定义的自定义类型的对象一起使用，且至少应有一个是类对象。<strong>不允许参数全部是c++标准类型</strong></u>。即不能对基本类型的数据（如int）的数据，重新定义“+”运算符的含义。 </li>
+<li><u>在类型转换符函数的定义中不需要声明返回类型</u>。</li>
 <li>重载为成员函数与友元函数：<ul>
 <li>单目运算符最好重载为类的成员函数</li>
 <li>双目运算符最好重载为类的友元函数</li>
 <li>双目运算符(=、()、[]、-&gt;)不能重载为类的友元函数。</li>
 </ul>
 </li>
+<li></li>
 </ul>
 </li>
-<li>常对象与常成员函数<ul>
-<li><u>常对象只能调用她的常成员函数</u>，而不能调用非const函数。（类中）</li>
+<li><p>常对象与常成员函数</p>
+<ul>
+<li><u>常对象只能调用她的常成员函数</u>(const class obj())，而不能调用非const函数。（类中）(void fun()const{})</li>
 <li><u>常对象的成员函数不一定都是常成员函数，只需保证其数据成员是常数据成员即可</u>。</li>
+<li>常成员函数作用：仅有读取权限，保护函数调用的数据不被意外修改。<ul>
 <li>常成员函数只能引用本类的数据成员而不能修改他。</li>
+<li>常成员函数不能更新对象的数据成员。</li>
 </ul>
 </li>
-<li>this指针<ul>
+</ul>
+</li>
+<li><p>常数据成员的初始化</p>
+<ul>
+<li><u>只能通过构造函数的参数初始化列表对常数据成员进行初始化</u>（static int b），不能采用在构造函数中对常数据函数赋值。</li>
+</ul>
+</li>
+<li><p>静态函数</p>
+<ul>
+<li>无this指针，无法访问本类中的非静态成员（return同理）</li>
+</ul>
+</li>
+<li><p>this指针</p>
+<ul>
 <li><u>this作用域是在类内部</u>，当在类中的非静态成员函数中访问类的非静态成员时，编译器会自动将对象本身的地址作为一个隐含参数传递给函数。</li>
 <li>全局函数如int main()和静态函数都不能使用this指针。</li>
 </ul>
 </li>
-<li>虚函数<ul>
+<li><p>虚函数</p>
+<ul>
 <li>在<strong>基类声明为virtual的函数</strong>，并在其一个或多个派生类中被重新定义的成员函数。</li>
 <li>虚函数必须是基类的非静态函数。</li>
 <li>访问权限不能为private。</li>
 <li><u>一个类中包含了纯虚函数（virtual …=0），称此类为抽象类</u>。</li>
 </ul>
 </li>
-<li>派生类与基类<ul>
+<li><p>调用复制构造函数</p>
+<ul>
+<li>程序中需要建立一个新的对象，并用另一个对象对它初始化。</li>
+<li>函数的参数为类的对象。</li>
+<li>函数的返回值是类的对象。</li>
+</ul>
+</li>
+<li><p>派生类与基类</p>
+<ul>
+<li><u>抽象类不能被实体化，因此对抽象类创建对象在编译时会出错</u>。</li>
+<li>若继承时没有声明继承方式，<strong>则默认的继承方式为私有继承</strong>。</li>
+<li><strong>类的成员的缺省访问权限是私有的</strong>。</li>
+<li>类的数据成员不能在声明类时初始化（在类中int value=0不合法）</li>
 <li>派生类可以有多个直接基类</li>
 <li>派生类对象被创建时会先自动调用基类构造函数后调用派生类构造函数。</li>
 <li>如果基类中定义了缺省构造函数（=0）或没定义，在派生类构造函数的定义中可以忽略对基类构造函数的调用。</li>
+<li>抽象类：<u>指含有纯虚函数的类</u><ul>
+<li>如果派生类没有实现基类的<u>一个纯虚函数</u>，则该派生类是一个抽象类。</li>
+</ul>
+</li>
+<li>继承方式：<ul>
+<li>public：基类</li>
+<li>protect：只能在类中函数调用和访问，类外不可。</li>
+<li>private：</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -292,9 +391,31 @@
 <li></li>
 </ul>
 </li>
+<li><p>模板</p>
+<ul>
+<li>类模板的定义和声明都以关键字template开头。</li>
+<li><u>对于常规参数所对应的模版实参，任何情况下都不能省略</u>。</li>
+<li>在模板形参表中除了用typename和class来声明参数的类型外，还可以用常规类型来声明。<ul>
+<li>程序中的tpyename都可以替换为class，但class不可以全部替换成typename。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>枚举符号</p>
+<ul>
+<li>streamoff定义于iostream.h中，定义有偏移量offset所能取得的最大值，seek——dir表示移动的基准位置。<ul>
+<li>有以下值的枚举：ios::beg:（文件开头） ios::cur:（文件当前位置） ios::end: （文件结尾）</li>
+<li>eof()函数可以检测是否到达文件尾部</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>栈与队列</p>
 <ul>
-<li>入栈与出栈：先进后出原则组织数据。ABCD进入DCBA退出。</li>
+<li>入栈与出栈：先进后出原则组织数据。ABCD进入DCBA退出。<ul>
+<li>栈的存储空间：S（1:50），初始状态为top=51.<u>即栈的初始状态为空</u>。当第一个元素进栈后。top=50，以此类推。<u>即每进栈一个元素，top-1；每出栈一个元素，top+1.</u></li>
+</ul>
+</li>
 <li>入队列与出队列：先进先出原则组织数据。ABCD进入ABCD退出。</li>
 </ul>
 </li>
@@ -306,15 +427,57 @@
 <li>计算叶子结点数：利用树的性质与树总结点数的计算方法，假设叶子结点个数，做等式求解。</li>
 </ul>
 </li>
+<li><p>链表</p>
+<ul>
+<li>循环链表：<u>采用链式存储结构，因此存储空间可以连续，也可不连续</u>。<ul>
+<li>线性表链式存储结构特点：用<u>一组不连续的存储单元存储线性表的各个元素</u>。线性链表的存储单元是任意的，<u>即各数据结点的存储序号可以是连续的，也可以不联系</u>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>存储结构</p>
+<ul>
+<li>顺序存储结构：<ul>
+<li>循环队列：所谓循环队列，就是将队列存储空间的最后一个位置绕到第一个位置，<u>形成逻辑上的环状空间</u>，供队列循环使用。在循环队列结构中，当存储空间的最后一个位置已被使用而再要进行入队运算时。只要存储空间的笫一个位置空闲，使可将元素加入到第一个位置，即将存储空问的第一个位置作为队尾。因此，随着插入元素或删除元素的进行，队头指针和队尾指针是在不断变化的，<u>可能存在队头大于队尾或队尾大于队头的情况</u>。<ul>
+<li>队头指针front指向队头元素的前一个位置。</li>
+<li>队尾指针rear指向队列中的队尾元素。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>数据库</p>
 <ul>
 <li>数据库管理技术的三个阶段：人工管理阶段（无专门的软件对数据进行管理）、文件系统阶段和数据库系统阶段。</li>
-<li></li>
+<li>数据库中存储的是：数据以及数据之间的关系。<ul>
+<li>数据库就是放数据的仓库，只不过数据库存放数据<u>是按数据所提供的数据模式（数据之间的联系）存放的</u>。</li>
+</ul>
+</li>
+<li>数据库管理系统主要功能：（不包括数据库和网络中其他系统的通信）<ul>
+<li>数据模式的定义</li>
+<li>数据存取的物理构建</li>
+<li>数据操纵(访问)</li>
+<li>数据完整性、安全性的定义与检查</li>
+<li>数据库的并发控制与故障恢复</li>
+<li>数据的服务</li>
+</ul>
+</li>
+<li>关系数据库设计<ul>
+<li>关系模式是用来记录用户数据的<u>二维表</u>。</li>
+<li>主键与外键<ul>
+<li>若属性D是关系B的主键，但在关系A中不是，则属性D在关系A中是外键。</li>
+</ul>
+</li>
+<li>规范化的目的：<u>解决关系数据库中的插入、删除异常及数据冗余问题</u>。即使关系结构更加合理，消除存储异常，使数据冗余尽量小，便于插入、删除和更新等操作。</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="程序设计方面"><a href="#程序设计方面" class="headerlink" title="程序设计方面"></a>程序设计方面</h2><ul>
-<li>语句的运用<ul>
+<li><p>语句的运用</p>
+<ul>
 <li>const：限定符。声明的变量只能被读，必须初始化。<ul>
 <li>指针方面：const double *point: 指向双精度实数常量（const double）的指针，指针指向可以改变，但指向的值必须符合const double，可以不初始化（野指针）。double *const point: 常指针，指向一个double变量的常指针，一旦指向便不可改变，必须初始化。</li>
 </ul>
@@ -325,19 +488,38 @@
 </ul>
 </li>
 <li>if判断：if条件句内不允许再进行if判断。<u>即if(if(…))不合法</u>。</li>
+<li>文件流<ul>
+<li>ifstream流为输入输出流。默认文件输入流打开方式为ios::in。</li>
+<li>以ios_base::out模式打开的文件如果不存在，会自动创建</li>
+<li>ifstream的使用<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ifstream fin;</span><br><span class="line">fin.open(<span class="string">&quot;file.dat&quot;</span>);<span class="comment">//建立文件流并打开当前目录下文件file.dat用于输入。</span></span><br><span class="line"></span><br><span class="line">ifstream *fin=<span class="keyword">new</span> ifstream(<span class="string">&quot;file.dat&quot;</span>);</span><br><span class="line"></span><br><span class="line">ifstream *fin=<span class="keyword">new</span> ifstream();</span><br><span class="line">fin-&gt;open(<span class="string">&quot;file.dat&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>函数的调用<ul>
-<li>调用函数赋值：函数体内赋值操作在函数体结束时自动销毁（生命周期问题）  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> val;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">double</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun(val);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;val&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//实际val未被赋值，输出一个不确定的数</span></span><br></pre></td></tr></table></figure></li>
-<li>调用常成员函数  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getvalue</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> a;<span class="comment">//正确</span></span><br><span class="line">            <span class="keyword">return</span> &amp;a;<span class="comment">//返回值错误</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>运算符重载操作<br>  <strong>待补充具体原理</strong><ul>
+<li><p>函数的调用</p>
+<ul>
+<li>调用函数赋值：函数体内赋值操作在函数体结束时自动销毁（生命周期问题）  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> val;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">double</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun(val);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;val&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//实际val未被赋值，输出一个不确定的数</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Obj</span></span></span><br><span class="line"><span class="class">    (</span></span><br><span class="line"><span class="class">        <span class="title">static</span> <span class="title">i</span>;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ~Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">int</span> Obj::i = <span class="number">0</span>；</span><br><span class="line">    <span class="keyword">void</span> fun()</span><br><span class="line">    &#123;</span><br><span class="line">        Obj ob1;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ob1.getval();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        fun();<span class="comment">//输出1后生命周期结束，执行析构函数</span></span><br><span class="line">        Obj ob2;</span><br><span class="line">        ob2.getval();<span class="comment">//输出1</span></span><br><span class="line">    &#125;</span><br><span class="line">- 调用常成员函数</span><br><span class="line">    ```c++</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="keyword">int</span> a;</span><br><span class="line">            <span class="function"><span class="keyword">int</span> <span class="title">getvalue</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a;<span class="comment">//正确</span></span><br><span class="line">                <span class="keyword">return</span> &amp;a;<span class="comment">//返回值错误</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
+<li>构造函数的调用<ul>
+<li>若执行point a(2),b[3],*c[4];需要调用几次构造函数<ul>
+<li>数组对象执行时有几个变量调用几次</li>
+<li>指针对象不调用构造函数<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    Point():x(<span class="number">0</span>),y(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    Point(<span class="keyword">int</span> x,<span class="keyword">int</span> y=<span class="number">0</span>):x(x),y(y)&#123;&#125;<span class="comment">//对应一个参数x，y默认0</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>带有指定数值的行参<br><u>对于无参数的构造函数，执行设定好的值。对于传入的1个参量，将a代换为传入的参量</u>。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">s</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">   a=<span class="number">2</span>;<span class="comment">//更改static int a；</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  A(<span class="keyword">int</span> a=<span class="number">999</span>)<span class="comment">//注意行参a</span></span><br><span class="line">  &#123;   </span><br><span class="line">   s();</span><br><span class="line">   a++;<span class="comment">//调用的为行参a</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> A::a=<span class="number">0</span>;</span><br><span class="line">A obj;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;     </span><br><span class="line"> <span class="built_in">cout</span>&lt;&lt;obj.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="function">A <span class="title">bog1</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;bog1.a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">输出结果为：</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1000</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<u>对基类私有成员进行赋值</u><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;<span class="comment">//默认私有</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        AA(<span class="keyword">int</span> n=<span class="number">0</span>):a(n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BB</span>:</span><span class="keyword">public</span> AA</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        BB(<span class="keyword">int</span> n):AA(n)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">BB <span class="title">a</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据结果为：</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>运算符重载操作<br>  <strong>待补充具体原理</strong></p>
+<ul>
 <li>非成员函数的运算符的函数原型<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fraction <span class="keyword">operator</span>= (fraction&amp;);</span><br><span class="line">fraction <span class="keyword">operator</span>+ (fraction,fraction);</span><br><span class="line">fraction <span class="keyword">operator</span>- (fraction);</span><br><span class="line">fraction&amp; <span class="keyword">operator</span>+= (fraction&amp;,fraction);</span><br></pre></td></tr></table></figure></li>
 <li>双目运算符重载为友元函数<ul>
-<li>为myclass类重载流输入&gt;&gt;，使程序可以“cin&gt;&gt;obj;”的形式改变类对象obj内date的数据。（public处）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is,MyClass&amp; a)</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>为myclass类重载流输入&gt;&gt;，使程序可以“cin&gt;&gt;obj;”的形式改变类对象obj内date的数据。（public处）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is,MyClass&amp; a)</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
