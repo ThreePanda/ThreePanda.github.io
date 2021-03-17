@@ -29,7 +29,7 @@
 <meta property="og:description" content="总结了我在未来教育题库中遇到的不稳固的知识点和对题目的理解。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-12T10:27:41.211Z">
-<meta property="article:modified_time" content="2021-03-16T17:24:59.366Z">
+<meta property="article:modified_time" content="2021-03-17T16:44:48.946Z">
 <meta property="article:author" content="三只Panda">
 <meta property="article:tag" content="计算机二级C++">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-17 01:24:59" itemprop="dateModified" datetime="2021-03-17T01:24:59+08:00">2021-03-17</time>
+                <time title="Modified: 2021-03-18 00:44:48" itemprop="dateModified" datetime="2021-03-18T00:44:48+08:00">2021-03-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,9 +233,22 @@
 <li>是可以并发执行的程序的<u>执行过程</u>，是<u>控制程序管理下的基本的多道程序单位</u>。</li>
 </ul>
 </li>
+<li>概念模型：概念数据模式，建成概念模型。着重于对客观世界复杂事物的描述及它们内在联系的刻画<ul>
+<li>最著名的概念模型：实体-联系模型、面向对象模型</li>
+</ul>
+</li>
 <li>字符串输入时，如果用cin要注意遇到空格、TAB、回车都会停止输入。</li>
 <li>整数在计算机中存储和运算通常<u>采用补码的形式</u>。</li>
+<li>c++标准数据流对象：cout、cin、cerr、clog</li>
 <li>缺省：默认</li>
+<li>黑盒测试：又称为功能测试或数据驱动测试。着重测试软件功能。<ul>
+<li>黑盒测试依据需求规格说明书的功能描述。</li>
+</ul>
+</li>
+<li>缓冲技术：协调吞吐速度相差很大的设备之间数据传送<ul>
+<li>缓和cpu和I/O设备速度不匹配的矛盾，提高并行性。</li>
+</ul>
+</li>
 <li>将文件名转化为文件存储地址的结构是：文件目录<ul>
 <li>为了对成千上万个文件进行存储和管理，计算机系统建立文件的索引，<u>即文件名和文件物理位置之间的映射，这种文件的索引称为文件目录</u>。</li>
 </ul>
@@ -295,6 +308,7 @@
 <li>内联函数：一般函数调用时，要将程序执行权转移到被调用函数中，待调用函数执行结束，然后在返回调用它的函数中。内联函数调用时，<u>是将调用表达式用内联函数体进行替换，即不再进行执行权转移</u>。<strong>类似于c中的宏，取代了c中带参数的宏</strong>。<ul>
 <li>在类中，所有类内调用的函数均为内联函数形式。(不需要加inline关键字)</li>
 <li><u>编译系统并非对内联函数必须使用内联，而是根据具体情况而定。</u>即内联函数是通过编译器来实现的。</li>
+<li>将规模很小而频繁使用的函数声明为内联函数，可<u>避免函数调用时间开销，提高运行速度</u>。</li>
 </ul>
 </li>
 </ul>
@@ -311,6 +325,14 @@
 <li>对c++编译器区分重载函数无任何意义的信息是：返回值类型</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>I/O方式</p>
+<ul>
+<li>包括程序查询、程序中断、直接存储器存取（DMA）和通道控制。<ul>
+<li>通道控制方式可以做到一个通道控制多台设备与内存进行数据交换。<u>进一步减轻了CPU的工作负担，<strong>增加了计算机系统的并行工作程度</strong></u>。</li>
 </ul>
 </li>
 </ul>
@@ -439,6 +461,7 @@
 <li><p>模板</p>
 <ul>
 <li>类模板的定义和声明都以关键字template开头。</li>
+<li>函数模板的一个实例就是一个函数定义。</li>
 <li>模板包括函数模板和类模板。</li>
 <li>模板参数可以作为<u>数据成员的类型、成员函数的返回类型、成员函数的参数类型、成员函数的局部变量类型</u>。</li>
 <li><u>对于常规参数所对应的模版实参，任何情况下都不能省略</u>。</li>
@@ -450,6 +473,11 @@
 </li>
 <li><p>枚举符号</p>
 <ul>
+<li>枚举类型声明：enum<ul>
+<li>枚举声明语句<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">color</span>&#123;</span>white,yellow,green=<span class="number">5</span>,red,black=<span class="number">10</span>&#125;;</span><br></pre></td></tr></table></figure>
+此时从左到右值为0,1,5,6,10.<br>枚举常量默认从0开始到n-l.如果给枚举常量赋初值（要求整形变量），其后的枚举常量将按照自然数规律继续赋值。</li>
+</ul>
+</li>
 <li>streamoff定义于iostream.h中，定义有偏移量offset所能取得的最大值，seek——dir表示移动的基准位置。<ul>
 <li>有以下值的枚举：ios::beg:（文件开头） ios::cur:（文件当前位置） ios::end: （文件结尾）</li>
 <li>eof()函数可以检测是否到达文件尾部</li>
@@ -489,12 +517,13 @@
 </li>
 </ul>
 </li>
-<li><p>链表</p>
+<li><p>链表/线性表</p>
 <ul>
 <li>循环链表：<u>采用链式存储结构，因此存储空间可以连续，也可不连续</u>。<ul>
 <li>线性表链式存储结构特点：用<u>一组不连续的存储单元存储线性表的各个元素</u>。线性链表的存储单元是任意的，<u>即各数据结点的存储序号可以是连续的，也可以不联系</u>。</li>
 </ul>
 </li>
+<li><strong>数组属于线性表</strong>，对长度为n的线性表进行快速排序，最坏情况需要比较n(n-1)/2。</li>
 <li>在长度为n的有序链表中进行查找，最坏情况需要比较n次，最好仅需比较一次。<ul>
 <li>最坏：查找的元素为最后一个元素或不在表中。</li>
 </ul>
@@ -509,6 +538,7 @@
 <li>队尾指针rear指向队列中的队尾元素。</li>
 <li>循环队列存储空间为Q（1:50），经过一系列正常的入队和退队后，front=rear=25.后又成功将一个元素入队，此时队列中的元素为：1个<ul>
 <li>设循环队列的存储空间为Q（1:m），当front=rear=m时，<u>循坏队列为空</u>。当front=rear且不等于m时，<u>循环队列可能为空也可能已满</u>。当为空时可以插入元素，当满时插入会发送“上溢”错误。</li>
+<li>再循环队列运转起来后，如果<u>front&lt;rear</u>，则队列中元素个数为rear-front。如果<u>front&gt;rear</u>，队列中元素个数为rear-front+m。</li>
 </ul>
 </li>
 </ul>
@@ -546,8 +576,7 @@
 </li>
 </ul>
 <h2 id="程序设计方面"><a href="#程序设计方面" class="headerlink" title="程序设计方面"></a>程序设计方面</h2><ul>
-<li><p>语句的运用</p>
-<ul>
+<li>语句的运用<ul>
 <li>const：限定符。声明的变量只能被读，必须初始化。<ul>
 <li>指针方面：const double *point: 指向双精度实数常量（const double）的指针，指针指向可以改变，但指向的值必须符合const double，可以不初始化（野指针）。double *const point: 常指针，指向一个double变量的常指针，一旦指向便不可改变，必须初始化。</li>
 </ul>
@@ -566,8 +595,7 @@
 </li>
 </ul>
 </li>
-<li><p>函数的调用</p>
-<ul>
+<li>函数的调用<ul>
 <li>调用函数赋值：函数体内赋值操作在函数体结束时自动销毁（生命周期问题）  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> val;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">double</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun(val);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;val&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//实际val未被赋值，输出一个不确定的数</span></span><br></pre></td></tr></table></figure>
   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Obj</span></span></span><br><span class="line"><span class="class">    (</span></span><br><span class="line"><span class="class">        <span class="title">static</span> <span class="title">i</span>;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ~Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">int</span> Obj::i = <span class="number">0</span>；</span><br><span class="line">    <span class="keyword">void</span> fun()</span><br><span class="line">    &#123;</span><br><span class="line">        Obj ob1;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ob1.getval();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        fun();<span class="comment">//输出1后生命周期结束，执行析构函数</span></span><br><span class="line">        Obj ob2;</span><br><span class="line">        ob2.getval();<span class="comment">//输出1</span></span><br><span class="line">    &#125;</span><br><span class="line">- 调用常成员函数</span><br><span class="line">    ```c++</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="keyword">int</span> a;</span><br><span class="line">            <span class="function"><span class="keyword">int</span> <span class="title">getvalue</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a;<span class="comment">//正确</span></span><br><span class="line">                <span class="keyword">return</span> &amp;a;<span class="comment">//返回值错误</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
 <li>构造函数的调用<ul>
@@ -580,13 +608,13 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">输出结果为：</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">1000</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
 <u>对基类私有成员进行赋值</u><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;<span class="comment">//默认私有</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        AA(<span class="keyword">int</span> n=<span class="number">0</span>):a(n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BB</span>:</span><span class="keyword">public</span> AA</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        BB(<span class="keyword">int</span> n):AA(n)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">BB <span class="title">a</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据结果为：</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
-</li>
+<u>有基类构造函数赋值操作时的调用顺序<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Base(<span class="keyword">int</span> n=<span class="number">0</span>):x(n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;n;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    Derived(<span class="keyword">int</span> m,<span class="keyword">int</span> n):y(m),Base(n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;m;</span><br><span class="line">    &#125;</span><br><span class="line">    Derived(<span class="keyword">int</span> m):y(m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Derived d1(3),d2(5,7);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输出结果：<span class="number">0375</span></span><br><span class="line">定义的<span class="built_in">d1</span>，先执行基类构造函数输出<span class="number">0</span></span><br><span class="line">再执行派生类构造函数输出<span class="number">3</span></span><br><span class="line">定义的<span class="built_in">d2</span>，先执行基类构造函数将<span class="number">7</span>赋值过去</span><br><span class="line">最后输出<span class="number">5</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>运算符重载操作<br>  <strong>待补充具体原理</strong></p>
-<ul>
+<li>运算符重载操作<br>  <strong>待补充具体原理</strong><ul>
 <li>非成员函数的运算符的函数原型<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fraction <span class="keyword">operator</span>= (fraction&amp;);</span><br><span class="line">fraction <span class="keyword">operator</span>+ (fraction,fraction);</span><br><span class="line">fraction <span class="keyword">operator</span>- (fraction);</span><br><span class="line">fraction&amp; <span class="keyword">operator</span>+= (fraction&amp;,fraction);</span><br></pre></td></tr></table></figure></li>
 <li>双目运算符重载为友元函数<ul>
 <li>为myclass类重载流输入&gt;&gt;，使程序可以“cin&gt;&gt;obj;”的形式改变类对象obj内date的数据。（public处）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is,MyClass&amp; a)</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
