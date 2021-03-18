@@ -28,11 +28,13 @@
 <meta property="og:site_name" content="ThreePanda">
 <meta property="og:description" content="总结了我在未来教育题库中遇到的不稳固的知识点和对题目的理解。">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/erjic++/1.png">
 <meta property="article:published_time" content="2021-03-12T10:27:41.211Z">
-<meta property="article:modified_time" content="2021-03-17T16:44:48.946Z">
+<meta property="article:modified_time" content="2021-03-18T17:05:56.071Z">
 <meta property="article:author" content="三只Panda">
 <meta property="article:tag" content="计算机二级C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/erjic++/1.png">
 
 <link rel="canonical" href="http://example.com/2021/03/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BA%8C%E7%BA%A7%E7%AC%94%E8%AE%B0/">
 
@@ -193,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-18 00:44:48" itemprop="dateModified" datetime="2021-03-18T00:44:48+08:00">2021-03-18</time>
+                <time title="Modified: 2021-03-19 01:05:56" itemprop="dateModified" datetime="2021-03-19T01:05:56+08:00">2021-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,16 +233,26 @@
 <ul>
 <li>进程：指一个具有一定独立功能的程序关于某个数据合集的一次运动活动。<ul>
 <li>是可以并发执行的程序的<u>执行过程</u>，是<u>控制程序管理下的基本的多道程序单位</u>。</li>
+<li>程序活动状况可划分为：运行状态、就绪状态、阻塞（等待）状态、创建状态和终止状态。<ul>
+<li>就绪、运行、阻塞状态在一定条件下可以相互转换</li>
+<li>就绪状态（获得除了cpu以外的所有所需运行资源）一旦分配到cpu，就可进入运行状态</li>
+</ul>
+</li>
+<li>具有动态性、共享性、独立性、制约性、并发性5种属性</li>
 </ul>
 </li>
 <li>概念模型：概念数据模式，建成概念模型。着重于对客观世界复杂事物的描述及它们内在联系的刻画<ul>
 <li>最著名的概念模型：实体-联系模型、面向对象模型</li>
+<li>概念设计阶段得到的结果为<u>E-R模型（实体-联系模型）</u>。</li>
 </ul>
 </li>
 <li>字符串输入时，如果用cin要注意遇到空格、TAB、回车都会停止输入。</li>
 <li>整数在计算机中存储和运算通常<u>采用补码的形式</u>。</li>
 <li>c++标准数据流对象：cout、cin、cerr、clog</li>
 <li>缺省：默认</li>
+<li>字符串中转义字符\n,\r等只占一个字节，字母和加减乘除符号等也占一个字节</li>
+<li>关系数据模型：数据结构、数据操作、数据约束(包括完整性规则)三部分组成。</li>
+<li>总线带宽：总线的数据传输率。单位时间内总线上传输数据的位数。</li>
 <li>黑盒测试：又称为功能测试或数据驱动测试。着重测试软件功能。<ul>
 <li>黑盒测试依据需求规格说明书的功能描述。</li>
 </ul>
@@ -299,6 +311,7 @@
 </ul>
 </li>
 <li>结构化程序设计强调：程序易读性。<ul>
+<li>  结构化程序设计原则：自顶向下、逐步求精、模块化、限制使用goto语句。<u>多态性不属于</u>.</li>
 <li>结构化程序设计目的：通过设计结构良好的程序，以程序静态的良好的结构保证程序动态执行的正确性，<u>使程序易理解、易调试、易维护、以提高软件的开发的效率，减少出错率</u>。</li>
 </ul>
 </li>
@@ -311,6 +324,17 @@
 <li>将规模很小而频繁使用的函数声明为内联函数，可<u>避免函数调用时间开销，提高运行速度</u>。</li>
 </ul>
 </li>
+<li>隐含类型转换：在算术运算符组成的表达式中，若有不同类型的操作数，则系统隐含地将低类型转化为高类型<ul>
+<li>转换顺序int-&gt;float-&gt;double</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>多态性</p>
+<ul>
+<li>c++语言中的多态性可分为编译时的多态性和运行时的多态性</li>
+<li><u>编译时的多态性是通过函数重载和模板体实现的</u>。</li>
+<li><u>运行时的多态性是通过虚函数体实现的，调用虚函数过程中指针和引用会有一点作用</u>。</li>
 </ul>
 </li>
 <li><p>关系模式</p>
@@ -337,6 +361,11 @@
 </li>
 </ul>
 </li>
+<li><p>多道程序环境下的进程描述</p>
+<ul>
+<li>允许多个程序同时进入内存并运行，运行它们交替在cpu中运行。<u>既单cpu计算机允许多个程序并发执行</u>。</li>
+</ul>
+</li>
 <li><p>与类有关的操作</p>
 <ul>
 <li><p>类外声明函数：</p>
@@ -361,6 +390,11 @@
 <li>类是对象的抽象，<u>一个对象则是其对应类的一个实例</u>。</li>
 </ul>
 </li>
+<li><p>友元函数</p>
+<ul>
+<li>友元函数即可在类内定义，也可在类外定义。<u>它提高了程序的运行效率，但<strong>破坏了类的封装性和隐蔽性</strong>，使得类的非成员函数可以访问类的私有成员</u>。</li>
+</ul>
+</li>
 <li><p>运算符重载：</p>
 <ul>
 <li>c++不允许用户自己定义新的运算符，<u>只能对已有的运算符进行重载</u>。</li>
@@ -373,7 +407,7 @@
 <li>重载为成员函数与友元函数：<ul>
 <li>单目运算符最好重载为类的成员函数</li>
 <li>双目运算符最好重载为类的友元函数</li>
-<li>双目运算符(=、()、[]、-&gt;)不能重载为类的友元函数。</li>
+<li><u>双目运算符(=、()、[]、-&gt;)不能重载为类的友元函数，只能重载为成员函数</u>。</li>
 <li>运算符重载为成员函数时，会省略一个参数。<u>如果无参数，表明是一元运算符</u>。</li>
 <li>二元运算符如果作为非成员函数，则<u>参数表中必须有两个元素</u>。</li>
 </ul>
@@ -418,6 +452,13 @@
 <li><p>虚基类</p>
 <ul>
 <li>作为虚基类的类可以被实例化。</li>
+<li>虚基类的引用<strong>就是为了消除二义性</strong>，其构造函数的调用仍然是按照继承顺序进行的。<u>对于多个虚基类则按它们说明的次序调用，虚基类的构造函数先于非虚基类的构造函数执行</u>。</li>
+</ul>
+</li>
+<li><p>抽象类</p>
+<ul>
+<li><u>一个类中包含了纯虚函数（virtual …=0），称此类为抽象类</u>。</li>
+<li><u>如果派生类没有实现基类的一个纯虚函数，则该派生类是一个抽象类</u>。</li>
 </ul>
 </li>
 <li><p>调用复制构造函数</p>
@@ -455,7 +496,11 @@
 <li>算法复杂度：算法的计算工作量是用算法所执行的基本运算次数来度量的，算法所执行的基本运算次数是问题规模（通常是整数）表示的函数。</li>
 <li>算法所要考虑的问题：算法可行性、确定性、有穷性、输入（不一定有）、输出</li>
 <li>降低空间复杂度：主要应较少输入数据所占的运算空间及额外空间，通常采用压缩存储技术。</li>
-<li></li>
+<li>快速排序法：从线性表中任选一个元素T，将线性表中后面小于T的元素移到前面，前面大于T的元素移到后面。之后将T插入分割线位置处。之后重复直到排序完成<ul>
+<li>在一个排列中，如果一堆书的前后位置大小相反，即前大于后，则称它们为一个逆序</li>
+<li><u>快速排序不是对两国相邻元素进行比较，因此可以实现通过一次交换而消除多个逆序.但由于每次分割时T不同，也可能产生新的逆序。</u>。</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>模板</p>
@@ -487,11 +532,21 @@
 </li>
 <li><p>栈与队列</p>
 <ul>
+<li>在栈中，栈顶指针top动态反映了栈中元素的（个数）变化。</li>
 <li>入栈与出栈：先进后出原则组织数据。ABCD进入DCBA退出。<ul>
 <li>栈的存储空间：S（1:50），初始状态为top=51.<u>即栈的初始状态为空</u>。当第一个元素进栈后。top=50，以此类推。<u>即每进栈一个元素，top-1；每出栈一个元素，top+1.</u></li>
 </ul>
 </li>
 <li>入队列与出队列：先进先出原则组织数据。ABCD进入ABCD退出。</li>
+<li>带链的栈：具有栈属性的链表。<ul>
+<li><strong>线性链表的存储单元是不连续的</strong>，所以指针不会有规律的连续变化。<u>当top=bottom=NULL</u>时，栈为空。当<u>top=bottom不等于NULL时</u>，栈中存在一个元素，其他情况无法判断。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>系统结构图</p>
+<ul>
+<li>最大扇出数：一个模块调用的其他模块的个数</li>
 </ul>
 </li>
 <li><p>树与叶子结点</p>
@@ -500,6 +555,21 @@
 <li>树的总结点数：假设树的度为3，则该树的总结点数为：度为3的结点数+度为2的结点数+度为1的结点数+度为0的结点数。</li>
 <li>树的性质：树的总的结点数为树中所有结点的<u>度数之和</u>再加1.</li>
 <li>计算叶子结点数：利用树的性质与树总结点数的计算方法，假设叶子结点个数，做等式求解。</li>
+<li>完全二叉树：除了最后一层外，每一层上的结点数均达到最大值，在最后一层只缺少右边的部分结点。<ul>
+<li>完全二叉树按层输出（同一层从左到右）的序列为：ABCDEFGH。该完全二叉树的前序序列：ABDHECFG<br><img data-src="/erjic++/1.png" alt="该完全二叉树的排列"></li>
+<li>度为1的结点为0个或1个<ul>
+<li>在一个2n个结点的完全二叉树中，叶子结点的个数为n个<br>假设度为2的结点为x个，则度为0的结点为x+1.若度为1的结点为0个，x+x+1+0=2n无解。若度为1的结点为1个，则x+x+1+1=2n，解得x=n-1。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对于任何一棵二叉树，度为0的结点总是比度为2的结点多一个。<ul>
+<li>设二叉树中有20个叶子结点，5个度为1的结点，则该二叉树总的结点数为44<ul>
+<li>根据题意得度为2的结点有19个，则19+20+5=44</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>二叉树遍历与序列问题<ul>
 <li>二叉树遍历分为三种<ul>
 <li>子树遵循先左后右原则</li>
@@ -520,6 +590,8 @@
 <li><p>链表/线性表</p>
 <ul>
 <li>循环链表：<u>采用链式存储结构，因此存储空间可以连续，也可不连续</u>。<ul>
+<li>头指针和尾指针无法确定链表的长度。</li>
+<li><u>插入和删除元素时只需改变相应位置的结点指针即可</u>。</li>
 <li>线性表链式存储结构特点：用<u>一组不连续的存储单元存储线性表的各个元素</u>。线性链表的存储单元是任意的，<u>即各数据结点的存储序号可以是连续的，也可以不联系</u>。</li>
 </ul>
 </li>
@@ -534,6 +606,7 @@
 <ul>
 <li>顺序存储结构：<ul>
 <li>循环队列：所谓循环队列，就是将队列存储空间的最后一个位置绕到第一个位置，<u>形成逻辑上的环状空间</u>，供队列循环使用。在循环队列结构中，当存储空间的最后一个位置已被使用而再要进行入队运算时。只要存储空间的笫一个位置空闲，使可将元素加入到第一个位置，即将存储空问的第一个位置作为队尾。因此，随着插入元素或删除元素的进行，队头指针和队尾指针是在不断变化的，<u>可能存在队头大于队尾或队尾大于队头的情况</u>。<ul>
+<li>队尾指针和对头指针的动态变化决定队列的长度。</li>
 <li>队头指针front指向队头元素的前一个位置。</li>
 <li>队尾指针rear指向队列中的队尾元素。</li>
 <li>循环队列存储空间为Q（1:50），经过一系列正常的入队和退队后，front=rear=25.后又成功将一个元素入队，此时队列中的元素为：1个<ul>
@@ -543,6 +616,7 @@
 </li>
 </ul>
 </li>
+<li>线性结构一定能采用顺序存储结构，<u>但有的非线性结构（二叉树中的满二叉树和完全二叉树可以按层次进行顺序存储）也能采用顺序存储结构</u>。</li>
 </ul>
 </li>
 </ul>
@@ -550,17 +624,21 @@
 <li><p>数据库</p>
 <ul>
 <li>数据库管理技术的三个阶段：人工管理阶段（无专门的软件对数据进行管理）、文件系统阶段和数据库系统阶段。</li>
+<li><u>按照传统的数据模型分类，数据库系统可分为层次模型、网状模型、关系模型</u></li>
 <li>数据库中存储的是：数据以及数据之间的关系。<ul>
 <li>数据库就是放数据的仓库，只不过数据库存放数据<u>是按数据所提供的数据模式（数据之间的联系）存放的</u>。</li>
 </ul>
 </li>
 <li>数据库管理系统主要功能：（不包括数据库和网络中其他系统的通信）<ul>
+<li>数据定义功能：数据的模型定义与数据的物理存取构建。数据操纵功能：包括查询与增、删、改等操作。数据控制功能：数据完整性、安全性的定义与检查以及并发控制，故障恢复等。<ul>
 <li>数据模式的定义</li>
 <li>数据存取的物理构建</li>
 <li>数据操纵(访问)</li>
 <li>数据完整性、安全性的定义与检查</li>
 <li>数据库的并发控制与故障恢复</li>
 <li>数据的服务</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>关系数据库设计<ul>
@@ -593,11 +671,13 @@
 <li>ifstream的使用<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ifstream fin;</span><br><span class="line">fin.open(<span class="string">&quot;file.dat&quot;</span>);<span class="comment">//建立文件流并打开当前目录下文件file.dat用于输入。</span></span><br><span class="line"></span><br><span class="line">ifstream *fin=<span class="keyword">new</span> ifstream(<span class="string">&quot;file.dat&quot;</span>);</span><br><span class="line"></span><br><span class="line">ifstream *fin=<span class="keyword">new</span> ifstream();</span><br><span class="line">fin-&gt;open(<span class="string">&quot;file.dat&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li>莫名其妙代码<ul>
+<li>加等。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">3</span>,b=<span class="number">0</span>;</span><br><span class="line">b=+a++;</span><br></pre></td></tr></table></figure>
+b=+a等同于b+=a，a++等同于a=a+1.此时a=4，b=3.</li>
+<li>多层return<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(a&lt;b)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> a;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> b;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        函数体到<span class="keyword">return</span>便结束不再执行下面代码，即只有a=b时返回<span class="number">0</span>；</span><br><span class="line">- 函数的调用</span><br><span class="line">    - 调用函数赋值：函数体内赋值操作在函数体结束时自动销毁（生命周期问题）</span><br><span class="line">        ```c++</span><br><span class="line">        <span class="keyword">double</span> val;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">double</span> val)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            val=<span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fun(val);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;val&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//实际val未被赋值，输出一个不确定的数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Obj</span></span></span><br><span class="line"><span class="class">    (</span></span><br><span class="line"><span class="class">        <span class="title">static</span> <span class="title">i</span>;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ~Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">int</span> Obj::i = <span class="number">0</span>；</span><br><span class="line">    <span class="keyword">void</span> fun()</span><br><span class="line">    &#123;</span><br><span class="line">        Obj ob1;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ob1.getval();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        fun();<span class="comment">//输出1后生命周期结束，执行析构函数</span></span><br><span class="line">        Obj ob2;</span><br><span class="line">        ob2.getval();<span class="comment">//输出1</span></span><br><span class="line">    &#125;</span><br><span class="line">- 调用常成员函数</span><br><span class="line">    ```c++</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="keyword">int</span> a;</span><br><span class="line">            <span class="function"><span class="keyword">int</span> <span class="title">getvalue</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a;<span class="comment">//正确</span></span><br><span class="line">                <span class="keyword">return</span> &amp;a;<span class="comment">//返回值错误</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>函数的调用<ul>
-<li>调用函数赋值：函数体内赋值操作在函数体结束时自动销毁（生命周期问题）  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> val;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">double</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    val=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun(val);</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;val&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//实际val未被赋值，输出一个不确定的数</span></span><br></pre></td></tr></table></figure>
-  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Obj</span></span></span><br><span class="line"><span class="class">    (</span></span><br><span class="line"><span class="class">        <span class="title">static</span> <span class="title">i</span>;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ~Obj()</span><br><span class="line">            &#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">int</span> Obj::i = <span class="number">0</span>；</span><br><span class="line">    <span class="keyword">void</span> fun()</span><br><span class="line">    &#123;</span><br><span class="line">        Obj ob1;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ob1.getval();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        fun();<span class="comment">//输出1后生命周期结束，执行析构函数</span></span><br><span class="line">        Obj ob2;</span><br><span class="line">        ob2.getval();<span class="comment">//输出1</span></span><br><span class="line">    &#125;</span><br><span class="line">- 调用常成员函数</span><br><span class="line">    ```c++</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">            <span class="keyword">int</span> a;</span><br><span class="line">            <span class="function"><span class="keyword">int</span> <span class="title">getvalue</span><span class="params">()</span><span class="keyword">const</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a;<span class="comment">//正确</span></span><br><span class="line">                <span class="keyword">return</span> &amp;a;<span class="comment">//返回值错误</span></span><br><span class="line">            &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
 <li>构造函数的调用<ul>
 <li>若执行point a(2),b[3],*c[4];需要调用几次构造函数<ul>
 <li>数组对象执行时有几个变量调用几次</li>
@@ -620,7 +700,7 @@
 <li>为myclass类重载流输入&gt;&gt;，使程序可以“cin&gt;&gt;obj;”的形式改变类对象obj内date的数据。（public处）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is,MyClass&amp; a)</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>初始化列表与派生类声明基类成员<br>  创建派生类对象时，先调用基类的无参数构造函数。如果没有，则必须显示调用基类有参数的构造函数。<br>  派生类中创建基类的对象，执行构造函数时跟初始化列表的赋值顺序无关，而是根据派生类中声明的顺序执行。  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Part</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Part(<span class="keyword">int</span> x):val(x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Part()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whole</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Whole(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z=<span class="number">0</span>):p2(x),p1(y),val(z)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Whole()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            Part p1,p2;<span class="comment">//此处执行了在派生类中调用基类构造函数</span></span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Whole <span class="title">obj</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>初始化列表与派生类声明基类成员<br>  创建派生类对象时，先调用基类的无参数构造函数。如果没有，则必须显示调用基类有参数的构造函数。<br>  派生类中创建基类的对象，执行构造函数时跟初始化列表的赋值顺序无关，而是根据派生类中声明的顺序执行。<br>  <u>数据成员的初始化顺序同样与赋值顺序无关，而是根据声明它的顺序进行赋值操作</u>。  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Part</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Part(<span class="keyword">int</span> x):val(x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Part()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whole</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Whole(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z=<span class="number">0</span>):p2(x),p1(y),val(z)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Whole()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            Part p1,p2;<span class="comment">//此处执行了在派生类中调用基类构造函数</span></span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Whole <span class="title">obj</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出结果为：213312</span><br></pre></td></tr></table></figure></li>
 <li>C++创建派生类对象时，调用构造函数顺序<br>如果没有显式调用基类的构造函数，会自动调用基类的无参构造函数。而如果基类只有带参数的构造函数，则会报错。不一定要显式的无参构造函数，可以显式调用基类带参数的构造函数.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Base(<span class="keyword">int</span> c)&#123;<span class="built_in">cout</span>&lt;&lt; <span class="string">&quot;基类带参构造函数&quot;</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">    ~Base()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;基类析构&quot;</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Derived(<span class="keyword">int</span> c):Base(c) <span class="comment">// 显式调用基类构造函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">&quot;派生类带参构造函数&quot;</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ~Derived()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;派生类析构&quot;</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">    <span class="function">Derived <span class="title">d1</span><span class="params">(i)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
