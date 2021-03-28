@@ -30,7 +30,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/erjic++/1.png">
 <meta property="article:published_time" content="2021-03-12T10:27:41.211Z">
-<meta property="article:modified_time" content="2021-03-25T01:07:58.950Z">
+<meta property="article:modified_time" content="2021-03-28T01:28:04.535Z">
 <meta property="article:author" content="三只Panda">
 <meta property="article:tag" content="计算机二级C++">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-25 09:07:58" itemprop="dateModified" datetime="2021-03-25T09:07:58+08:00">2021-03-25</time>
+                <time title="Modified: 2021-03-28 09:28:04" itemprop="dateModified" datetime="2021-03-28T09:28:04+08:00">2021-03-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,6 +260,7 @@
 </ul>
 </li>
 <li>字符串输入时，如果用cin要注意遇到空格、TAB、回车都会停止输入。</li>
+<li>程序流程图中带有箭头的是控制流，</li>
 <li>整数在计算机中存储和运算通常<u>采用补码的形式</u>。</li>
 <li>c++标准数据流对象：cout、cin、cerr、clog</li>
 <li>缺省：默认</li>
@@ -288,6 +289,7 @@
 <li>指令周期：计算机完成一条指令花费的时间称为一个指令周期.其越短指令执行越快。</li>
 <li>顺序程序：具有顺序性、封闭性和可再生性的特点。使得程序设计者可以控制程序执行的过程（执行顺序、执行时间），对程序中间结果和状态可以提前预估。由此可以更方便的进行程序的测试和调试。</li>
 <li>虚拟内存：从硬盘存储空间中划出一部分来完成内存的工作。<u>计算机所支持的最大内存是由该计算机的地址位数决定的</u>，也就是计算机的最大寻址能力。32位机的寻址能力为2的32次方，大约为4G。64位为TB级单位，视不同系统而定。</li>
+<li>虚拟存储器：实际上就是虚拟内存，是对计算机内存（主存）的扩展。与存储器的物理大小无关，受限于计算机的地址结构和可用磁盘的容量</li>
 <li><u>软性应首先满足用户的功能需求</u>。即软件产品必须提供用户所需的功能，如果做不到这一点，声明产品都没有意义。</li>
 <li>关于数据常量的默认定义：42（int），4.2（double），42L（long）</li>
 <li>必须用大括号括起来的程序段：<u>函数的函数体</u>。<ul>
@@ -312,6 +314,7 @@
 <li>表引用（出现在等号左边和函数形参中,直接访问内存中变量，可以不用为其分配内存空间）</li>
 </ul>
 </li>
+<li>常见关键字：do、try、import、static</li>
 <li>变量的存储类型：静态存储和动态存储<ul>
 <li>有四个关键字：auto（自动的）、extern（外部的）、register（寄存器的）、static（静态的）</li>
 <li>若没有说明存储类型，则默认为auto</li>
@@ -424,6 +427,7 @@
 <li><p>多道程序环境下的进程描述</p>
 <ul>
 <li>允许多个程序同时进入内存并运行，运行它们交替在cpu中运行。<u>既单cpu计算机允许多个程序并发执行</u>。</li>
+<li>程序和计算机执行活动的程序不再一一对应。</li>
 </ul>
 </li>
 <li><p>与类有关的操作</p>
@@ -435,11 +439,12 @@
 </li>
 <li><p>构造函数</p>
 <ul>
-<li>如果没有定义构造函数，编译器会生成一个缺省的构造函数和一个拷贝构造函数。<ul>
+<li>如果没有定义构造函数，编译器会生成一个缺省的构造函数和一个拷贝构造函数<u>(每一个类中都有)</u>。<ul>
 <li>注意缺省概念，在有定义构造函数的情况下，则无需特意定义缺省构造函数</li>
 </ul>
 </li>
 <li>派生类应当向基类的构造函数传递参数。</li>
+<li>默认构造函数指参数为空的构造函数，<strong>但有参数且全有默认值的构造函数也属于默认构造函数</strong>。</li>
 </ul>
 </li>
 <li><p>”对象“概念描述：</p>
@@ -521,6 +526,7 @@
 <ul>
 <li><u>一个类中包含了纯虚函数（virtual …=0），称此类为抽象类</u>。</li>
 <li><u>如果派生类没有实现基类的一个纯虚函数，则该派生类是一个抽象类</u>。</li>
+<li>抽象类不能被实体化，即不能创造其对应的对象(指针可以)。</li>
 </ul>
 </li>
 <li><p>调用复制构造函数</p>
@@ -553,6 +559,15 @@
 </li>
 <li><p>虚拟存储管理技术：请求分页式存储管理、请求分段式存储管理和请求段页式存储管理技术均采用<u>虚拟存储管理技术</u>。</p>
 </li>
+<li><p>寻址方式</p>
+<ul>
+<li>操作数的地址隐含在指令的操作码或者某个寄存器中的<u>寻址方式是隐含寻址</u>。</li>
+</ul>
+</li>
+<li><p>集成测试：也称组装测试，对模块按照设计要求组装成的程序进行测试，<u>主要发现设计阶段的错误，依据的是<strong>概要设计说明书</strong></u></p>
+</li>
+<li><p>软件设计准则：提高模块独立性、模块规模应该适中、深度宽度扇入和扇出都应适当、模块的作用域应该控制在域之内、降低模块之间接口的复杂程度、设计单入口和单出口的模块，模块间的功能不要出现内容耦合、模块功能应该可以预测。</p>
+</li>
 </ul>
 </li>
 <li><p>算法方面</p>
@@ -575,7 +590,7 @@
 <li>模板包括函数模板和类模板。</li>
 <li>模板参数可以作为<u>数据成员的类型、成员函数的返回类型、成员函数的参数类型、成员函数的局部变量类型</u>。</li>
 <li><u>对于常规参数所对应的模版实参，任何情况下都不能省略</u>。</li>
-<li>在模板形参表中除了用typename和class来声明参数的类型外，还可以用常规类型来声明。<ul>
+<li>在模板形参表中除了用typename和class来声明参数的类型外，还可以用<u>常规类型</u>来声明。<ul>
 <li>程序中的tpyename都可以替换为class，但class不可以全部替换成typename。</li>
 </ul>
 </li>
@@ -587,6 +602,8 @@
 <li>枚举类型声明：enum<ul>
 <li>枚举声明语句<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">color</span>&#123;</span>white,yellow,green=<span class="number">5</span>,red,black=<span class="number">10</span>&#125;;</span><br></pre></td></tr></table></figure>
 此时从左到右值为0,1,5,6,10.<br>枚举常量默认从0开始到n-l.如果给枚举常量赋初值（要求整形变量），其后的枚举常量将按照自然数规律继续赋值。</li>
+<li>枚举的实际使用<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">category</span> &#123;</span>EMPTY, ELEPHANT, MOUSE&#125;;</span><br><span class="line"><span class="keyword">char</span>* output[]=&#123;<span class="string">&quot;EMPTY&quot;</span>,<span class="string">&quot;ELEPHANT&quot;</span>,<span class="string">&quot;MOUSE&quot;</span>&#125;;</span><br><span class="line"><span class="comment">//实际使用中可以之间代替变量数</span></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">WhoAmI</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> output[ELEPHANT]; &#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li>streamoff定义于iostream.h中，定义有偏移量offset所能取得的最大值，seek——dir表示移动的基准位置。<ul>
@@ -659,6 +676,7 @@
 <li>前序序列为ABCDEF，则根结点为A。中序序列与前序序列相同（根结点在前），表明该二叉树没有左子树。</li>
 </ul>
 </li>
+<li>n个结点，结点值互不相同，但前序和中序遍历均相同。则该二叉树深度为n.</li>
 </ul>
 </li>
 </ul>
@@ -715,6 +733,7 @@
 <li>数据库就是放数据的仓库，只不过数据库存放数据<u>是按数据所提供的数据模式（数据之间的联系）存放的</u>。</li>
 </ul>
 </li>
+<li>数据库系统内部采用三级模式和模式间的二级映射是为了<u>提高数据库的物理独立性和逻辑独立性</u>。</li>
 <li>数据库管理系统主要功能：（不包括数据库和网络中其他系统的通信）<ul>
 <li>数据定义功能：数据的模型定义与数据的物理存取构建。<br>  数据操纵功能：包括查询与增、删、改等操作。<br>  数据控制功能：数据完整性、安全性的定义与检查以及并发控制，故障恢复等。<ul>
 <li>数据模式的定义</li>
@@ -750,6 +769,19 @@
 <li>若给p赋一个常数，编译通过，但仍未野指针，运行时可能会出错。（vs 2010 学生版）</li>
 </ul>
 </li>
+<li>整数和类同时作为形参的重载函数中，一般将类放后面，整数放前面。</li>
+<li>str类函数调用<ul>
+<li>strcmp(s1,s2):比较ASCII码，返回0表示相等，小于0后大于前，大于0前大于后。</li>
+<li>strcpy(s1,s2):将后内容复制到前内容中（覆盖操作）。</li>
+<li>strlen(s1):求s1的长度</li>
+<li>strcat(s1,s2):把s2接到s1之后</li>
+</ul>
+</li>
+<li>const指针<ul>
+<li>double *const point必须赋值，是double类型的常量指针</li>
+<li>const double *p可以不用赋值，是只能指向double的变量指针</li>
+</ul>
+</li>
 <li>if判断：if条件句内不允许再进行if判断。<u>即if(if(…))不合法</u>。</li>
 <li>文件流<ul>
 <li>ios::in是以输入方式打开文件，<u>如果没有该文件则不会创建一个新文件</u></li>
@@ -763,6 +795,7 @@
 b=+a等同于b+=a，a++等同于a=a+1.此时a=4，b=3.</li>
 <li>多层return<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a&lt;b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 函数体到return便结束不再执行下面代码，即只有a=b时返回0；</li>
+<li>定义char类型时要在传入的个数上+1保证不会溢出。空字符结尾一定要加’\0’.</li>
 </ul>
 </li>
 </ul>
@@ -794,10 +827,19 @@ b=+a等同于b+=a，a++等同于a=a+1.此时a=4，b=3.</li>
 <li>为myclass类重载流输入&gt;&gt;，使程序可以“cin&gt;&gt;obj;”的形式改变类对象obj内date的数据。（public处）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is,MyClass&amp; a)</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
+<li>自增和自减运算符重载：以自增为例，由于前缀自增和后缀自增的形参数目和类型都相同。为了区分，在后缀自增时要求增加一个额外的int形形参。<u>使用后缀自增时，编译器默认将形参赋值为0</u>。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//++x</span></span><br><span class="line">x.<span class="keyword">operator</span>++();<span class="comment">//显式对象调用。</span></span><br><span class="line"><span class="comment">//x++</span></span><br><span class="line">x.<span class="keyword">operator</span>++(<span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
+<li>形参何时使用&amp;：以+为例，如果在使用运算符重载时所操作的对象并非都是类元素时，不能用&amp;形式，只能传入原对象。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        MyClass(<span class="keyword">int</span> d=<span class="number">0</span>):val(d)&#123;&#125;</span><br><span class="line">        <span class="keyword">friend</span> <span class="keyword">operator</span>+(MyClass x,Myclass y);</span><br><span class="line">        <span class="comment">//此处注意声明的方式</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    MyClass x(2),y(4),z;</span><br><span class="line">    z=<span class="number">7</span>+y;</span><br><span class="line">    y=x+<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+在这种情况下，如果传入的是一个整形类型，使用默认的构造函数<u>将整数类型隐式的转换为临时的MyClass类对象</u>。因此此处不能使用引用形参。</li>
 <li>初始化列表与派生类声明基类成员<br>  创建派生类对象时，先调用基类的无参数构造函数。如果没有，则必须显示调用基类有参数的构造函数。<br>  派生类中创建基类的对象，执行构造函数时跟初始化列表的赋值顺序无关，而是根据派生类中声明的顺序执行。<br>  如果派生类中无声明基类对象，则根据继承的先后顺序调用基类构造函数。<br>  <u>数据成员的初始化顺序同样与赋值顺序无关，而是根据声明它的顺序进行赋值操作</u>。  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Part</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Part(<span class="keyword">int</span> x):val(x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Part()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whole</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Whole(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z=<span class="number">0</span>):p2(x),p1(y),val(z)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        ~Whole()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span>:</span><br><span class="line">            Part p1,p2;<span class="comment">//此处执行了在派生类中调用基类构造函数</span></span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Whole <span class="title">obj</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出结果为：213312</span><br></pre></td></tr></table></figure></li>
 <li>C++创建派生类对象时，调用构造函数顺序<br>如果没有显式调用基类的构造函数，会自动调用基类的无参构造函数。而如果基类只有带参数的构造函数，则会报错。不一定要显式的无参构造函数，可以显式调用基类带参数的构造函数.<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Base(<span class="keyword">int</span> c)&#123;<span class="built_in">cout</span>&lt;&lt; <span class="string">&quot;基类带参构造函数&quot;</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">    ~Base()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;基类析构&quot;</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Derived(<span class="keyword">int</span> c):Base(c) <span class="comment">// 显式调用基类构造函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">&quot;派生类带参构造函数&quot;</span> &lt;&lt; c &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ~Derived()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;派生类析构&quot;</span> &lt;&lt; <span class="built_in">endl</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">    <span class="function">Derived <span class="title">d1</span><span class="params">(i)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>数组的正序与倒叙赋值<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> temp[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">while</span> (num)<span class="comment">//</span></span><br><span class="line">&#123;</span><br><span class="line">	temp[index++] = numberToChar(num % <span class="number">7</span>);</span><br><span class="line">	num /= <span class="number">7</span>;</span><br><span class="line">&#125;<span class="comment">//自加形式导致了最后一次循环时index比原有数+1</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">data[index] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">   <span class="comment">//为了将data直接以字符串的形式输出，这步是必要的</span></span><br><span class="line"><span class="keyword">while</span> (index)</span><br><span class="line">&#123;</span><br><span class="line">	data[--index] = temp[i++];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>类中输出数据成员<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      <span class="class"><span class="keyword">class</span> <span class="title">x</span>&#123;</span></span><br><span class="line">          <span class="keyword">char</span> name[<span class="number">20</span>];</span><br><span class="line">          <span class="keyword">int</span> number;</span><br><span class="line">             <span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">// ERROR **********found**********</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">this</span>-&gt;getName()&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt; <span class="keyword">this</span>-&gt;getNumber() &lt;&lt;<span class="built_in">endl</span>;			</span><br><span class="line">&#125;</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="comment">//此处因为是在类内输出name和number，所有不再需要调用类内函数进行返回</span></span><br><span class="line">      <span class="built_in">cout</span>&lt;&lt;name&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt; number &lt;&lt;<span class="built_in">endl</span>;	</span><br></pre></td></tr></table></figure>
+  同理，继承类中可以调用基类的public和protect下的数据成员，不需要再进行函数调用返回值。<br>  **所以在编译时遇到这种问题，一定要先试试直接访问，如果不可再考虑函数调用。</li>
+<li>bool返回值问题<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> Sale&amp; first, <span class="keyword">const</span> Sale&amp; second)</span><br><span class="line">   &#123;</span><br><span class="line"><span class="comment">//**********found**********</span></span><br><span class="line"><span class="keyword">return</span> first.bill() &lt; second.bill();<span class="comment">//判断是否first价格低于second价格</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//if(first.bill()&lt;second.bill())return true;</span></span><br><span class="line"><span class="comment">//else return false;//判断是否first价格低于second价格</span></span><br></pre></td></tr></table></figure>
+下面的形式是重复多余的，切记不可。</li>
+<li>ostream与istream的操作<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ins.get()函数是从输入流ins输入一个字符串，其中可以包括空格</span></span><br><span class="line"><span class="comment">//ins是对象名！！</span></span><br><span class="line"><span class="comment">//字符串结尾的0别丢</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringVar::input_line</span><span class="params">(istream&amp; ins)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">while</span> (i &lt; max_length - <span class="number">1</span> &amp;&amp; (ch = ins.get()) != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">value[i++] = ch;</span><br><span class="line">&#125;</span><br><span class="line">value[i] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将the_string通过输出流outs输出</span></span><br><span class="line"><span class="comment">//重载&lt;&lt;用ostream对象outs输出内容</span></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; outs, <span class="keyword">const</span> StringVar the_string)</span><br><span class="line">&#123;</span><br><span class="line">outs &lt;&lt; the_string.getValue() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> outs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
