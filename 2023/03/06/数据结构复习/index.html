@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"threepanda.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习">
+<meta property="og:url" content="https://threepanda.github.io/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="ThreePandas&#39;s House">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/8.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/12.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/1.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/2.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/3.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/4.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/5.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/6.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/7.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/9.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/10.JPG">
+<meta property="og:image" content="https://threepanda.github.io/images/SQL/11.JPG">
+<meta property="article:published_time" content="2023-03-06T12:02:51.000Z">
+<meta property="article:modified_time" content="2023-03-06T12:02:51.000Z">
+<meta property="article:author" content="三只Panda">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://threepanda.github.io/images/SQL/8.JPG">
+
+
+<link rel="canonical" href="https://threepanda.github.io/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://threepanda.github.io/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/","path":"2023/03/06/数据结构复习/","title":"数据结构复习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构复习 | ThreePandas's House</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ThreePandas's House</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">1.1数据库系统概论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">1.3数据库系统的结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">第二章 关系数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 关系数据结构及形式化定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 关系操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%EF%BC%88%E7%BB%93%E5%90%88%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 关系的完整性（结合第五章）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 关系代数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%87%E5%87%86%E8%AF%AD%E8%A8%80SQL"><span class="nav-number">3.</span> <span class="nav-text">第三章 关系数据库标准语言SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 SQL概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89-%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">3.3 数据定义 （SQL语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">3.4 数据查询（SQL语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">3.5 数据更新（SQL语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E7%A9%BA%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86-%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">3.5.</span> <span class="nav-text">3.6 空值的处理 （SQL语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-%E8%A7%86%E5%9B%BE-%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">3.6.</span> <span class="nav-text">3.7 视图 （SQL语句）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">第四章 数据库安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 数据库安全性概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 数据库安全性控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E8%A7%86%E5%9B%BE%E6%9C%BA%E5%88%B6%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 视图机制（SQL语句）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">第五章 数据库完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E5%AE%9E%E4%BD%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 实体完整性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 参照完整性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7-%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 用户定义的完整性 （SQL语句）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F%E5%91%BD%E5%90%8D%E5%AD%90%E5%8F%A5-%EF%BC%88SQL%E8%AF%AD%E5%8F%A5%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 完整性约束命名子句 （SQL语句）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">第六章 关系数据理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 问题的提出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E8%A7%84%E8%8C%83%E5%8C%96"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 规范化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.</span> <span class="nav-text">第七章 数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 数据库设计概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.2.</span> <span class="nav-text">7.3 概念结构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.3.</span> <span class="nav-text">7.4 逻辑结构设计</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86%E5%92%8C%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">第九章 关系查询处理和查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-%E4%BB%A3%E6%95%B0%E4%BC%98%E5%8C%96"><span class="nav-number">8.1.</span> <span class="nav-text">9.3 代数优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">9.</span> <span class="nav-text">第十章 数据库恢复技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">9.1.</span> <span class="nav-text">10.1 事务的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%A6%82%E8%BF%B0"><span class="nav-number">9.2.</span> <span class="nav-text">10.2 数据库恢复概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-%E6%95%85%E9%9A%9C%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">9.3.</span> <span class="nav-text">10.3 故障的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-%E6%81%A2%E5%A4%8D%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%8A%80%E6%9C%AF"><span class="nav-number">9.4.</span> <span class="nav-text">10.4 恢复的实现技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-6-%E5%85%B7%E6%9C%89%E6%A3%80%E6%9F%A5%E7%82%B9%E7%9A%84%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">9.5.</span> <span class="nav-text">10.6 具有检查点的恢复技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="nav-number">10.</span> <span class="nav-text">第十一章 并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="nav-number">10.1.</span> <span class="nav-text">11.1 并发控制概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E5%B0%81%E9%94%81"><span class="nav-number">10.2.</span> <span class="nav-text">11.2 封锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E5%B0%81%E9%94%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">10.3.</span> <span class="nav-text">11.3 封锁协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E6%B4%BB%E9%94%81%E5%92%8C%E6%AD%BB%E9%94%81"><span class="nav-number">10.4.</span> <span class="nav-text">11.4 活锁和死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-6-%E4%B8%A4%E6%AE%B5%E9%94%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">10.5.</span> <span class="nav-text">11.6 两段锁协议</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="三只Panda"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">三只Panda</p>
+  <div class="site-description" itemprop="description">思考、飞行、期待</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ThreePanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ThreePanda" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://threepanda.github.io/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="三只Panda">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThreePandas's House">
+      <meta itemprop="description" content="思考、飞行、期待">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构复习 | ThreePandas's House">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构复习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-06 20:02:51" itemprop="dateCreated datePublished" datetime="2023-03-06T20:02:51+08:00">2023-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">复习总结</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>32 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/SQL/8.JPG"><br><img src="/images/SQL/12.JPG"></p>
+<span id="more"></span>
+<h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><h2 id="1-1数据库系统概论"><a href="#1-1数据库系统概论" class="headerlink" title="1.1数据库系统概论"></a>1.1数据库系统概论</h2><ol>
+<li><strong>数据</strong>是数据库中存储的基本对象。</li>
+<li><strong>数据的定义</strong>：描述事物的符号记录</li>
+<li><strong>数据库定义</strong>：<u>长期存储在计算机内、有组织、可共享的大量数据的集合</u>。</li>
+<li><strong>数据库的数据</strong><u>按一定的数据模型组织、描述和存储</u>，具有<u>较小的冗余度、较高的数据独立性和易扩展性</u>，并可为各种用户共享。</li>
+<li><strong>数据库管理系统作用</strong>：在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用时进行并发控制，在发生故障时对数据库进行恢复。</li>
+<li><strong>数据库管理系统用途</strong>：科学地组织和存储数据、高效地获取和维护数据。</li>
+<li><strong>数据库主要功能</strong>：<ul>
+<li>数据定义功能</li>
+<li>数据组织、存储和管理</li>
+<li>数据操纵功能：<u>实现数据库的基本操作：查询、插入、删除和修改等。</u></li>
+<li>数据库的事务管理和运行管理</li>
+<li>数据库的建立和维护功能</li>
+<li>其他功能：数据库管理系统与其他软件系统的通信，与另一个数据库关系系统或文件系统的数据转换功能</li>
+</ul>
+</li>
+<li><strong>数据库系统</strong>：由数据库、数据库管理系统、应用程序和数据库管理员组成的<u>存储、管理、处理和维护数据的系统</u>。</li>
+<li><strong>数据库管理技术</strong>经历了：<u>人工管理、文件系统、数据库系统三个阶段</u>。<ul>
+<li>人工管理阶段<ul>
+<li>数据不保存：用于科学计算，不需要长期存储</li>
+<li>应用程序管理数据：应用规定数据的逻辑结构和设计物理结构，程序员负担很重</li>
+<li>数据无共享，冗余度极大：一组数据智能对应一个程序，多个程序涉及相同的数据必须各自定义，产生大量冗余</li>
+<li>数据不独立，完全依赖于程序：数据的逻辑结构或物理结构发生变化后，必须对程序做相应更改</li>
+</ul>
+</li>
+<li>文件系统<ul>
+<li>数据可以长期保存</li>
+<li>由文件系统管理数据：<u>利用“按文件名访问，按记录进行存取”的管理技术，<strong>实现了记录内的结构性</strong></u>。</li>
+<li>数据共享性差，冗余度大：文件仍然面向应用，不能共享相同的数据，造成冗余；相同的数据重复存储<u>容易造成数据的不一致性</u>。</li>
+<li>数据独立性差：<strong>文件系统的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的</strong>，因此想对文件内的数据增加一些新的应用会很困难。</li>
+</ul>
+</li>
+<li>数据库系统阶段<ul>
+<li>参照二维表的设计结构，组织结构相同。</li>
+<li>共享性高，冗余度小</li>
+<li>具有高度的物理独立性和一定的逻辑独立性</li>
+<li>整体结构化，用数据模型描述（二维表）</li>
+<li>由数据库管理系统提供数据安全性、完整性、并发控制和恢复能力</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>数据库系统的特点</strong>：<ul>
+<li>数据结构化：实现整体数据的结构化，<u>数据库系统与文件系统的本质区别</u><ul>
+<li>不再针对某一应用，而是面向整个组织；数据的内部和整体均为结构化，<u>数据之间具有联系</u>。</li>
+</ul>
+</li>
+<li>数据的共享性高，冗余地且易扩充<ul>
+<li><u>数据共享可以大大减少数据冗余，节约存储空间，避免数据之间的不相容性和不一致性。</u></li>
+<li>有结构的数据可以被多个应用共享使用，<u>使得数据库弹性大，异于扩充</u>。</li>
+</ul>
+</li>
+<li>数据独立性高<ul>
+<li><strong>物理独立性</strong>：用户的应用程序与数据库中的数据的物理存储是相互独立的。（使得数据的物理存储改变时应用不用改变）</li>
+<li><strong>逻辑独立性</strong>：用户的应用程序和数据库的逻辑结构是相互独立的。（数据的逻辑结构改变时程序也不用改变）</li>
+</ul>
+</li>
+<li>数据由数据库管理系统统一管理和控制<ul>
+<li>数据的安全性保护</li>
+<li>数据的完整性检查</li>
+<li>并发控制</li>
+<li>数据库恢复</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-2数据模型"><a href="#1-2数据模型" class="headerlink" title="1.2数据模型"></a>1.2数据模型</h2><ol>
+<li><strong>两类数据模型</strong><ul>
+<li>第一类：概念模型</li>
+<li>第二类：逻辑模型和物理模型（DBMS）</li>
+</ul>
+</li>
+<li><strong>实体之间的联系</strong>：一对一、一对多、多对多</li>
+<li><strong>数据模型三要素</strong>：由数据结构、数据操作和数据的完整性约束组成</li>
+<li><strong>数据库领域中主要的逻辑数据模型</strong>：层次、网状、关系模型</li>
+<li><strong>数据的操作</strong>：增、删、改、查</li>
+<li><strong>数据的完整性约束条件</strong>：实体、参照、用户自定义完整性</li>
+<li><u><strong>什么是关系型数据模型？</strong></u>从用户观点看，关系模型由一组关系组成，<u>每个关系的数据结构是一张规范化的二维表</u>。</li>
+<li><strong>关系模型的由缺点</strong>：<ul>
+<li>优点<ul>
+<li>关系模型与格式化模型不同，他是建立在严格的数学概念的基础上的</li>
+<li>关系模型的概念单一，无论实体还是实体间的联系都可以用关系表示。数据结构简单、清晰，用户易懂易用</li>
+<li>关系模式的存取路径对用户透明，从而具有更高的数据独立性，更好的安全保密性，简化了程序员的工作和数据库开发建立的工作</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>查询效率不如格式化数据模型，数据库管理系统必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-3数据库系统的结构"><a href="#1-3数据库系统的结构" class="headerlink" title="1.3数据库系统的结构"></a>1.3数据库系统的结构</h2><ol>
+<li><strong>数据库系统模式的概念</strong>：数据模型中有“型（type）”和“值（value）”的概念</li>
+<li><strong>数据库系统的三级模式结构</strong>：外模式、模式、内模式</li>
+<li><u><strong>如何理解模式？</strong></u>模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户数据的公共数据视图。<u>是基本的逻辑表结构</u></li>
+<li><u><strong>如何理解外模式？</strong></u>外模式也称子模式或用户模式，它是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述，是<u>数据库用户的数据视图</u>，是与某一应用有关的数据的逻辑表示。</li>
+<li><u><strong>如何理解内模式？</strong></u>内模式也称存储模式，<u>一个数据库只能有一个内模式</u>，它是数据物理结构和存储方式的描述，是数据在数据库内部的组织方式。<u>表结构的实现（物理存储的数据库）</u></li>
+<li><strong>数据库的二级映像功能与数据独立性</strong><ul>
+<li><u>外模式&#x2F;模式映像</u>：当模式改变时，数据库管理员对映像做相应更改，使得外模式保持不变，<u>保证了数据与程序的逻辑独立性</u></li>
+<li><u>模式&#x2F;内模式映像</u>：当数据库的存储模式结构改变时，数据库管理员对映像做相应改变，使得模式保持不变，<u>保证了数据与程序的物理独立性</u></li>
+</ul>
+</li>
+</ol>
+<h1 id="第二章-关系数据库"><a href="#第二章-关系数据库" class="headerlink" title="第二章 关系数据库"></a>第二章 关系数据库</h1><h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2><ol>
+<li><strong>域</strong>：一组具有相同数据类型的值的集合</li>
+<li><strong>笛卡尔积</strong>：所有可能的集合组合，是一个固定关系的有序集合，元组次序不能任意交换。</li>
+<li><strong>关系</strong>：关系是笛卡尔积的子集合<ul>
+<li>关系是一张二维表，表的每一行表示一个元组（记录）</li>
+<li>每一列对应一个域，域可以相同，必须对每列起一个名字，称为属性</li>
+<li>n目关系必有n个属性</li>
+</ul>
+</li>
+<li><strong>候选码</strong>：关系中某一属性组的值能唯一地标识一个元组，而其子集不能的属性组<ul>
+<li>一个关系有多个候选码，则选其中一个为<u>主码</u></li>
+<li>候选码的诸属性称为<u>主属性</u>，其他的为<u>非主属性&#x2F;非码属性</u></li>
+<li>关系模式中所有的属性都是这个关系模式的候选码，称为<u>全码</u></li>
+</ul>
+</li>
+<li><strong>关系可以有三种类型</strong>：基本关系（基本表或基表）、查询表和视图表。<ul>
+<li>基本表是实际存在的表，是实际存储数据的逻辑表示</li>
+<li>查询表是查询结果对应的表</li>
+<li>视图表是虚表，不对应实际存在的数据</li>
+</ul>
+</li>
+<li><strong>基本关系具有6条性质</strong><ol>
+<li>无限关系在数据库系统中是无意义的</li>
+<li><u>通过为关系的每一列附加一个属性名取消关系属性的有序性</u></li>
+<li>列的顺序无所谓，可任意交换</li>
+<li>任意两个元组的候选码不能取相同的值（主键，相同则不能为候选码）</li>
+<li>分量必须取原子值，每一个分量都是不可分的数据项（第一范式原则）</li>
+<li>行的顺序无所谓，可任意交换</li>
+</ol>
+</li>
+<li><u>关系表中不允许表中有表</u></li>
+<li><u>表是关系数据的逻辑模型</u></li>
+</ol>
+<h2 id="2-2-关系操作"><a href="#2-2-关系操作" class="headerlink" title="2.2 关系操作"></a>2.2 关系操作</h2><ol>
+<li><strong>基本的关系操作</strong>：选择、投影、并、差、笛卡尔积</li>
+<li><strong>关系操作的特点</strong>：集合操作方式，即一次一集合的方式。非关系数据模型的数据操作方法为一次一记录</li>
+</ol>
+<h2 id="2-3-关系的完整性（结合第五章）"><a href="#2-3-关系的完整性（结合第五章）" class="headerlink" title="2.3 关系的完整性（结合第五章）"></a>2.3 关系的完整性（结合第五章）</h2><ol>
+<li><strong>关系模型有三类完整性约束</strong>：实体完整性、参照完整性、用户定义的完整性<ul>
+<li>实体完整性和参照完整性是<u>关系模型必须满足的完整性约束</u>，被称作<u>关系的两个不变性</u>。</li>
+<li>用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</li>
+</ul>
+</li>
+<li><strong>实体完整性规则</strong>：若属性A是基本关系R的主属性，则<u>A不能取空值</u></li>
+<li><strong>外码</strong>：F是基本关系R的一个&#x2F;组属性，但不是R的码，K是S的主码，若F与K相对应，则F是R的外码。R为参照关系，S为被参照关系。</li>
+<li><strong>参照完整性规则</strong>：属性F是基本关系R的外码，与基本关系S的主码K相对应，则R中每个元组在F上的值必须为：<ul>
+<li>空值（F的每个属性值均为空）</li>
+<li>等于S中某个元组的主码值</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-关系代数"><a href="#2-4-关系代数" class="headerlink" title="2.4 关系代数"></a>2.4 关系代数</h2><ol>
+<li><strong>（网络找题）传统集合运算</strong>：二目运算，并、差、交、笛卡尔积</li>
+<li><strong>（网络找题）专门的关系运算</strong>：选择、投影、连接、除运算（不考）</li>
+</ol>
+<h1 id="第三章-关系数据库标准语言SQL"><a href="#第三章-关系数据库标准语言SQL" class="headerlink" title="第三章 关系数据库标准语言SQL"></a>第三章 关系数据库标准语言SQL</h1><h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><ol>
+<li><strong>SQl特点</strong><ul>
+<li>综合统一</li>
+<li>高度非过程化</li>
+<li>面向集合的操作方式，采用集合操作方式，一次一集合</li>
+<li>以同一种语法结构提供多种使用方式</li>
+<li>语言简洁，易学易用</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-3-数据定义-（SQL语句）"><a href="#3-3-数据定义-（SQL语句）" class="headerlink" title="3.3 数据定义 （SQL语句）"></a>3.3 数据定义 （SQL语句）</h2><p>SQL语句进行创建、修改、删除</p>
+<h2 id="3-4-数据查询（SQL语句）"><a href="#3-4-数据查询（SQL语句）" class="headerlink" title="3.4 数据查询（SQL语句）"></a>3.4 数据查询（SQL语句）</h2><p>单表查询</p>
+<h2 id="3-5-数据更新（SQL语句）"><a href="#3-5-数据更新（SQL语句）" class="headerlink" title="3.5 数据更新（SQL语句）"></a>3.5 数据更新（SQL语句）</h2><p>UPDATE、INSERT、DELETE</p>
+<h2 id="3-6-空值的处理-（SQL语句）"><a href="#3-6-空值的处理-（SQL语句）" class="headerlink" title="3.6 空值的处理 （SQL语句）"></a>3.6 空值的处理 （SQL语句）</h2><p>NULL的使用</p>
+<h2 id="3-7-视图-（SQL语句）"><a href="#3-7-视图-（SQL语句）" class="headerlink" title="3.7 视图 （SQL语句）"></a>3.7 视图 （SQL语句）</h2><p><strong>视图的作用</strong>：</p>
+<ol>
+<li>视图能够简化用户的操作</li>
+<li>视图使用户能够以多种角度看待同一数据</li>
+<li>视图对重构数据库提供了<u>一定程度的逻辑独立性</u></li>
+<li><u>视图能够对机密数据提供安全保护</u>：对不同用户定义不同的视图，设置查询和修改视图的权限</li>
+<li>适当利用视图可以更清晰的表达查询</li>
+</ol>
+<h1 id="第四章-数据库安全性"><a href="#第四章-数据库安全性" class="headerlink" title="第四章 数据库安全性"></a>第四章 数据库安全性</h1><h2 id="4-1-数据库安全性概述"><a href="#4-1-数据库安全性概述" class="headerlink" title="4.1 数据库安全性概述"></a>4.1 数据库安全性概述</h2><ol>
+<li><strong>数据库的安全性</strong>是指保护数据库以防不合法使用所造成的数据泄露、更改或破坏</li>
+<li><strong>数据库的不安全因素</strong><ul>
+<li>非授权用户对数据库的恶意存取和破坏</li>
+<li>数据库中重要或敏感的数据被泄露</li>
+<li>安全环境的脆弱性</li>
+</ul>
+</li>
+<li><strong>TCSEC&#x2F;TDI(紫皮书</strong> 定义了数据库管理系统的设计与实现中需要满足和用以进行安全性级别评估的标准<ul>
+<li>从四个方面描述安全性级别划分的指标：安全策略、责任、保证和文档</li>
+</ul>
+</li>
+<li><strong>TCSEC&#x2F;TDI的7级安全级别划分</strong><ul>
+<li>常用的商用安全软件级别：B1&#x2F;C2</li>
+<li><img src="/images/SQL/1.JPG"></li>
+<li><img src="/images/SQL/2.JPG"></li>
+</ul>
+</li>
+</ol>
+<h2 id="4-2-数据库安全性控制"><a href="#4-2-数据库安全性控制" class="headerlink" title="4.2 数据库安全性控制"></a>4.2 数据库安全性控制</h2><ol>
+<li>C2级别的数据库管理系统支持<strong>自主存取控制</strong>，B1级别的数据库管理系统支持<strong>强制存取控制</strong>。</li>
+<li><strong>自主存取控制</strong>：用户对于不同的数据库对象有不同的存取权限，不同的用户对同一对象也有不同的权限，而且用户还可以将拥有的存取权限转授给其他用户，因此自主存取控制比较灵活<ul>
+<li>GRANT和REVOKE语句</li>
+<li>权限授予为级联形式，同时不可循环授权</li>
+<li>缺陷：可能存在数据的“无意识”泄露<ul>
+<li>甲对乙授权，乙就可以将数据备份，获得自身权限（主人）的副本，在不征得甲同意的情况下进行传播。</li>
+<li><u>仅仅通过对数据的存取权限来进行安全控制，而数据本身无安全性标记</u></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>强制存取控制</strong>：每个数据库的对象被标以一定的密级，每一个用户也被授予某一个级别的许可证。对于任意一个对象，只有具有合法许可证的用户才可以存取，因此强制存取控制比较严格<ul>
+<li>数据库管理系统的所有实体被分为<u>主体和客体</u><ul>
+<li><strong>主体</strong>是系统的活动实体，即包括数据库关系系统所管理的实际用户，也包括代表用户的各个进程</li>
+<li><strong>客体</strong>是系统中的被动实体，是受主体操作的，包括文件、基本表、索引、视图等</li>
+</ul>
+</li>
+<li>对于主体和客体，数据库管理系统为他们的每个实例指派一个<strong>敏感度标记</strong><ul>
+<li>绝密（TS）、机密（S）、可信（C）、公开（P）。<strong>密级的次序为：TS&gt;&#x3D;S&gt;&#x3D;C&gt;&#x3D;P</strong></li>
+<li>主体的敏感度标记为<u>许可证级别</u>，客体的敏感度标记为<u>密级</u></li>
+</ul>
+</li>
+<li>强制存取控制机制就是通过<u>对比主体的敏感度和客体的敏感度标记，确定主体能否存取客体</u></li>
+<li>是对数据本身的密级标记，无论数据如何复制，也只有符合对应密级要求的主体才能存取，提高了更高级别的安全性</li>
+</ul>
+</li>
+<li><strong>强制存取控制中，主体对任何客体的存取必须遵循以下规则</strong><ol>
+<li>仅当主体的许可证级别大于等于客体密级时，主体能够读取相应客体</li>
+<li>仅当主体的许可证级别小于等于客体级别时，主体才能写相应客体<ul>
+<li>违反会造成数据从高流向低，造成数据泄漏（TS主体把TS的客体修改为P，导致泄漏）</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-3-视图机制（SQL语句）"><a href="#4-3-视图机制（SQL语句）" class="headerlink" title="4.3 视图机制（SQL语句）"></a>4.3 视图机制（SQL语句）</h2><p>视图的定义和查询</p>
+<h1 id="第五章-数据库完整性"><a href="#第五章-数据库完整性" class="headerlink" title="第五章 数据库完整性"></a>第五章 数据库完整性</h1><p><strong>为实现数据库的完整性，数据库必须能够实现如下功能</strong>：</p>
+<ol>
+<li>提供定义完整性约束条件的机制</li>
+<li>提供完整性检查的方法</li>
+<li>进行违约处理</li>
+</ol>
+<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><ol>
+<li><u><strong>实体完整性检查</strong></u>：<ul>
+<li>检查主码值是否唯一，如果不唯一拒绝插入或修改</li>
+<li>检查主码的各个属性是否为空，若为空拒绝插入或修改<ul>
+<li>检查方法：全表扫描（唯一方法）<ul>
+<li>方式：建立索引，排序后折半查找</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-2-参照完整性"><a href="#5-2-参照完整性" class="headerlink" title="5.2 参照完整性"></a>5.2 参照完整性</h2><ol>
+<li><strong>可能破坏参照完整性的操作以及违约处理</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>被参照表（Student）</th>
+<th>参照表（SC）</th>
+<th>违约处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可能破坏参照完整性</td>
+<td>插入元组</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>可能破坏参照完整性</td>
+<td>修改外码值</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>删除元组</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
+</tr>
+<tr>
+<td>修改主码值</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>参照关系属性的定义有不同的要求</strong><ul>
+<li>如果外码的属性为非主码，可以设置默认为Null</li>
+<li>如果外码的属性为主码，必须有取值</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-3-用户定义的完整性-（SQL语句）"><a href="#5-3-用户定义的完整性-（SQL语句）" class="headerlink" title="5.3 用户定义的完整性 （SQL语句）"></a>5.3 用户定义的完整性 （SQL语句）</h2><ol>
+<li><strong>属性上的约束条件</strong><ol>
+<li>列值非空 NOT NULL</li>
+<li>列值唯一 UNIQUE</li>
+<li>检查列值是否满足某一个条件（CHECK语句）</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-4-完整性约束命名子句-（SQL语句）"><a href="#5-4-完整性约束命名子句-（SQL语句）" class="headerlink" title="5.4 完整性约束命名子句 （SQL语句）"></a>5.4 完整性约束命名子句 （SQL语句）</h2><p>CONSTRAINT</p>
+<h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><h2 id="6-1-问题的提出"><a href="#6-1-问题的提出" class="headerlink" title="6.1 问题的提出"></a>6.1 问题的提出</h2><ol>
+<li><strong>数据依赖</strong>：一个关系内部属性与属性之间的一种约束关系，通过属性间值的相等与否体现出的数据间的相关联系<ol>
+<li>多值依赖</li>
+<li>函数依赖<blockquote>
+<p>建立一个描述学校教务的数据库，该数据库涉区的对象包括学生的学号(Sno)、所在系（Sdept)、系主任姓名（Mname)、課程号（Cno）和成绩（Grade）。假设用一个单一的关系模式 Student 来表示，则该关系模式的属性集合为<br> U&#x3D; {Sno, Sdept, Mname, Cno, Grade}<br> 现实世界的已知事实（语义）告诉我们：</p>
+</blockquote>
+</li>
+<li>﻿一个系有若干学生，但一个学生只属于一个系。</li>
+<li>﻿一个系只有一名（正职）负责人。</li>
+<li>﻿﻿一个学生可以选修多门课程，每门课程有若干学生选修。</li>
+<li>﻿﻿每个学生学习每一门课程有一个成绩。<br> 于是得到属性组U上的一组函数依赖F&#x3D;{Sno-&gt;Sdept,Sdept-&gt;Sname,(Sno,Cno)-&gt;Grade}<blockquote>
+<blockquote>
+<p> 合成一张大表后存在的问题：</p>
+</blockquote>
+</blockquote>
+</li>
+<li>数据冗余（大量的重复数据）</li>
+<li>更新异常（更新系主任后必须更新所有学生信息）</li>
+<li>插入异常（新建立的系若没有学生则无法插入）</li>
+<li>删除异常（学生毕业后系的信息也无法保留）<br> <strong>一个好的模式应当不会发生更新、插入、删除异常，并尽可能减少数据冗余</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><ol>
+<li><p><strong>函数依赖</strong>：R（U）是属性集U上的关系模式，X，Y为U的子集，对于R（U）可能的关系r，r不存在两个可能的元组在X上属性值相等，在Y上不等的，则<u>X函数确定Y或Y函数依赖于X</u>。</p>
+</li>
+<li><p><strong>评价数据库设计</strong></p>
+<p> <img src="/images/SQL/3.JPG"></p>
+</li>
+</ol>
+<p><img src="/images/SQL/4.JPG"><br><img src="/images/SQL/5.JPG"><br><img src="/images/SQL/6.JPG"><br><img src="/images/SQL/7.JPG"></p>
+<ol>
+<li><strong>规范化小结</strong><ol>
+<li>1NF-&gt;2NF：消除非主属性对码的部分函数依赖</li>
+<li>2NF-&gt;3NF：消除非主属性对码的传递函数依赖</li>
+<li>3NF-&gt;BCNF：消除主属性对码的部分和传递函数依赖</li>
+</ol>
+</li>
+</ol>
+<h1 id="第七章-数据库设计"><a href="#第七章-数据库设计" class="headerlink" title="第七章 数据库设计"></a>第七章 数据库设计</h1><h2 id="7-1-数据库设计概述"><a href="#7-1-数据库设计概述" class="headerlink" title="7.1 数据库设计概述"></a>7.1 数据库设计概述</h2><ol>
+<li><u><strong>数据库设计的6个阶段</strong></u><ul>
+<li>需求分析</li>
+<li>概念结构设计（E—R图）</li>
+<li>逻辑结构设计（规则）</li>
+<li>物理结构设计（SQL？）</li>
+<li>数据库实施（SQL？）</li>
+<li>数据库运行和维护</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-3-概念结构设计"><a href="#7-3-概念结构设计" class="headerlink" title="7.3 概念结构设计"></a>7.3 概念结构设计</h2><ol>
+<li><strong>E-R图的画法</strong></li>
+</ol>
+<h2 id="7-4-逻辑结构设计"><a href="#7-4-逻辑结构设计" class="headerlink" title="7.4 逻辑结构设计"></a>7.4 逻辑结构设计</h2><ol>
+<li><strong>E-R图向关系模型的转换</strong><ul>
+<li>一个1:1联系可以转换为一个独立的关系模式，也可以与任意一端对应的关系模式合并</li>
+<li>一个1:n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并</li>
+<li>一个n:m联系转换为一个关系模式</li>
+<li>三个或三个以上实体间的一个多元联系可以转换为一个关系模式</li>
+<li>具有相同码的关系模式可以合并<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/liaoai/article/details/123282513">实例</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="第九章-关系查询处理和查询优化"><a href="#第九章-关系查询处理和查询优化" class="headerlink" title="第九章 关系查询处理和查询优化"></a>第九章 关系查询处理和查询优化</h1><h2 id="9-3-代数优化"><a href="#9-3-代数优化" class="headerlink" title="9.3 代数优化"></a>9.3 代数优化</h2><ol>
+<li><strong>查询树的启发式优化</strong><ol>
+<li><u>选择运算应尽可能先做</u>（结合代数运算，需先计算选择）</li>
+<li>把投影运算和选择运算同时进行</li>
+<li>把投影同起前或后的双目运算结合起来</li>
+<li>把某些选择同在它前面要执行的笛卡尔积结合起来成为一个选择运算</li>
+</ol>
+</li>
+</ol>
+<h1 id="第十章-数据库恢复技术"><a href="#第十章-数据库恢复技术" class="headerlink" title="第十章 数据库恢复技术"></a><u>第十章 数据库恢复技术</u></h1><h2 id="10-1-事务的基本概念"><a href="#10-1-事务的基本概念" class="headerlink" title="10.1 事务的基本概念"></a>10.1 事务的基本概念</h2><ol>
+<li><strong>事务</strong>是用户定义的一个数据库操作序列，这些操作要么全做，要不全不做，是<u>一个不可分割的工作单位</u></li>
+<li>事务和程序是两个概念，一般一个程序包含多个事务</li>
+<li><strong>事务的ACID特性</strong>：原子性（A）、一致性（C）、隔离性（I）、持续性（D）。ACD为数据库恢复的要求。<ul>
+<li>原子性：事务是数据库的逻辑工作单位，事务中的操作要么全做要么都不做</li>
+<li>一致性：数据库必须由一个一致性状态变为另一个一致性状态（事务的执行完成或回滚完成等状态）</li>
+<li>隔离性：一个事务的执行不能被其他事务干扰</li>
+<li>持续性&#x2F;永久性：一个事务一旦提交，他对数据库中的数据的改变应该是永久性的。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>COMMIT表示提交事务的所有操作，将事务对数据库的更新写回到磁盘上的物理数据库中；ROLLBACK表示回滚，将事务对数据库的所有已完成操作全部撤销，回滚到事务刚开始的状态。</p>
+</blockquote>
+<h2 id="10-2-数据库恢复概述"><a href="#10-2-数据库恢复概述" class="headerlink" title="10.2 数据库恢复概述"></a>10.2 数据库恢复概述</h2><ol>
+<li>数据库系统所采用的恢复技术是否行之有效，不仅对<strong>系统的可靠程度起决定性作用</strong>，而且对系统的运行效率也有很大影响，<strong>是衡量系统性能优劣的重要指标</strong>。（所以要定期备份）</li>
+<li>数据库管理系统必须具有把数据库从错误状态恢复到某一已知的正确状态的功能，就是<strong>数据库的恢复</strong></li>
+</ol>
+<h2 id="10-3-故障的种类"><a href="#10-3-故障的种类" class="headerlink" title="10.3 故障的种类"></a>10.3 故障的种类</h2><ol>
+<li><strong>事务内部的故障</strong><ul>
+<li>事务内部的故障不影响其他事务的执行，<u>更多的是非预期的，不能由应用程序处理</u>。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>BEGIN TRANSACTION<br>读账户甲的余额为x；<br>x&#x3D;x-a; &#x2F;&#x2F;a转账金额<br>IF(x&lt;0) THEN<br>{打印‘金额不足，不能转账’；<br>ROLLBACK；}<br>ELSE<br>{写回x；读账户乙的余额y；<br>y&#x3D;y+a；<br>写回y；<br>COMMIT；}<br>这段程序中若账户甲余额不足，程序可以发现并让事务滚回，撤销已做的修改，是数据恢复到正确状态。<br>事务故障意味着事务没有达到预期的终点（COMMIT或者显示ROLLBACK），因此数据库可能处于不正确状态。恢复程序要在不影响其他事务的运行情况下，强行滚回该事务，即撤销该事务已经做出的任何对数据库的修改，<strong>这类恢复操作称为事务撤销（UNDO）。</strong> 此操作为自主操作。</p>
+</blockquote>
+<blockquote>
+<p><strong>事务撤销的恢复步骤</strong>：<br>    1. 反向扫描文件日志（从后往前扫描），查找该事务的更新操作<br>    2、对该事务的更新操作执行逆操作，即将日志记录中“更新前的值”写入数据库<br>    3、继续反向扫描日志文件，查找该事务的其他更新操作，并做同样处理。<br>    4、如此处理下去，直至读到此事务的开始标记，事务故障恢复就完成了。</p>
+</blockquote>
+<ol>
+<li><p><strong>系统故障</strong>：造成系统停止运转的任何时间，使得系统要重新启动</p>
+<ul>
+<li>影响并发执行的所有操作，所有事务都非正常中止</li>
+<li>恢复子系统必须在系统重启时让所有非正常终止的事务回滚（UNDO），已完成但仍未写入磁盘的事务全部<strong>重做（REDO）</strong></li>
+<li>检查点处恢复<blockquote>
+<ol>
+<li>正向扫描日志文件（将在故障发生前已经提交的事务加入重做（REDO）队列，这些事务既有begin transaction记录，也有commit记录；将在故障发生时未完成的事务加入撤销（Undo）队列，这些事务中只有begin transaction记录，无相应的commit记录）</li>
+<li>对撤销（Undo）队列事务进行撤销（Undo）处理（1.反向扫描日志文件，对每个undo事务的更新操作进行逆操作；2.将日志记录中“更新前的值”写入数据库）</li>
+<li>对重做（Redo）队列事务进行重做（Redo）处理（正向扫描日志文件，对每个REDO事务重新执行登记的操作；将日志记录中“更新后的值”写入数据库）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>介质故障</strong>：系统故障通常称为<strong>软故障</strong>，此类为<strong>硬故障</strong>，如磁盘损坏等。</p>
+<ul>
+<li>不考虑检查点，采取<strong>备份+日志文件恢复</strong>，同时日志文件中修改的新值要重新覆写一遍<blockquote>
+<p>  (1） 装入最新的数据库后备副本（离故障发生时刻最近的转储副本），使数据库恢复到最近一次转储时的一致性状态。<br>(2） 转入相应的日志文件副本，重做已完成的事务。即首先扫描日志文件，找出故障发生时已提交的事物的标识，将其记入重做队列；然后正向扫描日志文件，对重做队列中的所有事务进行重做处理。即将日志记录中“更新后的值”写入数据库。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>计算机病毒，参考介质故障</p>
+</li>
+<li><p><strong>各类故障对数据库的影响</strong>：数据库本身被损坏、数据库没有被破坏但数据可能不正确</p>
+</li>
+<li><p><strong>恢复的基本原理</strong>：冗余（备份+日志文件）</p>
+</li>
+</ol>
+<h2 id="10-4-恢复的实现技术"><a href="#10-4-恢复的实现技术" class="headerlink" title="10.4 恢复的实现技术"></a>10.4 恢复的实现技术</h2><ol>
+<li><p>建立冗余数据最常用的技术是<strong>数据转储和登记日志文件</strong>。</p>
+</li>
+<li><p>转储可分为静态转储和动态转储</p>
+<ul>
+<li><strong>静态转储</strong>是在系统无运行事务时进行转储，转储期间不允许对数据库进行任何存取、修改活动<ul>
+<li><u>降低数据库的可用性</u></li>
+</ul>
+</li>
+<li><strong>动态转储</strong>是转储期间允许对数据库进行存取或修改。<ul>
+<li>必须把转储期间各事务对数据库的修改记录，建立<u>日志文件</u>，便于备份完成后进行恢复</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>转储也可分为增量转储和海量转储</p>
+<ul>
+<li><strong>海量转储</strong>是每次转储所有数据库</li>
+<li><strong>增量转储</strong>是只转储上一次转储后更新的数据<blockquote>
+<p>动态海量转储、动态增量转储、静态海量转储、静态增量转储</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>每个日志记录的内容</strong></p>
+<ul>
+<li>操作的类型</li>
+<li>操作对象</li>
+<li>更新前的旧值</li>
+<li>更新后的新值<blockquote>
+<p><strong>日志重写覆盖的意义</strong>：回写数据库存在更新延迟（写入磁盘的速度原小于内存），提交后可能存在尚未写入磁盘的情况。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="10-6-具有检查点的恢复技术"><a href="#10-6-具有检查点的恢复技术" class="headerlink" title="10.6 具有检查点的恢复技术"></a>10.6 具有检查点的恢复技术</h2><ol>
+<li><strong>建立检查点的意义</strong>：改善恢复效率，系统强制对该点之前的事务进行提交，避免在恢复时对已执行完毕的事务重复提交。<strong>只针对系统故障</strong></li>
+<li><strong>检查点记录的内容</strong>：<ul>
+<li>建立检查点时所有正在执行的事务</li>
+<li>这些事务最近一个日志记录的地址</li>
+</ul>
+</li>
+<li><strong>系统使用检查点方法进行恢复的步骤是</strong>：<ol>
+<li>从重新开始文件中找到最后一个检查点记录在日志文件中的地址，由该地址在日志文件中找到最后一个检查点记录。</li>
+<li>由该检查点记录得到检查点建立时刻所有正在执行的事务清单 ACTIVE-LIST。<br>这里建立两个事务队列：<br>•UNDO-LIST：需要执行 UNDO 操作的事务集合；<br>•REDO-LIST：需要执行 REDO 操作的事务集合。<br>把ACTIVE-LIST 暂时放入 UNDO-LIST 队列，REDO队列暂为空。</li>
+<li>从检查点开始正向扫描日志文件。<ol>
+<li>如有新开始的事务T,把T暂时放入UNDO-LIST 队列;</li>
+<li>如有提交的事务J,把J从UNDO-LIST队列移到 REDO-LIST队列；直到日志文件结束。</li>
+</ol>
+</li>
+<li>对 UNDO-LIST 中的每个事务执行 UNDO 操作，对 REDO-LIST 中的每个事务执行REDO 操作。<br><img src="/images/SQL/9.JPG"></li>
+</ol>
+</li>
+</ol>
+<h1 id="第十一章-并发控制"><a href="#第十一章-并发控制" class="headerlink" title="第十一章 并发控制"></a><u>第十一章 并发控制</u></h1><blockquote>
+<p><strong>并发</strong>是指在一个时间段内有多个进程在执行。<br><strong>并行</strong>指的是在同一时刻有多个进程在同时执行。</p>
+</blockquote>
+<ol>
+<li><strong>什么是并发？</strong> 是指一个时间段中有几个事务都处于已启动运行到运行完毕之间，且这几个事务都是在同一个处理机上运行，但任一个时刻点上只有一个事务在处理机上运行。**</li>
+<li><strong>并发的要求</strong>：一致性、隔离性</li>
+</ol>
+<h2 id="11-1-并发控制概述"><a href="#11-1-并发控制概述" class="headerlink" title="11.1 并发控制概述"></a>11.1 并发控制概述</h2><ol>
+<li><strong>事务是并发控制的基本单位</strong></li>
+<li><strong>并发操作带来的问题</strong><ol>
+<li><strong>丢失修改</strong>：两个事务T1和T2读入同一数据并修改，先后提交了结果，前提交的数据会丢失</li>
+<li><strong>不可重复读</strong>：<ol>
+<li>事务T1读取某一数据后，T2对其进行修改，当T1再次读取时得到了与第一次不同的结果</li>
+<li>事务T1按一定条件读取某些数据记录，T2删除了其中一部分，当T1再次按相同条件读取数据时会发现某些记录神秘消失了</li>
+<li>事务T1按一定条件读取某些数据记录，T2插入了一些记录，当T1再次按相同条件读取数据时发现多了一些记录</li>
+</ol>
+</li>
+<li><strong>读“脏”数据</strong>：事务T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1因为某种原因被撤销，T2读取的数据就与数据库中的不一致。<br> <img src="/images/SQL/10.JPG"></li>
+</ol>
+</li>
+</ol>
+<h2 id="11-2-封锁"><a href="#11-2-封锁" class="headerlink" title="11.2 封锁"></a>11.2 封锁</h2><ol>
+<li><strong>基本的封锁类型</strong>：排他锁（X）、共享锁（S）<ol>
+<li><strong>排他锁（写锁）</strong>：若事务T对数据对象A加上X锁，<u>则只允许T读取和修改A</u>，其他任何事务<u>都不能再对A加任何类型的锁</u>，直到T释放A</li>
+<li><strong>共享锁（读锁）</strong>：T对A加S锁，<u>则T可以读A但不能修改A</u>，<u>其他事务只能在对A加S锁，而不能加X锁</u>，直到T释放A为止</li>
+</ol>
+</li>
+</ol>
+<h2 id="11-3-封锁协议"><a href="#11-3-封锁协议" class="headerlink" title="11.3 封锁协议"></a>11.3 封锁协议</h2><ol>
+<li><strong>封锁协议</strong>：在运用X和S锁时需要遵守的规则，<u>用于解决并发操作的3个问题</u><ol>
+<li><strong>一级封锁协议</strong>：事务T在<u>修改数据R</u>之前必须对其加X锁，直到事务结束才释放。<u>可防止丢失修改</u>，只针对读数据。</li>
+<li><strong>二级封锁协议</strong>：在一级封锁协议的基础上增加事务T在<u>读取数据R</u>之前必须先对其加S锁，读完后释放。<u>除防止丢失修改外，还可进一步防止读“脏”数据</u>，由于读完数据后立即释放S，不能保证可重复读。</li>
+<li><strong>三级封锁协议</strong>：在一级封锁协议的基础上增加事务T<u>在读取数据R</u>之前必须先对事务加S锁，<u>直到事务结束释放</u>，解决了并发操作的3个问题。<br> <img src="/images/SQL/11.JPG"></li>
+</ol>
+</li>
+</ol>
+<h2 id="11-4-活锁和死锁"><a href="#11-4-活锁和死锁" class="headerlink" title="11.4 活锁和死锁"></a>11.4 活锁和死锁</h2><ol>
+<li><strong>死锁</strong>：事务T1封锁了数据R1，T2封锁了R2，T1又申请封锁R2，造成T1和T2两个事务永远不能结束</li>
+<li><strong>活锁</strong>：T1封锁了R1，T2申请R1，T3也申请R1后得到系统批准，T2继续等待，可能造成永远等待。</li>
+<li><strong>预防死锁的方法</strong><ol>
+<li>一次封锁法：每个事务必须一次将所有要使用的数据全部加锁。<u>扩大了封锁的范围，降低了系统的并发度</u></li>
+<li>顺序封锁法：预先对数据对象规定一个封锁顺序，所有事务按照这个顺序实施封锁。<u>要求动态处理，实现困难，成本很高，同时事务的随机性高，难以按预先规定实施</u></li>
+</ol>
+</li>
+<li><strong>数据库解决死锁的方法</strong>：选择一个处理死锁代价最小的事务，将其撤销，释放此事务所有的锁，使得其他事务可以继续运行下去。</li>
+</ol>
+<h2 id="11-6-两段锁协议"><a href="#11-6-两段锁协议" class="headerlink" title="11.6 两段锁协议"></a>11.6 两段锁协议</h2><ol>
+<li><p><strong>两段锁协议</strong>：所有事务必须分两个阶段对数据项加锁和解锁</p>
+<ol>
+<li>对任何数据进行读、写操作之前，首先要申请并获得该数据的封锁</li>
+<li>在释放一个封锁后，事务不再申请和获得任何其他封锁</li>
+</ol>
+<p> 即事务分两个阶段，<strong>第一阶段是获得封锁，也称扩展过程</strong>，这个阶段事务可以申请任何数据的任何类型的锁，但不能释放锁；<strong>第二阶段锁释放封锁，也称收缩过程</strong>，在这个阶段，事务可以释放任何数据项上任何类型的锁，但是不能再申请封锁。<br> 若事务遵守两段锁协议，<u>则对这些事务的任何并发调度策略都是可串行化的，可以进行可串行化调度</u>。
+ </p>
+</li>
+<li><p>事务遵循两段锁协议是可串行化调度的<strong>充分条件</strong>，而非必要条件。</p>
+</li>
+<li><p><strong>两段锁协议和一次封锁法的区别</strong>：一次封锁法要求事务必须一次将要使用的数据全部加锁，否则不能继续执行。因此<u>一次封锁法遵循两段锁协议</u>。但是两段锁协议并不要求事务必须一次将所有要使用的数据加锁，因此<u>遵守两段锁协议的事务可能发生死锁</u>。目的是<strong>保证了并发调度的正确性</strong>。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>三只Panda
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://threepanda.github.io/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/" title="数据结构复习">https://threepanda.github.io/2023/03/06/数据结构复习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" rel="prev" title="计算机网络复习">
+                  <i class="fa fa-chevron-left"></i> 计算机网络复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/03/06/Note_Introduction_to_Japanese/" rel="next" title="日语概论笔记">
+                  日语概论笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三只Panda</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">35k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:07</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
