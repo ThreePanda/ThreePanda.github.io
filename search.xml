@@ -157,6 +157,2292 @@
       </tags>
   </entry>
   <entry>
+    <title>数据结构复习</title>
+    <url>/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<p><img src="/images/SQL/8.JPG"><br><img src="/images/SQL/12.JPG"></p>
+<span id="more"></span>
+<h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><h2 id="1-1数据库系统概论"><a href="#1-1数据库系统概论" class="headerlink" title="1.1数据库系统概论"></a>1.1数据库系统概论</h2><ol>
+<li><strong>数据</strong>是数据库中存储的基本对象。</li>
+<li><strong>数据的定义</strong>：描述事物的符号记录</li>
+<li><strong>数据库定义</strong>：<u>长期存储在计算机内、有组织、可共享的大量数据的集合</u>。</li>
+<li><strong>数据库的数据</strong><u>按一定的数据模型组织、描述和存储</u>，具有<u>较小的冗余度、较高的数据独立性和易扩展性</u>，并可为各种用户共享。</li>
+<li><strong>数据库管理系统作用</strong>：在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用时进行并发控制，在发生故障时对数据库进行恢复。</li>
+<li><strong>数据库管理系统用途</strong>：科学地组织和存储数据、高效地获取和维护数据。</li>
+<li><strong>数据库主要功能</strong>：<ul>
+<li>数据定义功能</li>
+<li>数据组织、存储和管理</li>
+<li>数据操纵功能：<u>实现数据库的基本操作：查询、插入、删除和修改等。</u></li>
+<li>数据库的事务管理和运行管理</li>
+<li>数据库的建立和维护功能</li>
+<li>其他功能：数据库管理系统与其他软件系统的通信，与另一个数据库关系系统或文件系统的数据转换功能</li>
+</ul>
+</li>
+<li><strong>数据库系统</strong>：由数据库、数据库管理系统、应用程序和数据库管理员组成的<u>存储、管理、处理和维护数据的系统</u>。</li>
+<li><strong>数据库管理技术</strong>经历了：<u>人工管理、文件系统、数据库系统三个阶段</u>。<ul>
+<li>人工管理阶段<ul>
+<li>数据不保存：用于科学计算，不需要长期存储</li>
+<li>应用程序管理数据：应用规定数据的逻辑结构和设计物理结构，程序员负担很重</li>
+<li>数据无共享，冗余度极大：一组数据智能对应一个程序，多个程序涉及相同的数据必须各自定义，产生大量冗余</li>
+<li>数据不独立，完全依赖于程序：数据的逻辑结构或物理结构发生变化后，必须对程序做相应更改</li>
+</ul>
+</li>
+<li>文件系统<ul>
+<li>数据可以长期保存</li>
+<li>由文件系统管理数据：<u>利用“按文件名访问，按记录进行存取”的管理技术，<strong>实现了记录内的结构性</strong></u>。</li>
+<li>数据共享性差，冗余度大：文件仍然面向应用，不能共享相同的数据，造成冗余；相同的数据重复存储<u>容易造成数据的不一致性</u>。</li>
+<li>数据独立性差：<strong>文件系统的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的</strong>，因此想对文件内的数据增加一些新的应用会很困难。</li>
+</ul>
+</li>
+<li>数据库系统阶段<ul>
+<li>参照二维表的设计结构，组织结构相同。</li>
+<li>共享性高，冗余度小</li>
+<li>具有高度的物理独立性和一定的逻辑独立性</li>
+<li>整体结构化，用数据模型描述（二维表）</li>
+<li>由数据库管理系统提供数据安全性、完整性、并发控制和恢复能力</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>数据库系统的特点</strong>：<ul>
+<li>数据结构化：实现整体数据的结构化，<u>数据库系统与文件系统的本质区别</u><ul>
+<li>不再针对某一应用，而是面向整个组织；数据的内部和整体均为结构化，<u>数据之间具有联系</u>。</li>
+</ul>
+</li>
+<li>数据的共享性高，冗余地且易扩充<ul>
+<li><u>数据共享可以大大减少数据冗余，节约存储空间，避免数据之间的不相容性和不一致性。</u></li>
+<li>有结构的数据可以被多个应用共享使用，<u>使得数据库弹性大，异于扩充</u>。</li>
+</ul>
+</li>
+<li>数据独立性高<ul>
+<li><strong>物理独立性</strong>：用户的应用程序与数据库中的数据的物理存储是相互独立的。（使得数据的物理存储改变时应用不用改变）</li>
+<li><strong>逻辑独立性</strong>：用户的应用程序和数据库的逻辑结构是相互独立的。（数据的逻辑结构改变时程序也不用改变）</li>
+</ul>
+</li>
+<li>数据由数据库管理系统统一管理和控制<ul>
+<li>数据的安全性保护</li>
+<li>数据的完整性检查</li>
+<li>并发控制</li>
+<li>数据库恢复</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-2数据模型"><a href="#1-2数据模型" class="headerlink" title="1.2数据模型"></a>1.2数据模型</h2><ol>
+<li><strong>两类数据模型</strong><ul>
+<li>第一类：概念模型</li>
+<li>第二类：逻辑模型和物理模型（DBMS）</li>
+</ul>
+</li>
+<li><strong>实体之间的联系</strong>：一对一、一对多、多对多</li>
+<li><strong>数据模型三要素</strong>：由数据结构、数据操作和数据的完整性约束组成</li>
+<li><strong>数据库领域中主要的逻辑数据模型</strong>：层次、网状、关系模型</li>
+<li><strong>数据的操作</strong>：增、删、改、查</li>
+<li><strong>数据的完整性约束条件</strong>：实体、参照、用户自定义完整性</li>
+<li><u><strong>什么是关系型数据模型？</strong></u>从用户观点看，关系模型由一组关系组成，<u>每个关系的数据结构是一张规范化的二维表</u>。</li>
+<li><strong>关系模型的由缺点</strong>：<ul>
+<li>优点<ul>
+<li>关系模型与格式化模型不同，他是建立在严格的数学概念的基础上的</li>
+<li>关系模型的概念单一，无论实体还是实体间的联系都可以用关系表示。数据结构简单、清晰，用户易懂易用</li>
+<li>关系模式的存取路径对用户透明，从而具有更高的数据独立性，更好的安全保密性，简化了程序员的工作和数据库开发建立的工作</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>查询效率不如格式化数据模型，数据库管理系统必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-3数据库系统的结构"><a href="#1-3数据库系统的结构" class="headerlink" title="1.3数据库系统的结构"></a>1.3数据库系统的结构</h2><ol>
+<li><strong>数据库系统模式的概念</strong>：数据模型中有“型（type）”和“值（value）”的概念</li>
+<li><strong>数据库系统的三级模式结构</strong>：外模式、模式、内模式</li>
+<li><u><strong>如何理解模式？</strong></u>模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户数据的公共数据视图。<u>是基本的逻辑表结构</u></li>
+<li><u><strong>如何理解外模式？</strong></u>外模式也称子模式或用户模式，它是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述，是<u>数据库用户的数据视图</u>，是与某一应用有关的数据的逻辑表示。</li>
+<li><u><strong>如何理解内模式？</strong></u>内模式也称存储模式，<u>一个数据库只能有一个内模式</u>，它是数据物理结构和存储方式的描述，是数据在数据库内部的组织方式。<u>表结构的实现（物理存储的数据库）</u></li>
+<li><strong>数据库的二级映像功能与数据独立性</strong><ul>
+<li><u>外模式&#x2F;模式映像</u>：当模式改变时，数据库管理员对映像做相应更改，使得外模式保持不变，<u>保证了数据与程序的逻辑独立性</u></li>
+<li><u>模式&#x2F;内模式映像</u>：当数据库的存储模式结构改变时，数据库管理员对映像做相应改变，使得模式保持不变，<u>保证了数据与程序的物理独立性</u></li>
+</ul>
+</li>
+</ol>
+<h1 id="第二章-关系数据库"><a href="#第二章-关系数据库" class="headerlink" title="第二章 关系数据库"></a>第二章 关系数据库</h1><h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2><ol>
+<li><strong>域</strong>：一组具有相同数据类型的值的集合</li>
+<li><strong>笛卡尔积</strong>：所有可能的集合组合，是一个固定关系的有序集合，元组次序不能任意交换。</li>
+<li><strong>关系</strong>：关系是笛卡尔积的子集合<ul>
+<li>关系是一张二维表，表的每一行表示一个元组（记录）</li>
+<li>每一列对应一个域，域可以相同，必须对每列起一个名字，称为属性</li>
+<li>n目关系必有n个属性</li>
+</ul>
+</li>
+<li><strong>候选码</strong>：关系中某一属性组的值能唯一地标识一个元组，而其子集不能的属性组<ul>
+<li>一个关系有多个候选码，则选其中一个为<u>主码</u></li>
+<li>候选码的诸属性称为<u>主属性</u>，其他的为<u>非主属性&#x2F;非码属性</u></li>
+<li>关系模式中所有的属性都是这个关系模式的候选码，称为<u>全码</u></li>
+</ul>
+</li>
+<li><strong>关系可以有三种类型</strong>：基本关系（基本表或基表）、查询表和视图表。<ul>
+<li>基本表是实际存在的表，是实际存储数据的逻辑表示</li>
+<li>查询表是查询结果对应的表</li>
+<li>视图表是虚表，不对应实际存在的数据</li>
+</ul>
+</li>
+<li><strong>基本关系具有6条性质</strong><ol>
+<li>无限关系在数据库系统中是无意义的</li>
+<li><u>通过为关系的每一列附加一个属性名取消关系属性的有序性</u></li>
+<li>列的顺序无所谓，可任意交换</li>
+<li>任意两个元组的候选码不能取相同的值（主键，相同则不能为候选码）</li>
+<li>分量必须取原子值，每一个分量都是不可分的数据项（第一范式原则）</li>
+<li>行的顺序无所谓，可任意交换</li>
+</ol>
+</li>
+<li><u>关系表中不允许表中有表</u></li>
+<li><u>表是关系数据的逻辑模型</u></li>
+</ol>
+<h2 id="2-2-关系操作"><a href="#2-2-关系操作" class="headerlink" title="2.2 关系操作"></a>2.2 关系操作</h2><ol>
+<li><strong>基本的关系操作</strong>：选择、投影、并、差、笛卡尔积</li>
+<li><strong>关系操作的特点</strong>：集合操作方式，即一次一集合的方式。非关系数据模型的数据操作方法为一次一记录</li>
+</ol>
+<h2 id="2-3-关系的完整性（结合第五章）"><a href="#2-3-关系的完整性（结合第五章）" class="headerlink" title="2.3 关系的完整性（结合第五章）"></a>2.3 关系的完整性（结合第五章）</h2><ol>
+<li><strong>关系模型有三类完整性约束</strong>：实体完整性、参照完整性、用户定义的完整性<ul>
+<li>实体完整性和参照完整性是<u>关系模型必须满足的完整性约束</u>，被称作<u>关系的两个不变性</u>。</li>
+<li>用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</li>
+</ul>
+</li>
+<li><strong>实体完整性规则</strong>：若属性A是基本关系R的主属性，则<u>A不能取空值</u></li>
+<li><strong>外码</strong>：F是基本关系R的一个&#x2F;组属性，但不是R的码，K是S的主码，若F与K相对应，则F是R的外码。R为参照关系，S为被参照关系。</li>
+<li><strong>参照完整性规则</strong>：属性F是基本关系R的外码，与基本关系S的主码K相对应，则R中每个元组在F上的值必须为：<ul>
+<li>空值（F的每个属性值均为空）</li>
+<li>等于S中某个元组的主码值</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-关系代数"><a href="#2-4-关系代数" class="headerlink" title="2.4 关系代数"></a>2.4 关系代数</h2><ol>
+<li><strong>（网络找题）传统集合运算</strong>：二目运算，并、差、交、笛卡尔积</li>
+<li><strong>（网络找题）专门的关系运算</strong>：选择、投影、连接、除运算（不考）</li>
+</ol>
+<h1 id="第三章-关系数据库标准语言SQL"><a href="#第三章-关系数据库标准语言SQL" class="headerlink" title="第三章 关系数据库标准语言SQL"></a>第三章 关系数据库标准语言SQL</h1><h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><ol>
+<li><strong>SQl特点</strong><ul>
+<li>综合统一</li>
+<li>高度非过程化</li>
+<li>面向集合的操作方式，采用集合操作方式，一次一集合</li>
+<li>以同一种语法结构提供多种使用方式</li>
+<li>语言简洁，易学易用</li>
+</ul>
+</li>
+</ol>
+<h2 id="3-3-数据定义-（SQL语句）"><a href="#3-3-数据定义-（SQL语句）" class="headerlink" title="3.3 数据定义 （SQL语句）"></a>3.3 数据定义 （SQL语句）</h2><p>SQL语句进行创建、修改、删除</p>
+<h2 id="3-4-数据查询（SQL语句）"><a href="#3-4-数据查询（SQL语句）" class="headerlink" title="3.4 数据查询（SQL语句）"></a>3.4 数据查询（SQL语句）</h2><p>单表查询</p>
+<h2 id="3-5-数据更新（SQL语句）"><a href="#3-5-数据更新（SQL语句）" class="headerlink" title="3.5 数据更新（SQL语句）"></a>3.5 数据更新（SQL语句）</h2><p>UPDATE、INSERT、DELETE</p>
+<h2 id="3-6-空值的处理-（SQL语句）"><a href="#3-6-空值的处理-（SQL语句）" class="headerlink" title="3.6 空值的处理 （SQL语句）"></a>3.6 空值的处理 （SQL语句）</h2><p>NULL的使用</p>
+<h2 id="3-7-视图-（SQL语句）"><a href="#3-7-视图-（SQL语句）" class="headerlink" title="3.7 视图 （SQL语句）"></a>3.7 视图 （SQL语句）</h2><p><strong>视图的作用</strong>：</p>
+<ol>
+<li>视图能够简化用户的操作</li>
+<li>视图使用户能够以多种角度看待同一数据</li>
+<li>视图对重构数据库提供了<u>一定程度的逻辑独立性</u></li>
+<li><u>视图能够对机密数据提供安全保护</u>：对不同用户定义不同的视图，设置查询和修改视图的权限</li>
+<li>适当利用视图可以更清晰的表达查询</li>
+</ol>
+<h1 id="第四章-数据库安全性"><a href="#第四章-数据库安全性" class="headerlink" title="第四章 数据库安全性"></a>第四章 数据库安全性</h1><h2 id="4-1-数据库安全性概述"><a href="#4-1-数据库安全性概述" class="headerlink" title="4.1 数据库安全性概述"></a>4.1 数据库安全性概述</h2><ol>
+<li><strong>数据库的安全性</strong>是指保护数据库以防不合法使用所造成的数据泄露、更改或破坏</li>
+<li><strong>数据库的不安全因素</strong><ul>
+<li>非授权用户对数据库的恶意存取和破坏</li>
+<li>数据库中重要或敏感的数据被泄露</li>
+<li>安全环境的脆弱性</li>
+</ul>
+</li>
+<li><strong>TCSEC&#x2F;TDI(紫皮书</strong> 定义了数据库管理系统的设计与实现中需要满足和用以进行安全性级别评估的标准<ul>
+<li>从四个方面描述安全性级别划分的指标：安全策略、责任、保证和文档</li>
+</ul>
+</li>
+<li><strong>TCSEC&#x2F;TDI的7级安全级别划分</strong><ul>
+<li>常用的商用安全软件级别：B1&#x2F;C2</li>
+<li><img src="/images/SQL/1.JPG"></li>
+<li><img src="/images/SQL/2.JPG"></li>
+</ul>
+</li>
+</ol>
+<h2 id="4-2-数据库安全性控制"><a href="#4-2-数据库安全性控制" class="headerlink" title="4.2 数据库安全性控制"></a>4.2 数据库安全性控制</h2><ol>
+<li>C2级别的数据库管理系统支持<strong>自主存取控制</strong>，B1级别的数据库管理系统支持<strong>强制存取控制</strong>。</li>
+<li><strong>自主存取控制</strong>：用户对于不同的数据库对象有不同的存取权限，不同的用户对同一对象也有不同的权限，而且用户还可以将拥有的存取权限转授给其他用户，因此自主存取控制比较灵活<ul>
+<li>GRANT和REVOKE语句</li>
+<li>权限授予为级联形式，同时不可循环授权</li>
+<li>缺陷：可能存在数据的“无意识”泄露<ul>
+<li>甲对乙授权，乙就可以将数据备份，获得自身权限（主人）的副本，在不征得甲同意的情况下进行传播。</li>
+<li><u>仅仅通过对数据的存取权限来进行安全控制，而数据本身无安全性标记</u></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>强制存取控制</strong>：每个数据库的对象被标以一定的密级，每一个用户也被授予某一个级别的许可证。对于任意一个对象，只有具有合法许可证的用户才可以存取，因此强制存取控制比较严格<ul>
+<li>数据库管理系统的所有实体被分为<u>主体和客体</u><ul>
+<li><strong>主体</strong>是系统的活动实体，即包括数据库关系系统所管理的实际用户，也包括代表用户的各个进程</li>
+<li><strong>客体</strong>是系统中的被动实体，是受主体操作的，包括文件、基本表、索引、视图等</li>
+</ul>
+</li>
+<li>对于主体和客体，数据库管理系统为他们的每个实例指派一个<strong>敏感度标记</strong><ul>
+<li>绝密（TS）、机密（S）、可信（C）、公开（P）。<strong>密级的次序为：TS&gt;&#x3D;S&gt;&#x3D;C&gt;&#x3D;P</strong></li>
+<li>主体的敏感度标记为<u>许可证级别</u>，客体的敏感度标记为<u>密级</u></li>
+</ul>
+</li>
+<li>强制存取控制机制就是通过<u>对比主体的敏感度和客体的敏感度标记，确定主体能否存取客体</u></li>
+<li>是对数据本身的密级标记，无论数据如何复制，也只有符合对应密级要求的主体才能存取，提高了更高级别的安全性</li>
+</ul>
+</li>
+<li><strong>强制存取控制中，主体对任何客体的存取必须遵循以下规则</strong><ol>
+<li>仅当主体的许可证级别大于等于客体密级时，主体能够读取相应客体</li>
+<li>仅当主体的许可证级别小于等于客体级别时，主体才能写相应客体<ul>
+<li>违反会造成数据从高流向低，造成数据泄漏（TS主体把TS的客体修改为P，导致泄漏）</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-3-视图机制（SQL语句）"><a href="#4-3-视图机制（SQL语句）" class="headerlink" title="4.3 视图机制（SQL语句）"></a>4.3 视图机制（SQL语句）</h2><p>视图的定义和查询</p>
+<h1 id="第五章-数据库完整性"><a href="#第五章-数据库完整性" class="headerlink" title="第五章 数据库完整性"></a>第五章 数据库完整性</h1><p><strong>为实现数据库的完整性，数据库必须能够实现如下功能</strong>：</p>
+<ol>
+<li>提供定义完整性约束条件的机制</li>
+<li>提供完整性检查的方法</li>
+<li>进行违约处理</li>
+</ol>
+<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><ol>
+<li><u><strong>实体完整性检查</strong></u>：<ul>
+<li>检查主码值是否唯一，如果不唯一拒绝插入或修改</li>
+<li>检查主码的各个属性是否为空，若为空拒绝插入或修改<ul>
+<li>检查方法：全表扫描（唯一方法）<ul>
+<li>方式：建立索引，排序后折半查找</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-2-参照完整性"><a href="#5-2-参照完整性" class="headerlink" title="5.2 参照完整性"></a>5.2 参照完整性</h2><ol>
+<li><strong>可能破坏参照完整性的操作以及违约处理</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>被参照表（Student）</th>
+<th>参照表（SC）</th>
+<th>违约处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可能破坏参照完整性</td>
+<td>插入元组</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>可能破坏参照完整性</td>
+<td>修改外码值</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>删除元组</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
+</tr>
+<tr>
+<td>修改主码值</td>
+<td>可能破坏参照完整性</td>
+<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li><strong>参照关系属性的定义有不同的要求</strong><ul>
+<li>如果外码的属性为非主码，可以设置默认为Null</li>
+<li>如果外码的属性为主码，必须有取值</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-3-用户定义的完整性-（SQL语句）"><a href="#5-3-用户定义的完整性-（SQL语句）" class="headerlink" title="5.3 用户定义的完整性 （SQL语句）"></a>5.3 用户定义的完整性 （SQL语句）</h2><ol>
+<li><strong>属性上的约束条件</strong><ol>
+<li>列值非空 NOT NULL</li>
+<li>列值唯一 UNIQUE</li>
+<li>检查列值是否满足某一个条件（CHECK语句）</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-4-完整性约束命名子句-（SQL语句）"><a href="#5-4-完整性约束命名子句-（SQL语句）" class="headerlink" title="5.4 完整性约束命名子句 （SQL语句）"></a>5.4 完整性约束命名子句 （SQL语句）</h2><p>CONSTRAINT</p>
+<h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><h2 id="6-1-问题的提出"><a href="#6-1-问题的提出" class="headerlink" title="6.1 问题的提出"></a>6.1 问题的提出</h2><ol>
+<li><strong>数据依赖</strong>：一个关系内部属性与属性之间的一种约束关系，通过属性间值的相等与否体现出的数据间的相关联系<ol>
+<li>多值依赖</li>
+<li>函数依赖<blockquote>
+<p>建立一个描述学校教务的数据库，该数据库涉区的对象包括学生的学号(Sno)、所在系（Sdept)、系主任姓名（Mname)、課程号（Cno）和成绩（Grade）。假设用一个单一的关系模式 Student 来表示，则该关系模式的属性集合为<br> U&#x3D; {Sno, Sdept, Mname, Cno, Grade}<br> 现实世界的已知事实（语义）告诉我们：</p>
+</blockquote>
+</li>
+<li>﻿一个系有若干学生，但一个学生只属于一个系。</li>
+<li>﻿一个系只有一名（正职）负责人。</li>
+<li>﻿﻿一个学生可以选修多门课程，每门课程有若干学生选修。</li>
+<li>﻿﻿每个学生学习每一门课程有一个成绩。<br> 于是得到属性组U上的一组函数依赖F&#x3D;{Sno-&gt;Sdept,Sdept-&gt;Sname,(Sno,Cno)-&gt;Grade}<blockquote>
+<blockquote>
+<p> 合成一张大表后存在的问题：</p>
+</blockquote>
+</blockquote>
+</li>
+<li>数据冗余（大量的重复数据）</li>
+<li>更新异常（更新系主任后必须更新所有学生信息）</li>
+<li>插入异常（新建立的系若没有学生则无法插入）</li>
+<li>删除异常（学生毕业后系的信息也无法保留）<br> <strong>一个好的模式应当不会发生更新、插入、删除异常，并尽可能减少数据冗余</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><ol>
+<li><p><strong>函数依赖</strong>：R（U）是属性集U上的关系模式，X，Y为U的子集，对于R（U）可能的关系r，r不存在两个可能的元组在X上属性值相等，在Y上不等的，则<u>X函数确定Y或Y函数依赖于X</u>。</p>
+</li>
+<li><p><strong>评价数据库设计</strong></p>
+<p> <img src="/images/SQL/3.JPG"></p>
+</li>
+</ol>
+<p><img src="/images/SQL/4.JPG"><br><img src="/images/SQL/5.JPG"><br><img src="/images/SQL/6.JPG"><br><img src="/images/SQL/7.JPG"></p>
+<ol>
+<li><strong>规范化小结</strong><ol>
+<li>1NF-&gt;2NF：消除非主属性对码的部分函数依赖</li>
+<li>2NF-&gt;3NF：消除非主属性对码的传递函数依赖</li>
+<li>3NF-&gt;BCNF：消除主属性对码的部分和传递函数依赖</li>
+</ol>
+</li>
+</ol>
+<h1 id="第七章-数据库设计"><a href="#第七章-数据库设计" class="headerlink" title="第七章 数据库设计"></a>第七章 数据库设计</h1><h2 id="7-1-数据库设计概述"><a href="#7-1-数据库设计概述" class="headerlink" title="7.1 数据库设计概述"></a>7.1 数据库设计概述</h2><ol>
+<li><u><strong>数据库设计的6个阶段</strong></u><ul>
+<li>需求分析</li>
+<li>概念结构设计（E—R图）</li>
+<li>逻辑结构设计（规则）</li>
+<li>物理结构设计（SQL？）</li>
+<li>数据库实施（SQL？）</li>
+<li>数据库运行和维护</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-3-概念结构设计"><a href="#7-3-概念结构设计" class="headerlink" title="7.3 概念结构设计"></a>7.3 概念结构设计</h2><ol>
+<li><strong>E-R图的画法</strong></li>
+</ol>
+<h2 id="7-4-逻辑结构设计"><a href="#7-4-逻辑结构设计" class="headerlink" title="7.4 逻辑结构设计"></a>7.4 逻辑结构设计</h2><ol>
+<li><strong>E-R图向关系模型的转换</strong><ul>
+<li>一个1:1联系可以转换为一个独立的关系模式，也可以与任意一端对应的关系模式合并</li>
+<li>一个1:n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并</li>
+<li>一个n:m联系转换为一个关系模式</li>
+<li>三个或三个以上实体间的一个多元联系可以转换为一个关系模式</li>
+<li>具有相同码的关系模式可以合并<br><a href="https://blog.csdn.net/liaoai/article/details/123282513">实例</a></li>
+</ul>
+</li>
+</ol>
+<h1 id="第九章-关系查询处理和查询优化"><a href="#第九章-关系查询处理和查询优化" class="headerlink" title="第九章 关系查询处理和查询优化"></a>第九章 关系查询处理和查询优化</h1><h2 id="9-3-代数优化"><a href="#9-3-代数优化" class="headerlink" title="9.3 代数优化"></a>9.3 代数优化</h2><ol>
+<li><strong>查询树的启发式优化</strong><ol>
+<li><u>选择运算应尽可能先做</u>（结合代数运算，需先计算选择）</li>
+<li>把投影运算和选择运算同时进行</li>
+<li>把投影同起前或后的双目运算结合起来</li>
+<li>把某些选择同在它前面要执行的笛卡尔积结合起来成为一个选择运算</li>
+</ol>
+</li>
+</ol>
+<h1 id="第十章-数据库恢复技术"><a href="#第十章-数据库恢复技术" class="headerlink" title="第十章 数据库恢复技术"></a><u>第十章 数据库恢复技术</u></h1><h2 id="10-1-事务的基本概念"><a href="#10-1-事务的基本概念" class="headerlink" title="10.1 事务的基本概念"></a>10.1 事务的基本概念</h2><ol>
+<li><strong>事务</strong>是用户定义的一个数据库操作序列，这些操作要么全做，要不全不做，是<u>一个不可分割的工作单位</u></li>
+<li>事务和程序是两个概念，一般一个程序包含多个事务</li>
+<li><strong>事务的ACID特性</strong>：原子性（A）、一致性（C）、隔离性（I）、持续性（D）。ACD为数据库恢复的要求。<ul>
+<li>原子性：事务是数据库的逻辑工作单位，事务中的操作要么全做要么都不做</li>
+<li>一致性：数据库必须由一个一致性状态变为另一个一致性状态（事务的执行完成或回滚完成等状态）</li>
+<li>隔离性：一个事务的执行不能被其他事务干扰</li>
+<li>持续性&#x2F;永久性：一个事务一旦提交，他对数据库中的数据的改变应该是永久性的。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>COMMIT表示提交事务的所有操作，将事务对数据库的更新写回到磁盘上的物理数据库中；ROLLBACK表示回滚，将事务对数据库的所有已完成操作全部撤销，回滚到事务刚开始的状态。</p>
+</blockquote>
+<h2 id="10-2-数据库恢复概述"><a href="#10-2-数据库恢复概述" class="headerlink" title="10.2 数据库恢复概述"></a>10.2 数据库恢复概述</h2><ol>
+<li>数据库系统所采用的恢复技术是否行之有效，不仅对<strong>系统的可靠程度起决定性作用</strong>，而且对系统的运行效率也有很大影响，<strong>是衡量系统性能优劣的重要指标</strong>。（所以要定期备份）</li>
+<li>数据库管理系统必须具有把数据库从错误状态恢复到某一已知的正确状态的功能，就是<strong>数据库的恢复</strong></li>
+</ol>
+<h2 id="10-3-故障的种类"><a href="#10-3-故障的种类" class="headerlink" title="10.3 故障的种类"></a>10.3 故障的种类</h2><ol>
+<li><strong>事务内部的故障</strong><ul>
+<li>事务内部的故障不影响其他事务的执行，<u>更多的是非预期的，不能由应用程序处理</u>。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>BEGIN TRANSACTION<br>读账户甲的余额为x；<br>x&#x3D;x-a; &#x2F;&#x2F;a转账金额<br>IF(x&lt;0) THEN<br>{打印‘金额不足，不能转账’；<br>ROLLBACK；}<br>ELSE<br>{写回x；读账户乙的余额y；<br>y&#x3D;y+a；<br>写回y；<br>COMMIT；}<br>这段程序中若账户甲余额不足，程序可以发现并让事务滚回，撤销已做的修改，是数据恢复到正确状态。<br>事务故障意味着事务没有达到预期的终点（COMMIT或者显示ROLLBACK），因此数据库可能处于不正确状态。恢复程序要在不影响其他事务的运行情况下，强行滚回该事务，即撤销该事务已经做出的任何对数据库的修改，<strong>这类恢复操作称为事务撤销（UNDO）。</strong> 此操作为自主操作。</p>
+</blockquote>
+<blockquote>
+<p><strong>事务撤销的恢复步骤</strong>：<br>    1. 反向扫描文件日志（从后往前扫描），查找该事务的更新操作<br>    2、对该事务的更新操作执行逆操作，即将日志记录中“更新前的值”写入数据库<br>    3、继续反向扫描日志文件，查找该事务的其他更新操作，并做同样处理。<br>    4、如此处理下去，直至读到此事务的开始标记，事务故障恢复就完成了。</p>
+</blockquote>
+<ol>
+<li><p><strong>系统故障</strong>：造成系统停止运转的任何时间，使得系统要重新启动</p>
+<ul>
+<li>影响并发执行的所有操作，所有事务都非正常中止</li>
+<li>恢复子系统必须在系统重启时让所有非正常终止的事务回滚（UNDO），已完成但仍未写入磁盘的事务全部<strong>重做（REDO）</strong></li>
+<li>检查点处恢复<blockquote>
+<ol>
+<li>正向扫描日志文件（将在故障发生前已经提交的事务加入重做（REDO）队列，这些事务既有begin transaction记录，也有commit记录；将在故障发生时未完成的事务加入撤销（Undo）队列，这些事务中只有begin transaction记录，无相应的commit记录）</li>
+<li>对撤销（Undo）队列事务进行撤销（Undo）处理（1.反向扫描日志文件，对每个undo事务的更新操作进行逆操作；2.将日志记录中“更新前的值”写入数据库）</li>
+<li>对重做（Redo）队列事务进行重做（Redo）处理（正向扫描日志文件，对每个REDO事务重新执行登记的操作；将日志记录中“更新后的值”写入数据库）</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>介质故障</strong>：系统故障通常称为<strong>软故障</strong>，此类为<strong>硬故障</strong>，如磁盘损坏等。</p>
+<ul>
+<li>不考虑检查点，采取<strong>备份+日志文件恢复</strong>，同时日志文件中修改的新值要重新覆写一遍<blockquote>
+<p>  (1） 装入最新的数据库后备副本（离故障发生时刻最近的转储副本），使数据库恢复到最近一次转储时的一致性状态。<br>(2） 转入相应的日志文件副本，重做已完成的事务。即首先扫描日志文件，找出故障发生时已提交的事物的标识，将其记入重做队列；然后正向扫描日志文件，对重做队列中的所有事务进行重做处理。即将日志记录中“更新后的值”写入数据库。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>计算机病毒，参考介质故障</p>
+</li>
+<li><p><strong>各类故障对数据库的影响</strong>：数据库本身被损坏、数据库没有被破坏但数据可能不正确</p>
+</li>
+<li><p><strong>恢复的基本原理</strong>：冗余（备份+日志文件）</p>
+</li>
+</ol>
+<h2 id="10-4-恢复的实现技术"><a href="#10-4-恢复的实现技术" class="headerlink" title="10.4 恢复的实现技术"></a>10.4 恢复的实现技术</h2><ol>
+<li><p>建立冗余数据最常用的技术是<strong>数据转储和登记日志文件</strong>。</p>
+</li>
+<li><p>转储可分为静态转储和动态转储</p>
+<ul>
+<li><strong>静态转储</strong>是在系统无运行事务时进行转储，转储期间不允许对数据库进行任何存取、修改活动<ul>
+<li><u>降低数据库的可用性</u></li>
+</ul>
+</li>
+<li><strong>动态转储</strong>是转储期间允许对数据库进行存取或修改。<ul>
+<li>必须把转储期间各事务对数据库的修改记录，建立<u>日志文件</u>，便于备份完成后进行恢复</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>转储也可分为增量转储和海量转储</p>
+<ul>
+<li><strong>海量转储</strong>是每次转储所有数据库</li>
+<li><strong>增量转储</strong>是只转储上一次转储后更新的数据<blockquote>
+<p>动态海量转储、动态增量转储、静态海量转储、静态增量转储</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>每个日志记录的内容</strong></p>
+<ul>
+<li>操作的类型</li>
+<li>操作对象</li>
+<li>更新前的旧值</li>
+<li>更新后的新值<blockquote>
+<p><strong>日志重写覆盖的意义</strong>：回写数据库存在更新延迟（写入磁盘的速度原小于内存），提交后可能存在尚未写入磁盘的情况。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="10-6-具有检查点的恢复技术"><a href="#10-6-具有检查点的恢复技术" class="headerlink" title="10.6 具有检查点的恢复技术"></a>10.6 具有检查点的恢复技术</h2><ol>
+<li><strong>建立检查点的意义</strong>：改善恢复效率，系统强制对该点之前的事务进行提交，避免在恢复时对已执行完毕的事务重复提交。<strong>只针对系统故障</strong></li>
+<li><strong>检查点记录的内容</strong>：<ul>
+<li>建立检查点时所有正在执行的事务</li>
+<li>这些事务最近一个日志记录的地址</li>
+</ul>
+</li>
+<li><strong>系统使用检查点方法进行恢复的步骤是</strong>：<ol>
+<li>从重新开始文件中找到最后一个检查点记录在日志文件中的地址，由该地址在日志文件中找到最后一个检查点记录。</li>
+<li>由该检查点记录得到检查点建立时刻所有正在执行的事务清单 ACTIVE-LIST。<br>这里建立两个事务队列：<br>•UNDO-LIST：需要执行 UNDO 操作的事务集合；<br>•REDO-LIST：需要执行 REDO 操作的事务集合。<br>把ACTIVE-LIST 暂时放入 UNDO-LIST 队列，REDO队列暂为空。</li>
+<li>从检查点开始正向扫描日志文件。<ol>
+<li>如有新开始的事务T,把T暂时放入UNDO-LIST 队列;</li>
+<li>如有提交的事务J,把J从UNDO-LIST队列移到 REDO-LIST队列；直到日志文件结束。</li>
+</ol>
+</li>
+<li>对 UNDO-LIST 中的每个事务执行 UNDO 操作，对 REDO-LIST 中的每个事务执行REDO 操作。<br><img src="/images/SQL/9.JPG"></li>
+</ol>
+</li>
+</ol>
+<h1 id="第十一章-并发控制"><a href="#第十一章-并发控制" class="headerlink" title="第十一章 并发控制"></a><u>第十一章 并发控制</u></h1><blockquote>
+<p><strong>并发</strong>是指在一个时间段内有多个进程在执行。<br><strong>并行</strong>指的是在同一时刻有多个进程在同时执行。</p>
+</blockquote>
+<ol>
+<li><strong>什么是并发？</strong> 是指一个时间段中有几个事务都处于已启动运行到运行完毕之间，且这几个事务都是在同一个处理机上运行，但任一个时刻点上只有一个事务在处理机上运行。**</li>
+<li><strong>并发的要求</strong>：一致性、隔离性</li>
+</ol>
+<h2 id="11-1-并发控制概述"><a href="#11-1-并发控制概述" class="headerlink" title="11.1 并发控制概述"></a>11.1 并发控制概述</h2><ol>
+<li><strong>事务是并发控制的基本单位</strong></li>
+<li><strong>并发操作带来的问题</strong><ol>
+<li><strong>丢失修改</strong>：两个事务T1和T2读入同一数据并修改，先后提交了结果，前提交的数据会丢失</li>
+<li><strong>不可重复读</strong>：<ol>
+<li>事务T1读取某一数据后，T2对其进行修改，当T1再次读取时得到了与第一次不同的结果</li>
+<li>事务T1按一定条件读取某些数据记录，T2删除了其中一部分，当T1再次按相同条件读取数据时会发现某些记录神秘消失了</li>
+<li>事务T1按一定条件读取某些数据记录，T2插入了一些记录，当T1再次按相同条件读取数据时发现多了一些记录</li>
+</ol>
+</li>
+<li><strong>读“脏”数据</strong>：事务T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1因为某种原因被撤销，T2读取的数据就与数据库中的不一致。<br> <img src="/images/SQL/10.JPG"></li>
+</ol>
+</li>
+</ol>
+<h2 id="11-2-封锁"><a href="#11-2-封锁" class="headerlink" title="11.2 封锁"></a>11.2 封锁</h2><ol>
+<li><strong>基本的封锁类型</strong>：排他锁（X）、共享锁（S）<ol>
+<li><strong>排他锁（写锁）</strong>：若事务T对数据对象A加上X锁，<u>则只允许T读取和修改A</u>，其他任何事务<u>都不能再对A加任何类型的锁</u>，直到T释放A</li>
+<li><strong>共享锁（读锁）</strong>：T对A加S锁，<u>则T可以读A但不能修改A</u>，<u>其他事务只能在对A加S锁，而不能加X锁</u>，直到T释放A为止</li>
+</ol>
+</li>
+</ol>
+<h2 id="11-3-封锁协议"><a href="#11-3-封锁协议" class="headerlink" title="11.3 封锁协议"></a>11.3 封锁协议</h2><ol>
+<li><strong>封锁协议</strong>：在运用X和S锁时需要遵守的规则，<u>用于解决并发操作的3个问题</u><ol>
+<li><strong>一级封锁协议</strong>：事务T在<u>修改数据R</u>之前必须对其加X锁，直到事务结束才释放。<u>可防止丢失修改</u>，只针对读数据。</li>
+<li><strong>二级封锁协议</strong>：在一级封锁协议的基础上增加事务T在<u>读取数据R</u>之前必须先对其加S锁，读完后释放。<u>除防止丢失修改外，还可进一步防止读“脏”数据</u>，由于读完数据后立即释放S，不能保证可重复读。</li>
+<li><strong>三级封锁协议</strong>：在一级封锁协议的基础上增加事务T<u>在读取数据R</u>之前必须先对事务加S锁，<u>直到事务结束释放</u>，解决了并发操作的3个问题。<br> <img src="/images/SQL/11.JPG"></li>
+</ol>
+</li>
+</ol>
+<h2 id="11-4-活锁和死锁"><a href="#11-4-活锁和死锁" class="headerlink" title="11.4 活锁和死锁"></a>11.4 活锁和死锁</h2><ol>
+<li><strong>死锁</strong>：事务T1封锁了数据R1，T2封锁了R2，T1又申请封锁R2，造成T1和T2两个事务永远不能结束</li>
+<li><strong>活锁</strong>：T1封锁了R1，T2申请R1，T3也申请R1后得到系统批准，T2继续等待，可能造成永远等待。</li>
+<li><strong>预防死锁的方法</strong><ol>
+<li>一次封锁法：每个事务必须一次将所有要使用的数据全部加锁。<u>扩大了封锁的范围，降低了系统的并发度</u></li>
+<li>顺序封锁法：预先对数据对象规定一个封锁顺序，所有事务按照这个顺序实施封锁。<u>要求动态处理，实现困难，成本很高，同时事务的随机性高，难以按预先规定实施</u></li>
+</ol>
+</li>
+<li><strong>数据库解决死锁的方法</strong>：选择一个处理死锁代价最小的事务，将其撤销，释放此事务所有的锁，使得其他事务可以继续运行下去。</li>
+</ol>
+<h2 id="11-6-两段锁协议"><a href="#11-6-两段锁协议" class="headerlink" title="11.6 两段锁协议"></a>11.6 两段锁协议</h2><ol>
+<li><p><strong>两段锁协议</strong>：所有事务必须分两个阶段对数据项加锁和解锁</p>
+<ol>
+<li>对任何数据进行读、写操作之前，首先要申请并获得该数据的封锁</li>
+<li>在释放一个封锁后，事务不再申请和获得任何其他封锁</li>
+</ol>
+<p> 即事务分两个阶段，<strong>第一阶段是获得封锁，也称扩展过程</strong>，这个阶段事务可以申请任何数据的任何类型的锁，但不能释放锁；<strong>第二阶段锁释放封锁，也称收缩过程</strong>，在这个阶段，事务可以释放任何数据项上任何类型的锁，但是不能再申请封锁。<br> 若事务遵守两段锁协议，<u>则对这些事务的任何并发调度策略都是可串行化的，可以进行可串行化调度</u>。
+ </p>
+</li>
+<li><p>事务遵循两段锁协议是可串行化调度的<strong>充分条件</strong>，而非必要条件。</p>
+</li>
+<li><p><strong>两段锁协议和一次封锁法的区别</strong>：一次封锁法要求事务必须一次将要使用的数据全部加锁，否则不能继续执行。因此<u>一次封锁法遵循两段锁协议</u>。但是两段锁协议并不要求事务必须一次将所有要使用的数据加锁，因此<u>遵守两段锁协议的事务可能发生死锁</u>。目的是<strong>保证了并发调度的正确性</strong>。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>复习总结</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机网络复习</title>
+    <url>/2023/03/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<p><escape><span id="more"></span></escape></p>
+<h1 id="第一章-引言"><a href="#第一章-引言" class="headerlink" title="第一章 引言"></a>第一章 引言</h1><ul>
+<li><p><strong>网络核心</strong></p>
+<ul>
+<li>目标：将海量的端系统互联起来</li>
+<li>由各类路由器、交换机和链路，构成的网状网络</li>
+</ul>
+</li>
+<li><p><strong>分组交换</strong>（也称包交换）</p>
+<ul>
+<li>主机将数据分成分组，发送到网络</li>
+<li>网络将数据分组从一个路由器转发到下一个路由器，通过从源到目标的路径上的链路，<u>逐跳传输</u>抵达目的地</li>
+</ul>
+</li>
+<li><p><strong>网络核心两大功能</strong></p>
+<ul>
+<li>功能1：<strong>路由</strong><ul>
+<li>全局操作：确定数据分组从源到目标所使用的路径</li>
+<li>需要路由协议和路由算法，产生路由表</li>
+</ul>
+</li>
+<li>功能2：<strong>转发</strong> <ul>
+<li>本地操作：路由器或交换机将接收到的数据分组转发出去（即移动到该设备的某个输出接口）</li>
+<li>确定转发出去的接口&#x2F;链路：根据从 “入接口〞收到分组头中的目的地址，查找本地路由表，确定“出接口”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>存储转发技术</strong></p>
+<ul>
+<li>数据分组传输延迟<ul>
+<li>需要L&#x2F;R秒才能将L位数据包以Rbps的速率传输(推出）到链路中</li>
+</ul>
+</li>
+<li>存储和转发<ul>
+<li>路由器需要接收到完整的整个数据分组以后，才能开始下一跳发送</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>分组交换</strong></p>
+<ul>
+<li>通信双方以分组为单位、使用存储-转发机制，实现数据交互的通信方式</li>
+<li>以分组作为数据传输单元</li>
+<li>每个分组的首部都含有地址（目的地址和源地址）等控制信息</li>
+<li>每个分组在互联网中独立地选择传输路径</li>
+<li>支持灵活的统计多路复用</li>
+</ul>
+</li>
+<li><p><strong>电路交换主要特点</strong></p>
+<ul>
+<li>电路交换通常采用面向连接方式</li>
+<li>先呼叫建立连接，实现端到端的资源预留</li>
+<li>预留的资源包括：链路带宽资源、交换机的交换能力</li>
+<li>电路交换连接建立后，物理通路被通信 双方独占，资源专用，即使空闲也不与其他连接共享 </li>
+<li>由于建立连接并预留资源，因此传输性能好；但如果传输中发生设备故障，则传输被中断</li>
+</ul>
+</li>
+<li><p><strong>典型交换方式的比较</strong></p>
+<ul>
+<li><strong>报文交换</strong><ul>
+<li>与分组交换类似，采用存储转发方式，但不将应用的大报文拆分成多个分组</li>
+</ul>
+</li>
+<li><strong>三种交换的比较</strong> <ul>
+<li>电路交换需要建立连接并预留资源，难以实现灵活复用 </li>
+<li>报文交换和分组交换较灵活，抗毁性高，在传送突发数据时可提高网络利用率 </li>
+<li>由于分组长度小于报文长度，分组交换比报文交换的时延小，也具有更好的灵活性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>网络协议设计</strong></p>
+<ul>
+<li><strong>网络协议</strong><ul>
+<li>为进行网络中的数据交换而建立的规则、标准或约定，即网络协议(networkprotocol)</li>
+<li>通信双方需要共同遵守，互相理解</li>
+</ul>
+</li>
+<li><strong>三要素</strong><ul>
+<li>语法：规定传输数据的格式（如何讲）</li>
+<li>语义：规定所要完成的功能（讲什么） </li>
+<li>时序：规定各种操作的顺序（双方讲话的顺序)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>协议层次结构</strong></p>
+<ul>
+<li>层次栈<ul>
+<li>为了降低网络设计的复杂性，大部分网络都组成一个层次栈，每一层都建立在其下一层的基础上</li>
+</ul>
+</li>
+<li>对等实体<ul>
+<li>不同机器上构成相应层次的实体成为对等实体</li>
+</ul>
+</li>
+<li>接口<ul>
+<li>在每一对相邻层次之间的是接口；接口定义了下层向上层提供哪些原语操作与服务</li>
+</ul>
+</li>
+<li>网络体系结构<ul>
+<li>层和协议的集合为网络体系结构，一个特定的为系统所使用的一组协议，即每层的协议，称协议栈</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>服务原语</strong></p>
+<ul>
+<li>两种不同类型的服务：面向连接和无连接<ul>
+<li>面向连接：按照电话系统模型建立的（一个常见的例子）<ul>
+<li><u>每个“请求”或“响应〞后，都在对方产生一个“指示”或“确认”动作</u></li>
+</ul>
+</li>
+<li>无连接：按照邮政系统模型建立的（一个常见的例子）<ul>
+<li><u>邮件携带了完整的目标地址，传输过程不需要应答</u></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>服务</strong></p>
+<ul>
+<li>典型服务：面向连接传输服务，无连接传输服务</li>
+<li>服务由一组可用于用户进程以访问服务的原语（操作）形式指定</li>
+<li>原语告诉服务执行某些操作或报告对等实体所采取的操作</li>
+</ul>
+</li>
+<li><p><strong>六个核心服务原语</strong>(以面向连接服务为例）</p>
+<ol>
+<li>连接请求</li>
+<li>接受响应</li>
+<li>请求数据</li>
+<li>应答</li>
+<li>请求断开</li>
+<li>断开连接</li>
+</ol>
+</li>
+<li><p><strong>服务与协议的关系</strong></p>
+<ul>
+<li>协议是“水平”的，服务是“垂直”的</li>
+<li>实体使用协议来实现其定义的服务</li>
+<li>上层实体通过接口使用下层实体的服务</li>
+</ul>
+</li>
+<li><p><strong>OSI和TCP&#x2F;IP参考模型</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">OSI7层模型</th>
+<th align="center">OSI定义</th>
+<th align="center">TCP&#x2F;IP4层模型</th>
+<th>TCP&#x2F;IP定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">应用层</td>
+<td align="center">通过应用层协议，提供应用程序便捷的网络服务调用</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">表示层</td>
+<td align="center">关注所传递信息的语法和语义，管理数据的表示方法，传输的数据结构</td>
+<td align="center">应用层</td>
+<td>传输层之上的所有高层协议：DNS、HTTP、FTP、SMTP……</td>
+</tr>
+<tr>
+<td align="center">会话层</td>
+<td align="center">利用传输层提供的服务，在应用程序之间建立和维护会话，并能使得会话获得同步</td>
+<td align="center"></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">传输层</td>
+<td align="center">（进程到进程）将数据从源端口发送到目的端口（可靠传输和不可靠传输）</td>
+<td align="center">传输层</td>
+<td>允许源主机与目标主机上的对等实体，进行端到端的数据传输：TCP&#x2F;UDP</td>
+</tr>
+<tr>
+<td align="center">网络层</td>
+<td align="center">路由（定位主机），将数据包跨越网络从原设备发送到目的设备</td>
+<td align="center">网络层（互联网层）</td>
+<td>允许主机将数据包注入网络，让这些数据包独立的传输到目的地，并定义了数据包格式和协议（IPV4，IPV6）</td>
+</tr>
+<tr>
+<td align="center">数据会话层</td>
+<td align="center">成帧，实现相邻网络实体间的数据传输，从物理层的比特流中提取出完整的帧</td>
+<td align="center">网络接口层（链路层）</td>
+<td>描述了为满足无连接的互联网网络层需求，链路必须具备的功能</td>
+</tr>
+<tr>
+<td align="center">物理层</td>
+<td align="center">定义如何在信道上传输0和1</td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>ARPNET最终采用TCP和IP为主要协议<br>先有TCP&#x2F;IP协议栈，然后有TCP&#x2F;IP协议模型，协议模型只是来描述协议栈的</p>
+</blockquote>
+<ul>
+<li><p><strong>TCP&#x2F;IP协议模型</strong></p>
+<ul>
+<li>模型特点<ul>
+<li>摒弃电话系统中“笨终端&amp;聪明网络〞的设计思路</li>
+<li>采用聪明终端&amp;简单网络，由端系统TCP负责丢失恢复等，简单的网络大大提升了可扩展性</li>
+<li>实现了建立在简单的、不可靠部件上的可靠系统</li>
+</ul>
+</li>
+<li><strong>IP分组交换的特点</strong><ul>
+<li>可在各种底层物理网络上运行(IPovereverything)</li>
+<li>可支持各类上层应用(EverythingoverIP)</li>
+<li>每个IP分组携带各自的目的地址，网络核心功能简单（通过路由表转发分组），适应爆炸性增长</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>OSI模型与TCP&#x2F;IP模型比较</strong></p>
+<ul>
+<li><strong>7层与4层的异同</strong><ul>
+<li>ICP&#x2F;IP模型的网络接口层定义主机与传输线路之间的接口，描述了链路为无连接的互联网层必须提供的基本功能 </li>
+<li>TCP&#x2F;IP模型的互联网层、传输层与OSI模型的网络层、传输层大致对应</li>
+<li>TCP&#x2F;IP模型的应用层包含了OSI模型的表示层与会话层</li>
+</ul>
+</li>
+<li><strong>基本设计思想：通用性和实用性</strong><ul>
+<li>OSI：先有模型后设计协议，不局限于特定协议，<u>明确了服务、协议、接口等概念</u>，更具通用性</li>
+<li>TCP&#x2F;IP模型：仅仅是对已有协议的描述</li>
+</ul>
+</li>
+<li><strong>无连接和面向连接</strong><ul>
+<li>OSI模型网络层能够支持无连接和面向连接通信</li>
+<li>TCP&#x2F;IP模型的网络层仅支持无连接通信(IP）</li>
+</ul>
+</li>
+<li>两者的不足<ul>
+<li>OSI<ul>
+<li>从未真正被实现：TCP&#x2F;IP已成为事实标准，OSI缺少厂家支持</li>
+<li>技术实现糟糕 ：OSI分层欠缺技术考虑：会话层、表示层很少内容；数据链路层、网络层内容繁杂。模型和协议过于复杂。<br>  分层间功能重复：差错控制、流量控制等在不同层反复出现</li>
+<li>非技术因素：TCP&#x2F;IP实现为UNIX一部分，免费；OSI被认为是政府和机构的强加标</li>
+</ul>
+</li>
+<li>TCP&#x2F;IP<ul>
+<li>核心概念未能体现：未明确区分服务、接口和协议等核心概念</li>
+<li>不具备通用性：不适于描述TCP&#x2F;IP之外的其它协议栈</li>
+<li>混用接口与分层的设计：链路层和物理层一起被定义为网络接口层，而非真正意思上的分层</li>
+<li>模型欠缺完整性：未包含物理层与数据链路层；物理层与数据链路层是至关重要的部分</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>  <img src="/images/ComputerNetwork/1.PNG"></p>
+</li>
+<li><p><strong>计算机网络度量单位</strong></p>
+<ul>
+<li><p><strong>速率</strong></p>
+<ul>
+<li>单位是<em>bit&#x2F;s</em>，表示的是<strong>二进制数字</strong>，提到的网络速率往往是<em>额定速率</em>或<em>标称速率</em>，并非网络实际运行的速率。</li>
+</ul>
+</li>
+<li><p><strong>带宽</strong></p>
+<ul>
+<li>通用：某个信号具有的频带宽度，即<strong>表明某信道允许通过的信号频带范围</strong>就称为该信道的带宽（通频带）</li>
+<li>计算机网络：某个<em>通道传送数据的能力</em>，表示<strong>单位时间内网络中某信道所能通过的“最高数据量”</strong></li>
+</ul>
+</li>
+<li><p><strong>包转发率</strong></p>
+<ul>
+<li>Packet Per Second（包&#x2F;秒）</li>
+<li><strong>线速转发</strong>：交换机端口在满负载的情况下，对帧进行转发时能够达到端口线路最高速度。</li>
+<li>在交换机上，与小包相比，大包更容易实现线速（同等条件下，大包数据多，分发量小）</li>
+</ul>
+</li>
+<li><p><strong>时延</strong><br>  数据从网络（链路）的一端到另一段的时间。也可称为<em>延迟</em>或<em>迟延</em>。</p>
+<ul>
+<li><strong>发送时延</strong>（传输时延）<ul>
+<li>主机或路由器发送数据帧所需要的时间（数据帧第一比特开始到最后一比特发送完毕）。<strong>发送时延&#x3D;数据帧长度(bit)&#x2F;发送速率(bit)</strong></li>
+</ul>
+</li>
+<li><strong>传播时延</strong>电磁波在波道上传播一定距离需要花费的时间。（波道可分不同介质）<ul>
+<li><strong>传播时延&#x3D;信道长度(m)&#x2F;电磁波在波道上的传播速率(m&#x2F;s)</strong></li>
+<li>电磁波在自由空间传播速率为光速（3x10^5km&#x2F;s），在铜线电缆中约为2.3x10^5km&#x2F;s，光纤中约为2.0x10km&#x2F;s</li>
+</ul>
+</li>
+<li>发送时延产生于<em>机器内部发送器中（一般为网络适配器）</em>，<strong>与传输信道长度无关</strong>，传播时延发生在<em>机器外的传输信道媒体</em>，<strong>与发送速率无关，信号传送距离越远，传播时延越大</strong>。</li>
+<li><strong>处理时延</strong>：主机或路由器收到分组后需要花费时间进行处理。如分析分组首部、提取数据部分、进行差错检验或查找路由等</li>
+<li><strong>排队时延</strong>：分组进入路由器后要<em>先在输入队列中排队等待处理</em>，路由器确定转发接口后还需<em>在输入队列排队转发</em>。排队时延取决于网络的通信量。</li>
+<li><strong>网络总时延</strong>&#x3D;发送时延+传播时延+处理时延+排队时延</li>
+</ul>
+<p>  <img src="/images/ComputerNetwork/2.JPG"></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>数据传输过程量（工业）单位</strong></p>
+<p>k(kilo)&#x3D;10^3&#x3D;千  M(Mega)&#x3D;10^6&#x3D;兆  G(Giga)&#x3D;10^9&#x3D;吉   T(Tera)&#x3D;10^12&#x3D;太  P(Peta)&#x3D;10^15&#x3D;拍   E(Exa)&#x3D;10^18.&#x3D;艾  Z(Zetta)&#x3D;10^21&#x3D;泽   Y(Yotta)&#x3D;10^24&#x3D;尧</p>
+<p><strong>存储数据量（学术）单位</strong></p>
+<p>K&#x3D;2^10&#x3D;1024.   M&#x3D;2^20.    G&#x3D;2^30.   T&#x3D;2^40……往往以<strong>字节B(byte)作为度量单位</strong>，1byte&#x3D;8bit<br><strong>在通信领域中，只有“1000”使用小写k</strong></p>
+<p><strong>15GB的数据以10G的速率传输</strong>&#x3D;15x2^30x8比特的数据以10x10^9bit&#x2F;s的速率传送</p>
+</blockquote>
+<h1 id="第二章-物理层"><a href="#第二章-物理层" class="headerlink" title="第二章 物理层"></a>第二章 物理层</h1><ul>
+<li><p><strong>物理层功能</strong></p>
+<ul>
+<li><strong>位置</strong>：物理层是网络体系结构中的最低层<ul>
+<li>是连接计算机的具体物理设备吗？×不是</li>
+<li>是负责信号传输的具体物理媒体吗？x不是</li>
+</ul>
+</li>
+<li><strong>功能</strong>：如何在连接各计算机的传输媒体上传输数据比特流<ul>
+<li>数据链路层将数据比特流传送给物理层</li>
+<li>物理层将比特流按照传输媒体的需要进行编码</li>
+<li>然后将信号通过传输媒体传输到下一个节点的物理层</li>
+</ul>
+</li>
+<li><strong>作用</strong>：尽可能地<u>屏蔽掉不同传输媒体和通信手段的差异</u><ul>
+<li>为数据链路层提供一个统一的数据传输服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>物理层的接口特性</strong></p>
+<ul>
+<li>数据终端设备(DataTerminalEguipment,DTE)<ul>
+<li>一种具有一定的数据处理和转发能力的设备</li>
+<li>可以是数据的源点或终点</li>
+</ul>
+</li>
+<li><strong>标准化的DTE&#x2F;DCE接口具有</strong>：机械特性、电气特性、功能特性、过程特性</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>常用以太网IEEE802.3协议，用传输率Mbps+传输方式+介质类型的格式表示（T双绞线，C、S、F光纤）<br>传统以太网：10Base-T（10Mbps+基带传输+双绞线）<br>千兆以太网：1000<br>万兆以太网：10000</p>
+</blockquote>
+<ul>
+<li><strong>物理层特性</strong></li>
+</ul>
+<ol>
+<li>机械特性：<em>指明</em>接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置</li>
+<li>电气特征：指明在接口电缆的各条线上出现的电压范围，如<em>发送信号电平、发送器和接收器的输出抗阻、平衡特性</em>等</li>
+<li>功能特征：指明某条线出现某一电平的电压的意义</li>
+<li>过程特征：指明不同功能的各种可能时间出现的顺序<br>物理连接方式：点对点通信和多点连接（广播连接）<br>点对点通信线路：直接连接两个节点<br>广播连接：使用公共通信线路连接多个节点</li>
+</ol>
+<ul>
+<li><strong>通信、消息、信息、数据、信号</strong></li>
+</ul>
+<ol>
+<li>通信：在源点和终点之间传递消息或信息</li>
+<li>消息：能向人们表达客观物质运动和主观思维活动的文字、符号、数据、语音、图像等，其特点为<strong>能被通信双方所理解、可以相互传递</strong>。<ol>
+<li>信息：消息中对通信者有意义的内容。<u>消息是信息的载体，消息中可能含有信息</u></li>
+</ol>
+</li>
+<li>数据：对某一事实的不经解释并赋予一定含义的数字、字母、文字等符号及其组合的原始表达。<u>数据是消息的一种表达形式，是传达某种意义或信息的实体。</u></li>
+<li><strong>信号是消息的载体</strong>（光信号、电信号等）</li>
+</ol>
+<ul>
+<li><p><strong>信息的度量</strong></p>
+<ul>
+<li>二元判断信息量<ul>
+<li>8只灯泡，1只灯丝断，用一节电池来测，问测几次就可解除其不确定度<ul>
+<li>等概率事件，概率为1&#x2F;2，不确定度大小为log2(1(1&#x2F;8))&#x3D;3bit</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>  <a href="https://www.doc88.com/p-703592201695.html">信息度量例题</a>
+  </p>
+</li>
+<li><p><strong>数据的传输方式</strong></p>
+<ul>
+<li><strong>模拟通信和数字通信</strong><ul>
+<li>以模拟信号来传送消息的通信方式称为模拟通信，而传输模拟信号的通信系统称为模拟通信系统。 </li>
+<li>以数字信号来传送消息的通信方式称为数字通信，而传输数字信号的通信系统称为数字通信系统。 </li>
+<li>模拟信号和数字信号在传输过程中可以相互变换，即A&#x2F;D和D&#x2F;A。</li>
+</ul>
+</li>
+<li><strong>基带传输和频带传输</strong><ul>
+<li>按照传输系统在传输数据信号过程中是否搬其频谱，传输方式可分两类：<ul>
+<li>基带传输指不搬移信号频谱的传输体制</li>
+<li>频带传输指利用调制解调器搬移信号频谱的传输体制</li>
+</ul>
+</li>
+<li><strong>搬移频谱的目的</strong>是为了适应信道的频率特性</li>
+</ul>
+</li>
+<li>串行和并行传输<ul>
+<li>按照传输数据的时空顺序，传输方式可分为两类：<ul>
+<li>串行传输指数据在一个信道上按位依次传输的方式，其特点是：<br>  ①所需线路数少，投资省，线路利用率高；②在发送和接收端需要分别进行并&#x2F;串和串&#x2F;并转换：③收发之间必须实施同步。适用于远距离数据传输。</li>
+<li>并行传输：指数据在多个信道上同时传输的方式，其特点是：<br>  ①在终端装置和线路之间不需要对传输代码作时序变换 ②需要n条信道的传输设施，故其成本较高，适用于要求传输速率高的短距离数据传输。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异步和同步传输<ul>
+<li>异步传输被传送的每一个字符一般都附加有1个起始位和1个停止位，起始位与停止位的极性不同，为了保证正确接收，利用一个频率为传输比特率的八(&#x3D;16)倍的时钟，在每一个比特周期的中心采样</li>
+<li>同步传输每一个字符使用起止位按位进行传送，数据块以帧作为整体传输，并做到：<br>  ①发&#x2F;收之间的位同步；<br>  ②每一帧建立同步标志，建立帧同步</li>
+<li><strong>区别</strong>：异步传输的发送器的接收器的时钟是不同步的，而同步传输两者的时钟是同步的</li>
+</ul>
+</li>
+<li>单工、半双工、全双工<ul>
+<li>单工指两个站之间只能沿一个指定的方向传送数据信号</li>
+<li>半双工指两个站之间可以在两个方向上传送数据信号，但不能同时进行，又称“双向交替”模式，发&#x2F;收之间的转向时间为20～50 ms - </li>
+<li>全双工指两个站之间可以在两个方向上同时传送数据信号</li>
+</ul>
+</li>
+<li><strong>传输损伤</strong><ul>
+<li>误码(Error）。指信号在传输过程中码元（<strong>0&#x2F;1</strong>）发生的差错，即接收与发送数字信号的单个数宇之间的差异</li>
+<li>抖动(Jitter）。指码元出现的时刻随时间频繁地变化，也就是各有效瞬间相对于理想时间位置的短时间偏移（<strong>提前或落后</strong>）</li>
+<li>漂移(Nander）。指码元各有效瞬间相对于理想时间位置的长期缓慢偏移（<strong>累计偏差</strong>）</li>
+<li>滑动(S1ip）。指一个信号序列在传输过程中，不可恢复地丟失或增加若干码元（<strong>数量改变</strong>）</li>
+<li>时延(Delay）。指信号的各有效瞬间相对于理想时间位置的滞后或推迟</li>
+<li><u>信号的高频分量在传输中受到衰减，接收端的信号波形就失去的码间的清晰界限，称为<strong>码间串扰</strong>。</u><ul>
+<li>当信道码元传输的速率超过了上限，就会出现此问题。</li>
+<li>干扰：环境干扰（大气环境）、人为恶意干扰</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>性能度量</strong></p>
+<ul>
+<li>传输速率指单位时间内传送的信息量，是衡量数据通信系统传输能力的一个重要指标。常用的传输速率有两种：<ul>
+<li>调制速率(或波特率、码元速率〕指单位时间内调制信号波形的变换次数，其单位是波特：R&#x3D;1&#x2F;T(S)(Baud)</li>
+<li>数据信号速率(或传信率、比特率）指单位时间内通过信道的信息量，其单位是比特&#x2F;秒</li>
+<li><strong>调制速率与数据信号速率的关系</strong>：<br>  <img src="/images/ComputerNetwork/3.PNG"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>带宽(bandwidth)<br>带宽有两种不同的意义:</p>
+<ul>
+<li>在通信领域（模拟传输），带宽指某个信号具有的频带宽度。单位是 赫(或千赫、兆赫、吉赫、太赫等）。如话音信号的带宽是3.1KHz(300Hz3400Hz)。</li>
+<li>在计算机领域(数宇传输），带宽指计算机网络的通信线路所能传送数据的能力，即在单位时间内从网络中的某一点到另一点所能达到的“最高数据速率〞。单位是b&#x2F;s(bit&#x2F;s)。</li>
+</ul>
+</li>
+<li><p><strong>数字通信与模拟通信相比较</strong></p>
+<ul>
+<li>优点：抗干扰性强，保密性好，设备易于集成，便于计算机处理等。</li>
+<li>缺点：占用较多的带宽，信道利用率低。</li>
+</ul>
+</li>
+<li><p><strong>模拟信道的容量</strong></p>
+<ul>
+<li>香农定律指出：在信号平均功率受限的高斯白噪声信道中，计算信道容量的理论公式为：<br>   C&#x3D;Blog2(1+S&#x2F;N)<br>式中B是信道带宽（单位为Hz)，S&#x2F;N是平均信号噪声功率比，S为接收信号功率，N为噪声功率(指正态分布的加性高斯白噪声）<ul>
+<li><strong>提升模拟信道容量方式：增加系统带宽、提升源端信号发射功率(增加中继)、降低噪声等</strong></li>
+</ul>
+</li>
+<li>奈奎斯特认为，即使是理想信道（无噪声、无码间串扰），它的传输能力也是有限的。对于一条有限带宽、无噪声的理想信道信道容量的计算公式（简称奈奎斯特公式）<br>   C&#x3D;2Blog2(M)(b&#x2F;s)<ul>
+<li><strong>此式表明，对于给定的带宽可以通过增加信号取值的状态数来提高信 道容量。但这将会加重接收器的负担</strong>。意即在每个信号码元时间内， 必须从M个可能的状态中区分出一个来。同时，传输线上的噪声和其他损伤也将会限制M的实际取值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输质量</p>
+<ul>
+<li><strong>信噪比SNR</strong>：信号通路某一点上的信号功率S,与混在信号中的噪声功率N之比值（常用对数表示）。SNR用来描述信号在传输过程中受到噪声影响的度量<br>  SNR&#x3D;10 lg（S&#x2F;N）<br>  S&#x2F;N&#x3D;10，SNR&#x3D;10dB<br>  S&#x2F;N&#x3D;1000，SNR&#x3D;30dB</li>
+</ul>
+</li>
+<li><p><u><strong>复用技术</strong></u><br><img src="/images/ComputerNetwork/4.PNG"><br><img src="/images/ComputerNetwork/5.PNG"><br><img src="/images/ComputerNetwork/6.PNG"><br><img src="/images/ComputerNetwork/7.PNG"><br><img src="/images/ComputerNetwork/8.PNG"><br><img src="/images/ComputerNetwork/9.PNG"><br><img src="/images/ComputerNetwork/10.PNG"><br><img src="/images/ComputerNetwork/11.PNG"></p>
+</li>
+</ul>
+<h1 id="第三章-数据链路层"><a href="#第三章-数据链路层" class="headerlink" title="第三章 数据链路层"></a>第三章 数据链路层</h1><p><img src="/images/ComputerNetwork/12.PNG"><br><img src="/images/ComputerNetwork/13.PNG"></p>
+<ul>
+<li>数据链路层使用的信道<ul>
+<li>点对点信道</li>
+<li>广播信道</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>复习总结</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基础知识篇</title>
+    <url>/2023/03/06/Note_Second_Language_English_1/</url>
+    <content><![CDATA[<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="句型句式"><a href="#句型句式" class="headerlink" title="句型句式"></a>句型句式</h2><ul>
+<li>Statement陈述<ul>
+<li>说明事实与态度</li>
+</ul>
+</li>
+<li>Question疑问<ul>
+<li>提出问题请对方回答</li>
+</ul>
+</li>
+<li>Command祈使<ul>
+<li>发出指令、要求、劝告</li>
+</ul>
+</li>
+<li>Exclamation感叹<ul>
+<li>强烈抒发内心情感或喜怒哀乐</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="陈述句"><a href="#陈述句" class="headerlink" title="陈述句"></a>陈述句</h3><ul>
+<li>功能<ul>
+<li>说明客观事实<ul>
+<li>The stone will roll down the mountain by gravity.</li>
+<li>The year of 2018 marks the 40th anniversary of <u>the reform and opening-up policy</u> in China.</li>
+</ul>
+</li>
+<li>表达自己的观点<ul>
+<li>March is my favorite month when <u>cherry blossom</u> is in full bloom.</li>
+<li>A successful relationship is basically about having courage and sincerity.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>肯定陈述<ul>
+<li>Christmas season is a time full of traditions.</li>
+<li>People in UK drink an average of 1.94kg of tea every year.</li>
+</ul>
+</li>
+<li>否定陈述,带有否定词not<ul>
+<li>Translation should not be too rigid or excessive.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>表达情感态度的“强调”和“削弱”<ul>
+<li>削弱：I’m afraid,I suppose, I suspect, if I am not mistaken等，<strong>削弱说话人的语气，变得更加委婉</strong>。<ul>
+<li>If I am not mistaken, I think you come from Sweden.</li>
+<li>I suspect that she is ill,but I’m not sure.</li>
+</ul>
+</li>
+<li>增强：actually,certainly,really,definitely,without doubt,on no account(绝不),not a single（一个也没有）<ul>
+<li>On no account can we ignore the value of knowledge.</li>
+<li>Certainly nobody could be expected to memorize every detail.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>翻译练习<ul>
+<li>我想你是对的</li>
+<li>毫无疑问，健康是人们最关系的问题</li>
+<li>一百次的尝试中，一次也没有失误（百无一失）</li>
+<li>放心，我肯定会跟那个客户确定具体的发货时间</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>I suppose</strong> you are right.<br><strong>Without doubt</strong>,health is people’s top concern.<br>There is <strong>not a single</strong> miss in a hundred tries.<br>Rest assured, I’m <strong>definitely</strong> going to confirm the specific delivery time with that client.</p>
+</blockquote>
+<h3 id="疑问句"><a href="#疑问句" class="headerlink" title="疑问句"></a>疑问句</h3><ul>
+<li>分类<ul>
+<li><strong>一般疑问句</strong>，询问事情是否属实，<strong>将句子中的be动词、助动词、情态动词提到最前面</strong>，用yes&#x2F;no回答，又称“是非问句”。<ul>
+<li><strong>Is</strong> it about to crash?(Yes,it is.&#x2F;No,it isn’t.)<ul>
+<li>是不是要破产了？</li>
+</ul>
+</li>
+<li><strong>Has</strong> she responded to your letter?(Yes,she has.&#x2F;No,she hasn’t .)<ul>
+<li>她有没有回复你的信？</li>
+</ul>
+</li>
+<li><strong>Can</strong> you point out the man you suspect?(Yes,i can.&#x2F;No,I can’t.)<ul>
+<li>你能把你怀疑的人指出来么？</li>
+</ul>
+</li>
+<li><strong>Did</strong> you reflect on the consequences of your behavior?(Yes.I did.&#x2F;No,I didn’t.)<ul>
+<li>你考虑过你的行为的后果吗？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>特殊疑问句</strong>，由疑问词（疑问代词who,which,whose,what和疑问副词when,where,why,how等）构成，又称“wh-问句”。<ul>
+<li><strong>What</strong> does he mean by cancelling his performance?<ul>
+<li>他取消他的表演是什么意思？</li>
+</ul>
+</li>
+<li><strong>Why</strong> is there so much noise coming from this classroom?<ul>
+<li>为什么这个教室传来这么大的噪音？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>选择疑问句—“一般疑问句”构成</strong>，选项用or连接<ul>
+<li><strong>Did you</strong> fly to New York or (**did you )**go there by sea?<ul>
+<li>你去纽约是坐飞机还是乘船？</li>
+</ul>
+</li>
+<li>**Is it **round,square,or triangular?<ul>
+<li>它是圆的，正方形的，还是三角形的？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>选择疑问句—“特殊疑问句”构成</strong>，选项用or连接<ul>
+<li><strong>How</strong> shall we go to New York,by plane or by sea?<ul>
+<li>我们怎么去纽约，坐飞机还是乘船？</li>
+</ul>
+</li>
+<li><strong>Which</strong> do you like better,laptop or desktop?<ul>
+<li>笔记本电脑和台式机，你更喜欢哪一个？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>附加疑问句</strong>，由“陈述句+附加问句”构成，附加问句的动词、主语根陈述句的动词、主语相对应。<ul>
+<li>The watch <strong>is</strong> 20 minutes fast, <strong>isn’t</strong> is?<ul>
+<li>手表快了20分钟，不是吗？</li>
+</ul>
+</li>
+<li>Your younger brother <strong>can</strong> swim,**can’t **he?<ul>
+<li>你弟弟会游泳，不是吗？</li>
+</ul>
+</li>
+<li><strong>附加疑问句注意事项</strong><ul>
+<li>陈述句主语表示人的不定代词（everybody,everyone,someone,no one等）附加主语<u>可使用he（侧重个体，正式）&#x2F;they（侧重整体，非正式）</u>。<ul>
+<li><u>Everyone</u> knows the solution to the research,<strong>doesn’t he?&#x2F;don’t they?</strong></li>
+<li><u>No one </u>was absent from this meeting,<strong>was it?&#x2F;were they?</strong></li>
+</ul>
+</li>
+<li>陈述句主语是<u>表示物的不定代词</u>（everything,anything,something,nothing等）时，<u>附加问句主语用it</u>。<ul>
+<li><u>Everything</u> is ready,<strong>isn’t it?</strong></li>
+<li><u>Nothing</u> could stop my yearning for freedom,<strong>could it?</strong></li>
+</ul>
+</li>
+<li>陈述句主语为<u>不定代词one</u>，附加问句<u>主语用one&#x2F;you</u>。<ul>
+<li><u>One</u> should be responsible ,<strong>shouldn’t one&#x2F;you?</strong></li>
+<li><u>One</u> shouldn’t hold a negative attitude towards life,<strong>should one&#x2F;you?</strong></li>
+</ul>
+</li>
+<li>陈述句主语为<u>指示代词this&#x2F;that，附加主语it</u>，陈述句主语为<u>指示代词these&#x2F;those，附加主语为they</u><ul>
+<li><u>This</u> is an excellent time to go outing,**isn’t it? **</li>
+<li><u>Those</u> are courses designed for kids under the age of four,<strong>aren’t they?</strong></li>
+</ul>
+</li>
+<li>主<u>现存句（there be句型）</u>，附加句主语<u>仍用there</u><ul>
+<li><u>There is </u>one problem with this approach,<strong>isn’t there?</strong></li>
+<li><u>There are</u> report of widespread dissatisfaction in the club,<strong>aren’t there?</strong></li>
+</ul>
+</li>
+<li>陈述句为<u>I am </u>，附加句<u>aren’t I</u><ul>
+<li><u>I am </u>late, <strong>aren’t I?</strong></li>
+<li>To a certain extent,<u>I am </u>responsible for the delay,<strong>aren’t I?</strong></li>
+</ul>
+</li>
+<li>陈述句<em>有否定词</em>（no one,nothing,never,seldom,hardly,few,little等），附加句<em>使用肯定</em><ul>
+<li>Lily <u>seldom</u> smiles in her daily life,<strong>does she?</strong></li>
+<li>There is </u>little</u> I can help you,<strong>is there?</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>确定附加问句方法</strong></p>
+<ol>
+<li>确定主语</li>
+<li>确定动词</li>
+<li>确定是否定还是肯定附加句</li>
+</ol>
+<p><strong>加强疑问句语气的方法：</strong></p>
+<p>在疑问词后加上<em>ever,on earth, in the world, the goodness, in heaven’s name等</em>可以<strong>加强疑问句的语气</strong>，可翻译为“究竟&#x2F;到底”。</p>
+<blockquote>
+<p>What <strong>in heaven’s name</strong> are you taking about?<br>你到底在说什么？<br>How <strong>ever</strong> do you find the time to learn cooking?<br>你究竟怎么挤出时间来学习烹饪的？<br>Mary’s dictionary was lost on the street yesterday.</p>
+</blockquote>
+<blockquote>
+<p>改为疑问句形式</p>
+<ol>
+<li><strong>Was</strong> Mary’s dictionary lost on the street yesterday?<br>2.<strong>What</strong> was lost on the street yesterday?<br>3.<strong>Who</strong> was lost a dictionary on the street yesterday?</li>
+<li><strong>Whose</strong> dictionary was lost on the street yesterday?<br>5.<strong>Where</strong> was Mary’s dictionary lost yesterday?<br>6.<strong>When</strong> was Mary’s dictionary lost on the street?<br>7.<strong>Why</strong> was Mary’s dictionary lost on the street yesterday?<br>8.<strong>Which</strong> dictionary was lost on the street yesterday,Chinese <strong>or</strong> Japanese?</li>
+</ol>
+</blockquote>
+<h3 id="祈使句"><a href="#祈使句" class="headerlink" title="祈使句"></a>祈使句</h3><ul>
+<li>定义、分类与构成<ul>
+<li>祈使句是<strong>说话者发出指令、要求、劝告等的句子</strong>，分为第一人称、第二人称、第三人称祈使句<ul>
+<li>第一人称：Let’s do</li>
+<li>第二人称：(You) do&#x2F;(You) let us do&#x2F;(You) let me do</li>
+<li>第三人称：Let him&#x2F;her&#x2F;them&#x2F;it do</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>祈使句的否定<ul>
+<li>句子前加don’t&#x2F;never<ul>
+<li><strong>Don’t</strong> make a fuss about trifles.</li>
+<li>Don’t leave her waiting outside in the rain.</li>
+<li><strong>Never</strong> place the milk out in the sun or it will turn bad.</li>
+<li>Never forget to be thankful to those who have helped you.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>祈使句语气的加强<ul>
+<li>在<strong>句首加重读的do</strong>，使语气强硬<ul>
+<li><strong>Do</strong> be careful with those fireworks!The slightest spark could set them off!</li>
+<li><strong>Do</strong> let me know if there is anything i can do for you.</li>
+</ul>
+</li>
+<li>在句首、句中、句尾<strong>使用呼语</strong>，强调命令向谁发出<ul>
+<li>Don’t <strong>anybody</strong> hit the panic button!<ul>
+<li>别让任何人按紧急按钮！（任何人都不要紧张！）</li>
+</ul>
+</li>
+<li>Stop talking in such a disrespectful way,<strong>Jim!</strong>.</li>
+<li><strong>Everyone</strong> be quite now,and our show will begin soon!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>祈使句语气的削弱<ul>
+<li>在<strong>句首或句尾加please</strong>，使语气更加委婉<ul>
+<li>A bottle of wine and two plates of beef,<strong>please</strong>.</li>
+<li><strong>Please</strong> be seated,ladies and gentlemen.</li>
+</ul>
+</li>
+<li>在祈使句后<strong>添加附加问句</strong>，此时，整句话变为“附加疑问句”<ul>
+<li>**Let’s **go camping,<strong>shall we?</strong></li>
+<li><strong>Let us</strong> go now,<strong>will you?</strong><ul>
+<li>现在（你）让我们走吧，好吗？</li>
+</ul>
+</li>
+<li><strong>Don’t make</strong> any noise,<strong>will you?</strong></li>
+<li><strong>Help me</strong> with this mathematical problem,<strong>will&#x2F;won’t you?</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>祈使句的附加问句</strong></p>
+<ol>
+<li>第二人称肯定祈使句，加will you 或 won’t you</li>
+<li>第二人称否定祈使句，加will you</li>
+<li>Let’s开头的祈使句，加shall we</li>
+<li>Let us开头的祈使句，加will you</li>
+</ol>
+<blockquote>
+<p>第一人称祈使句：<br>Let’s avoid unrealistic expectations.（让我们避免不切实际的期望）<br>第二人称祈使句：<br>Let me think what to do next.（（你）让我想想接下来干什么）<br>Open your book and turn to page eleven.（（你）打开书本）<br>Show the foreign guests around the factory.（（你）带外宾）<br>Let us have a look at the theory first.（请（你）让我们先看下理论）<br>第三人称祈使句：<br>Let bygones be bygones.（既往不咎）<br>Let boys be boys.（男孩就要有男孩的样子）</p>
+</blockquote>
+<h3 id="感叹句"><a href="#感叹句" class="headerlink" title="感叹句"></a>感叹句</h3><ul>
+<li>What引导的感叹句构成<ul>
+<li>What+a&#x2F;an+形容词+可数名词单数（+主语+谓语）！</li>
+<li>What+形容词+可数名词复数（+主语+谓语）！</li>
+<li>What+形容词+不可数名词（+主语+谓语）！</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>What a capable manager(he is)!<br>What inspiring stories(these are)!<br>What fresh air(it is)!</p>
+</blockquote>
+<ul>
+<li>How<ul>
+<li>How+形容词&#x2F;副词+主语+谓语+其他！</li>
+<li>How+主语+谓语！</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>How glorious the day will be!<br>How quickly a rash thing is done!<br>How diligently he prepares for Graduate Management Admissions Test!</p>
+</blockquote>
+<ul>
+<li>其他形式<ul>
+<li>使用单词表感叹<ul>
+<li>Splendid!</li>
+</ul>
+</li>
+<li>使用词组表感叹<ul>
+<li>Good job!</li>
+</ul>
+</li>
+<li>使用陈述句表感叹<ul>
+<li>He is so hardworking!</li>
+</ul>
+</li>
+<li>使用疑问句表感叹<ul>
+<li>Aren’t these roses beautiful?</li>
+</ul>
+</li>
+<li>使用祈使句表感叹<ul>
+<li>Many happy returns of the day!<ul>
+<li>（生日用词）遐龄永享，康宁如注！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这些花多美丽啊！<br>What beautiful flowers there are!<br>今天天气真好啊！<br>what fine weather it is today!<br>这些山多高啊！<br>How high the mountains are!<br>在这样一个凉爽的下午打篮球是多么令人兴奋！<br>How exciting it is to play basketball on such a cool afternoon!</p>
+</blockquote>
+<h2 id="句子成分"><a href="#句子成分" class="headerlink" title="句子成分"></a>句子成分</h2><p>包括主语、谓语、宾语、表语、定语、状语、补语和同位语。</p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_1.jpg"></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_2.jpg"></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_3.jpg"></p>
+<h3 id="可以充当主语的词"><a href="#可以充当主语的词" class="headerlink" title="可以充当主语的词"></a>可以充当主语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_4.jpg"></p>
+<h3 id="可以充当谓语的词"><a href="#可以充当谓语的词" class="headerlink" title="可以充当谓语的词"></a>可以充当谓语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_5.jpg"></p>
+<h3 id="可以充当宾语的词"><a href="#可以充当宾语的词" class="headerlink" title="可以充当宾语的词"></a>可以充当宾语的词</h3><ol>
+<li>at&#x2F;after等介词后的词可以充当宾语</li>
+<li>及物动词后的词</li>
+</ol>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_6.jpg"></p>
+<p><strong>注意区分直接宾语和间接宾语</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_7.jpg"></p>
+<h3 id="可以充当表语的词"><a href="#可以充当表语的词" class="headerlink" title="可以充当表语的词"></a>可以充当表语的词</h3><p><strong>系动词后的成分</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_8.jpg"></p>
+<h3 id="分析划线部分成分"><a href="#分析划线部分成分" class="headerlink" title="分析划线部分成分"></a>分析划线部分成分</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_9.jpg"></p>
+<h3 id="可以充当定语的词"><a href="#可以充当定语的词" class="headerlink" title="可以充当定语的词"></a>可以充当定语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_10.jpg"></p>
+<h3 id="可以充当状语的词"><a href="#可以充当状语的词" class="headerlink" title="可以充当状语的词"></a>可以充当状语的词</h3><p><strong>修饰&#x2F;表状态</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_11.jpg"></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_12.jpg"></p>
+<h3 id="可以充当补语的词"><a href="#可以充当补语的词" class="headerlink" title="可以充当补语的词"></a>可以充当补语的词</h3><p><strong>主语补足语&#x2F;宾语补足语</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_13.jpg"></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_14.jpg"></p>
+<h3 id="可以充当同位语的词"><a href="#可以充当同位语的词" class="headerlink" title="可以充当同位语的词"></a>可以充当同位语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_15.jpg"></p>
+<h3 id="分析句子成分"><a href="#分析句子成分" class="headerlink" title="分析句子成分"></a>分析句子成分</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_16.jpg"></p>
+<h2 id="句子结构"><a href="#句子结构" class="headerlink" title="句子结构"></a>句子结构</h2><p><strong>句子结构成分的缩写</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_17.jpg"></p>
+<p><strong>基本句式结构</strong></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_18.jpg"></p>
+<p><em>分析句子类型</em></p>
+<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_19.jpg"></p>
+<ul>
+<li>SV基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_20.jpg"></li>
+</ul>
+</li>
+<li>SVP基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_21.jpg"></li>
+</ul>
+</li>
+<li>SVO基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_22.jpg"></li>
+</ul>
+</li>
+<li>SVOO基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_23.jpg"></li>
+</ul>
+</li>
+<li><u>分析长句句子类型</u><ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_24.jpg"></li>
+</ul>
+</li>
+<li>SVOC基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_25.jpg"></li>
+</ul>
+</li>
+<li>SVA基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_26.jpg"></li>
+</ul>
+</li>
+<li>SVOA基本句型<ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_27.jpg"></li>
+</ul>
+</li>
+<li><u>分析长句类型</u><ul>
+<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_28.jpg"></li>
+</ul>
+</li>
+</ul>
+<h2 id="词形的句法功能"><a href="#词形的句法功能" class="headerlink" title="词形的句法功能"></a>词形的句法功能</h2><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_29.jpg"><br><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_30.jpg"></p>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><ul>
+<li>名词充当主语。<ul>
+<li><u>Self-confidence</u> is the mainstay of a strong character.（自信是强者之脊梁。）</li>
+<li><u>The lawyer</u> is going to undertake this tough case.（律师将会接受这个棘手的案子。）</li>
+</ul>
+</li>
+<li>名词充当宾语。<ul>
+<li>He braked his car just in time to avoid <u>an accident</u>.（他及时刹车，避免了一次事故。）</li>
+<li>They preferred not to talk about <u>this question</u> at the time.（在这个时刻，他们宁愿不谈这个问题。）</li>
+</ul>
+</li>
+<li>名词充当表语。<ul>
+<li>Tom turned <u>teacher</u>, which he didn’t wish to be.(汤姆成了教师，可那不是他所希望的。)</li>
+<li>What is missing from a lot of lives is <u>romance</u>.(生活中大量缺少的就是浪漫色彩。)</li>
+</ul>
+</li>
+<li>名词充当定语。<ul>
+<li>The woman received a <u>diamond</u> necklace as a gift.(那女人收到一条钻石项链作为礼物。)</li>
+<li>Is that <u>chemistry</u> teacher strict or easy-going?(那位化学老师很严厉还是很好相处？)</li>
+</ul>
+</li>
+<li>名词充当补语。<ul>
+<li>He was elected <u>president</u> of the association.(他被选为协会主席。)</li>
+<li>The strikers constituted him their <u>spokesman</u>.(罢工者任命他为他们的发言人。)</li>
+</ul>
+</li>
+<li>名词充当同位语。<ul>
+<li>We <u>Chinese</u> have the spirit to fight the enemy to the last drop of our blood.(我们中华民族有同自己的敌人血战到底的气概。)</li>
+<li>Miss Ma, <u>our gcography teacher</u>, is highly respected by all.(马老师，我们的地理老师，极受大家的尊敬。)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li>Can you tell us your <u>(    )</u> for happiness and a long life?</li>
+</ol>
+<ul>
+<li>Living every day to the full, definitely.<br>A. гесіре<br>B. record<br>C. reception<br>D. receipt<br>【答案】A<br>【翻译】一您能告诉我们您幸福与长寿的秘快吗？—确切地说，是充实地过好每一天。<br>根据答语可知，此处问的是幸福与长寿的秘诀。recipe秘诀，決窍，符合句意。record记录;reception接待处；receipt收据，均不符合题意。<br>【成分】recipe作直接宾语。</li>
+</ul>
+<ol start="2">
+<li><p>We can observe that artificial intelligence has already made a(an).<u>(      )</u>on our lives in many ways.<br>A. statement<br>B. impact<br>C. impression<br>D. judgment<br>【答案】B<br>【翻译】我们能够注意到，人工智能在很多方 面已对我们的生活产生了影响。make astatement发表声明；make an impact on对..产生影响；make an impression on给.留下印象;make a judgment作出判断。结合句意可知，应选B。<br>【成分】impact作宾语。</p>
+</li>
+<li><p>The failure was a big <u>(     )</u>to him, but he wasn’t discouraged and soon got as enthusiastic as ever.<br>A. blow<br>B. issue<br>C. excuse<br>D. factor<br>【答案】A<br>【翻译】这次失败对他来说是一次很大的打击，但他没有泄气，很快就变得和以往一样充满热情。blow打击，符合句意。issue问题，议题;excuse借口；factor因素。<br>【成分】blow作表语。</p>
+</li>
+<li><p>When he was running after his brother, the boy lost his<u>(     )</u> and had a bad fall<br>A. balance<br>B. chance<br>C. memory<br>D. ability<br>【答案】A<br>【翻译】当这个男孩追赶哥哥的时候，他失去了平衡，狠狠地摔了一跤。根据句中的 had a bad fall可知，这个男孩之所以摔倒是因为失去了平衡，lose one’s balance意为“失去平衡”。chance机会;memory记忆；ability能力。<br>【成分】balance作宾语。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="数词"><a href="#数词" class="headerlink" title="数词"></a>数词</h3><ul>
+<li>数词充当主语。<ul>
+<li><u>Eight</u> minus three is five.（八减三得五。）</li>
+<li>“<u>The third</u> is a blanket without any thread.” said Mary, looking at the gifis.（“第三件是没有线的毯子，”玛丽看着礼物说道。）</li>
+</ul>
+</li>
+<li>数词充当宾语。<ul>
+<li>Personally speaking, I prefer <u>the second</u> to the third.（就我个人而言，比起第三个，我更喜欢第二个。）</li>
+<li>How many candles do you need? -I need <u>thirty</u>.（你需要多少支蜡烛？-我需要三十支。）</li>
+</ul>
+</li>
+<li>数词充当表语。<ul>
+<li>The zip code is <u>83232</u>.（邮政编码是83232.）</li>
+<li>We were <u>the first</u> to congratulate the bride and groom.（我们是最先向新娘和新郎祝贺的。）</li>
+</ul>
+</li>
+<li>数词充当定语。<ul>
+<li>Attention, please! The bus will leave in <u>ten</u> minutes.（请注意！公共汽车十分钟后开。）</li>
+<li>The <u>second</u> option is technically superior but it demands higher-performance equipment.（第2种选择具有技术优越性，但需要高性能的设备。）</li>
+</ul>
+</li>
+<li>数词充当同位语。<strong>一般在主格代词之后</strong><ul>
+<li>They <u>two</u> are on intimate terms.（他们俩很亲近。）</li>
+<li>We <u>four</u> affectionately watched his back as he stood in the bows looking to scaward.（当他站在船头向海上望去时，我们四个人都热切地朝着他的背影看着。）</li>
+<li>They <u>three</u> get along well with one another; one is married, another is still a bachelor, and the other has a girl friend.（他们三人彼此相处愉快；一个已婚，一个仍是光棍，而另一个已有了女友。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>翻译对话</p>
+<ol>
+<li>第二个是你的。<br><u>The second</u> is yours. <em>作主语</em></li>
+<li>他的父亲今年58岁。<br>His father is <u>fifty-eight</u> this year. <em>作表语</em></li>
+<li>他有三本英汉宇典。<br>He has <u>three</u> English-Chinese dictionaries. <em>作定语</em></li>
+<li>让我们四个人完成这项工作，好吗？<br>Let us <u>four</u> finish the work, will you?<em>作同位语</em>.</li>
+</ol>
+</blockquote>
+<h3 id="介词短语"><a href="#介词短语" class="headerlink" title="介词短语"></a>介词短语</h3><ul>
+<li>介词短语充当表语。<ul>
+<li>Health is <u>above wealth</u>.（健康高于财富。）</li>
+<li>His clinic is <u>near the newlv-built railway station</u>.（他的诊所在新建的火车站附近。）</li>
+</ul>
+</li>
+<li>介词短语充当定语。<ul>
+<li>The lady <u>in the car</u> is from France.（车上的那位女士来自法国。）</li>
+<li>The man <u>in black</u> is Mr. Brown, our literature teacher.（穿黑衣服的人是布朗先生，我们的文学老师。）</li>
+</ul>
+</li>
+<li>介词短语充当状语。<ul>
+<li>Did you do this <u>by design</u> or <u>by accident</u>?（你这样做是有意的还是无意的？）</li>
+<li>You are getting better at eating <u>with chopsticks</u>!（你越来越擅长用筷子吃饭了！）</li>
+</ul>
+</li>
+<li>介词短语充当补语。<ul>
+<li>I found everything <u>in good condition</u>.（我发现一切正常。）</li>
+<li>She pronounced herself <u>against the contract</u>.（她声明反对合同。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>Favorable policies are <u>(    ) </u>to encourage employees’ professional development.<br>A. in effect<br>B. in command<br>C. in turn<br>D. in shape<br>【答案】A<br>【翻译】优惠政策会有效地促进员工的职业发展。in effect有效；in command应付自如；in tum逐一、轮流；in shape..的模样。<br>【成分】in effect作表语</p>
+</li>
+<li><p>“What a terrible rain we are having!” - “Yes. We are asked to pay more attention to the information about the rain <u>（    ）</u>flood”.<br>A. as well as<br>B. so long as<br>C. because of<br>D. in case of<br>【答案】D<br>【翻译】-“我们马上迎来一场可怕的大雨！“是的。我们被要求更加关注有关这次的降雨以防洪水。”in case of 有两个意思，一表示条件，意为“如果”；二表示目的，意为“以防”。<br>【成分】in case of作状语</p>
+</li>
+<li><p>The Scottish girl <u>(    )</u>blue eyes won the first prize in the Fifth Chinese Speech Contest.<br>A. By<br>B. of<br>C. in<br>D. with<br>【答案】D<br>【翻译】在第五届汉语演讲比赛中，那位蓝眼睛的苏格兰女孩赢得了第一名。所填词介词意思是“有”，用with。<br>【成分】with blue eyes作定语</p>
+</li>
+<li><p>My sister was against my suggestion while my brother was<br>(      ) it.</p>
+</li>
+</ol>
+<p>A. in favour of<br>B. in memory of<br>C. in honour of<br>D. in search of<br>【答案】A<br>【翻译】我姐姐反对我的建议而我的弟弟支持。in favor or支持;in memory of纪念，追念；ihonour of为纪念，为庆祝；in scarch of搜寻，探求。<br>【成分】in favour of作表语</p>
+</blockquote>
+<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><ul>
+<li>形容词充当表语。<ul>
+<li>He was <u>petrified</u> with terror.（他吓得发呆。）</li>
+<li>This may seem <u>impossible</u>, but it is not <u>unprecedented</u>.（这似乎不太实际，但并不是没有先例。）</li>
+</ul>
+</li>
+<li>形容词充当定语。<ul>
+<li><u>Mental</u> models become deeply ingrained as a result of previous experiences.（由于以前的经历，心理模型变得根深蒂固。）</li>
+<li>Accompanied by <u>cheerful</u> music, we began to dance.（伴随着欢乐的音乐，我们跳起舞来。）</li>
+</ul>
+</li>
+<li>形容词充当状语。<ul>
+<li><u>Anxious</u> about her son’s safety, she called him many times.（（因为）担心她儿子的安全，她打了好几次电话给他。）（形容词作原因状语）</li>
+<li>He was coincidentally locked in the dark house, <u>worried</u> and <u>frightened</u>.（他碰巧被锁在黑暗的房子里，既担心又害怕。）（形容词作伴随状语）</li>
+</ul>
+</li>
+<li>形容词充当补语。<ul>
+<li>I think we should leave the door <u>open</u>. It is too hot indoors.（我觉得我们应该把大门开着，室内太热了。）</li>
+<li>What I said just now will probably make some people <u>angry</u>.（我刚才说的话可能会让一些人生气。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>His comprehensive surveys have provided the most （     ）statements of how, and on what basis,data are collected.<br>A. explicit<br>B. ambiguous<br>C. original<br>D. arbitrary<br>【答案】A<br>【翻译】他全面的调查提供了关于如何收集信息，以及在什么基础上收集信息的最清楚明确的说明。explicit清楚的，明晰的；ambiguous模棱两可的；original起初的；arbitrary任意的。<br>【成分】explicit作定语。</p>
+</li>
+<li><p>Several hours later, with the help of the police, the tourists manage to escape from the dangerous place,（    ）<br>A. hungry and scaring<br>B. hungrily and scared<br>C. hungry and scared<br>D. hungrily and scaring<br>【答案】C<br>【翻译】几个小时后，在警察的帮助下，游客设法从危险的地方逃了出来，感到又饿又怕。<br>【成分】hungry和scared作状语表伴随，位于句首或句末，用逗号隔开。</p>
+</li>
+<li><p>You shouldn’t have said that. Look! She is getting （     ）<br>But I meant no harm.<br>A. unfair<br>B. unconcerned<br>C. unmoved<br>D. uneasy<br>【答案】D<br>【翻译】-你不该那么说。你看，她变得非常不安了。-但我没有恶意啊。unfair不公平的；unconcerned不关心的；unmoved冷漠的；uneasy不安的。<br>【成分】uneasy作表语。</p>
+</li>
+</ol>
+<p>4.In this article, your content is too general and you need to make it （     ）<br>A. specific<br>B. permanent<br>C. abstract<br>D. universal<br>【答案】A<br>【翻译】在本文中，你的内容过于笼统，需要使其具体化。specific具体的；permament永久的；<br>abstract抽象的；universal通用的，普遍的。<br>【成分】specific作补语。</p>
+</blockquote>
+<h3 id="副词"><a href="#副词" class="headerlink" title="副词"></a>副词</h3><ul>
+<li>副词充当表语。一般是表示地点的副词，或与介词同形的副词。<ul>
+<li>My temperature is <u>down</u>, but I am still feeling weak.（我烧是退了，可身上还是没劲儿。）</li>
+<li>He suddenly realizes that their romance is <u>over</u>.(他突然意识到他们的浪漫史结束了。)</li>
+</ul>
+</li>
+<li>副词充当定语。一般是表示地点、时间的副词。<ul>
+<li>It is hoped that you will give due attention to all the points <u>above</u>.(希望您对以上的各个要点给子应有的重视。)</li>
+<li>The temperature <u>today</u> is two degrees higher than yesterday.(今天的气温比昨天高两度。)</li>
+</ul>
+</li>
+<li>副词充当状语。<ul>
+<li>She was reckoned <u>very</u> intelligent.(她被认为很聪明。)</li>
+<li>Though the app may be useful at times, most users do not <u>frequently</u> use it.(尽管这个程序偶尔会有用，但多数用户不会经常使用它。)</li>
+</ul>
+</li>
+<li>副词充当补语。一般是表示地点的副词。<ul>
+<li>The girl was found <u>upstairs</u>, alone.(女孩被发现在楼上，独自一人。)</li>
+<li>Unfortunately, I didn’t see anybody <u>in</u>, so I left.(真不湊巧，我没看到任何人进来，所以我离开了。)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>They gave money to the old people’s home either (     ) or through their companies.<br>A. legally<br>B. sincerely<br>C. personally<br>D. deliberately<br>【答案】C<br>【翻译】他们或亲自或通过他们的公司给敬老院送钱。legally合法地，法律上；sincerely真诚地;personally亲自，就自己而言；deliberately故意地，谨慎地。根据through their companies可知选择personally。<br>【成分】personally作方式状语。</p>
+</li>
+<li><p>Time is (    ) .Let’s continue our seminar after a short tea break.<br>A. out<br>B. in<br>D. up<br>C. away<br>【答案】D<br>【翻译】时间到了，让我们在短暂的茶歇过后继续我们的研讨会。根据句意选择D，Time is up.<br>是固定用法，意为“时间到了”。<br>【成分】up作表语。</p>
+</li>
+<li><p>I am wondering if Professor C is in the office or not.<br>I saw him (    )half an hour ago. I guess he will be back soon.<br>A. in<br>B. out<br>C. over<br>D. around<br>【答案】B<br>【翻译】-我想知道C教授是否在办公室。-半小时前我看见他出去了。我想他很快就会回来。符合句意的只有B选项。<br>【成分】out作补语。</p>
+</li>
+<li><p>The wardrobe to be repair (    ) is really heavy. I think we need three people to move it down.<br>A.upstair<br>B.downstairs<br>C.upstairs<br>D.downstairs<br>【答案】C<br>【翻译】楼上要修的衣柜真的很重。我想我们需要三个人把它搬下来。A和B为形容词，C和D为副词。根据move it down可知“衣柜在楼上”，选择upstairs。<br>【成分】 upstairs作定语。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><ul>
+<li>“实义动词”单独作谓语。<ul>
+<li>I can’t <u>perceive</u> any differences between these paintings.（我看不出这些画有什么不同。）</li>
+<li>I <u>fasten</u> these papers with a paper clip.（我用回形针把这些试卷固定好。）</li>
+</ul>
+</li>
+<li>“动词短语”作谓语。<ul>
+<li>They <u>make use of</u> advertisements to promote the new product.（他们利用广告推销新产品。）</li>
+<li>If you <u>come across</u> a word whose meaning you have forgotten, consult the dictionary.（如果你遇到一个你忘了意思的词，请查宇典。）</li>
+</ul>
+</li>
+<li>“情态动词＋动词原形”作谓语。<ul>
+<li>All of us <u>shall observe</u> the code of practice.(我们大家都应遵守业务守则。)</li>
+<li>I <u>will not deny</u> that she was delighted after hearing such flattery.(我不否认她听到这样的奉承后感到高兴。)</li>
+</ul>
+</li>
+<li>“助动词+动词的变化形式，作谓语。动词变化形式包括：原形、现在分词、过去分词。<ul>
+<li>He <u>was beaten</u> black and blue.(他被打得鼻青脸肿。)</li>
+<li>She <u>is laughing</u> heartily because of the jokes her boy friend told just now.(因为他男朋友刚说的笑话，她正开怀大笑。)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Last week a tennis ball hit me on the head, but I tried to  ( ) the pain, believing that it would go away sooner or later.<br>A. isolate<br>B. interrupt<br>C. ignore<br>D.intend<br>【答案】C<br>【翻译】上周一个网球打到了我的头上，但我试着无视疼痛，相信它迟早会消失的。<br>isolate隔离；interrupt打断；ignore忽视；intend打算。</p>
+<p>It is widely believed that students should be (  )in terms of overall quality.<br>A. supported<br>B. surrounded<br>C. evaluated<br>D. excluded<br>【答案】C<br>【翻译】人们普遍认为，应该从綜合素质的角度来评价学生。support支持；SurTound包围；<br>evaluate评价；exclude排除。</p>
+<p> Nowadays, more and more wind power stations are ()to meet the demand for clean energy.<br>A. taking up<br>B. clearing up<br>C. holding up<br>D. springing up<br>【答索】D<br>【翻译】如今，越来越多的风力发电站正在兴起，满足人们对清洁能源的需求。take up从事,占据;clear up清理;hold up举起，阻碍;spring up突然兴起。</p>
+<p>Tom kept silent during the early part of the seminar but he eventually( )his opinion on the theme.<br>A. gave voice to<br>B. kept an eye on<br>C. turned a deaf ear to<br>D. set foot on<br>【答案】A<br>【翻译】汤姆在研讨会的初期保持沉默，但他最终就这个主题发表了他的意见。give voice to<br>表达对…的想法；keep an eye on留意；turn a deaf car to对..充耳不闻；set foot on踏上，登上。</p>
+</blockquote>
+<h3 id="非谓语"><a href="#非谓语" class="headerlink" title="非谓语"></a>非谓语</h3><ul>
+<li>非谓语动词充当主语。<ul>
+<li><u>To complete this assignment</u> is quite difficult. (to do不定式）（完成这项任务相当困难。）</li>
+<li><u>Setting your watch three minutes ahead</u> is an effective way to avoid being late. (doing动名词）（把表提前三分钟是避免迟到的有效方法。）</li>
+</ul>
+</li>
+<li>非谓语动词充当宾语。<ul>
+<li>I decided <u>to study English language</u> in college. (to do不定式）（我决定在大学里学习英语。）</li>
+<li>He was in low spirits and even considered <u>going away</u>. (doing动名词）（他情绪低落，甚至考虑离开。）</li>
+</ul>
+</li>
+<li>非谓语动词充当表语。<ul>
+<li>The current situation in our country is <u>encouraging</u>. (doing现在分词）（我国目前的形势令人鼓舞。）</li>
+<li>The next step is <u>to make sure</u> that you know what is needed. (to do不定式）（下一步是确保你知道需要什么。）</li>
+<li>Her mother was <u>pleased</u> that shc chose a college close to home. (done过去分词）（她母亲很高兴她选择了一所离家近的大学。）</li>
+<li>The duty of our organization is <u>serving our customers</u> heart and soul. (doing动名词）（我们組织的职责是全心全意为客户服务。）</li>
+</ul>
+</li>
+<li>非谓语动词充当定语。<ul>
+<li>The desire <u>to love and to be loved</u> is universal. (to do不定式）（对爱和被爱的渴望是普遍的。）</li>
+<li>The suitcase <u>lying on the baggase carousel</u> belongs to me. (doing现在分词）（放在行李传送带上的手提箱是我的。）</li>
+<li>A <u>walking</u> stick is a must for the aged who have difficulty in walking. (doing动名词）（拐杖是行走困难的老年人的必备工具。）</li>
+<li>Some speakers of <u>endangered</u> languages have even produced writing system in order to help secure the survival of their mother tongue. (done过去分词）（一些讲濒危语言的人甚至发明了书写系统，以帮助确保母语的生存。）</li>
+</ul>
+</li>
+<li>非谓语动词充当状语。<ul>
+<li>I went to the station only <u>to find</u> that the train had left. (to do不定式）（我去车站发现火车已经开了。）</li>
+<li><u>Told of</u> the danger, he still risked his life to save the boy in the water. (done过去分词）（听说有危险，他仍然冒着生命危险去救落水的男孩。）</li>
+<li>He spread a rumor that the chairman of the association was going to resign, <u>leading to</u> a great confusion among the members. (doing现在分词）（他散布谣言说协会主席要辞职，导致会员们中间产生一片混乱。）</li>
+</ul>
+</li>
+<li>非谓语动词充当补语。<ul>
+<li>My English teacher encourages me <u>to speak</u> English confidently. (to do不定式）（我的英语老师鼓励我自信地说英语。）</li>
+<li>The police observed the thief <u>entering</u> the fat and got ready to arrest him. (doing现在分词）（警察注意到小偷进入公寓，准备逮捕他。）</li>
+<li>Back from his two-year medical service in Scotland, Dr. Lee was fairly pleased to see his mother <u>taken good care of.</u> (done过去分词）（从他在苏格兰两年的医疗服务回来，李医生很高兴看到他的母亲得到了很好的照顾）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Have you seen Pico Taro （  ） Pen Pineapple Apple Pen? That’s such a beautiful scene that I dare not have my eyes（  ）on it.<br>A. dancing; fixing<br>B.dance; fixing<br>C. dance; fixed<br>D.to dance; fixed<br>【答索】C<br>【翻译】你看过古坂和仁跳 《PPAP》 的舞蹈吗？那画面太美我不忍直视。see sb. do sth. 表示见过某人做某事 （看完动作的全程）；而第二个空，原本词组为fix one’s eyes on sth.（盯着.看），可见eyes与fix 在逻辑上构成被动关系，因此用过去分词作补语。<br>【成分】dance是不带t的不定式作补语；fixed是过去分词作补语。</p>
+</blockquote>
+<blockquote>
+<p>The knowledge （ ）in my childhood makes a stronger and more lasting impression on me than what I learn at any other life stage.<br>A.acquired<br>B. acquiring<br>C. being acquired<br>D. having acquired<br>【答案】A<br>【翻译】 我在孩提时代时获得的知识比我在其他任何时间获得的知识都印象深刻。acquire和<br>knowledge之问是逻辑上的被动关系，因此使用过去分词。<br>【成分】acquired是过去分词作定语。</p>
+</blockquote>
+<blockquote>
+<p>（），we had to feel the way out.<br>A. The light being gone out<br>C. The light went out<br>B. The light had gone out<br>D. The light going out<br>【答案】D<br>【翻译】因为灯灭了，我们得摸索着出去。The light是go out的逻辑主语，两者构成逻辑上的主动关系，使用现在分词。<br>【成分】going out是现在分词作原因状语。</p>
+</blockquote>
+<blockquote>
+<p>（）to living in the countryside, my parents can’t adapt to living in an apartment at downtown.<br>A. Accustomed<br>C. Accustoming<br>B. Having accustomed<br>D. To be accustomed<br>【答案】A<br>【翻译】由于习惯了住在乡下，我父母不能适应住在市中心的公寓里。非谓语动词accustomed来<br>源于词组be accustomed to，放于句首时去掉be动词，其逻辑主语是my parentso<br>【成分】accustomed是过去分词作原因状语。</p>
+</blockquote>
+<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><ul>
+<li>人称主格代词的句法功能。<ul>
+<li><u>He</u> suddenly realizes that their relationship is over.（主格代词作主语）（他突然意识到他们的感情结束了。）</li>
+<li>Who is knocking at the door? -It is <u>she</u>（主格代词作表语，属于正式情况）（谁在敲门？-是她。）</li>
+<li>They, <u>he and she,</u> showed up at the meeting 20 minutes late•（主格代词作同位语）（他们，就是他和她，迟到了20分钟才出现在会场。）</li>
+</ul>
+</li>
+<li>人称宾格代词的句法功能。<ul>
+<li>Don’t trust <u>him</u> since he is very unreliable and always lies •(宾格代词作宾语）（不要相信他，因为他很不靠谱而且经常撒谎。）</li>
+<li>Who is knocking at the door? -It is <u>her</u>.(宾格代词作表语，属于口语习惯）（谁在敲门？-是她。）</li>
+<li>Come on! This vacation is for us, <u>you and me</u>!(宾格代词作同位语）（相信我吧！这个假期就是给我们的，你和我！）</li>
+</ul>
+</li>
+<li>形容词性物主代词的句法功能，只充当定语。<ul>
+<li>Dancers warmed up excitedly before <u>their</u> performance.（舞蹈演员们在演出前兴奋地热身。）</li>
+<li>If you put yourself in my shoes, you will understand <u>my</u> decision.（如果你换位思考，你就会明白我的决心。）</li>
+</ul>
+</li>
+<li>名词性物主代词的句法功能。<ul>
+<li><u>Theirs</u> is heartfelt happiness.（名词性物主代词作主语）（他们的快乐是由衷的快乐。）</li>
+<li>The jeep in the parking lot is <u>mine</u>. I didn’t see <u>yours</u>. But I know that <u>hers</u> is next to <u>mine</u>.（在停车场停的吉普车是我的。我没看到你的。但我知道她的就在我的旁边。）(mine作表语，yours作宾语，hers作主语，mine作宾语）</li>
+</ul>
+</li>
+<li>反身代词的句法功能。<ul>
+<li>Don’t be so upset. You should pull <u>yourself</u> together!（反身代词作宾语）（别这么难过。你应该振作起来！）</li>
+<li>I don’t know what happened to her. She is not quite <u>herself</u> today（反身代词作表语）（我不知道她发生了什么。她今天十分不舒服。）</li>
+<li>The only thing we have to fear is fear <u>itself</u>（反身代词作同位语）（我们应该恐惧的东西是恐惧本身。）</li>
+</ul>
+</li>
+<li>指示代词的句法功能。<ul>
+<li><u>That</u> is the reason why we have to keep going（指示代词作主语）（这就是我们为什么要坚持下去的理由。）</li>
+<li>This is more expensive than <u>that</u>, but in terms of quality, this is better than <u>that</u>.（指示代词作宾语）（这个比那个贵，但就质量而言，这个比那个好。）</li>
+<li>The best team is <u>that</u> from Liverpool. (指示代词作表语）（最好的球队是那个来自利物浦的。）</li>
+<li><u>Those</u> rooms don’t get the sun all the year round because they face north.(指示代词作定语）（这些房间一年四季都晒不到阳光，因为它们朝北。）</li>
+<li>Tabby cat is her nickname but we never call her <u>that</u>.（指示代词作补语）（大花猫是她的昵称，但我们从来没有这么叫她。）</li>
+</ul>
+</li>
+<li>不定代词的句法功能。<ul>
+<li>I hope that <u>everyone</u> could attend the party tomorrow.（不定代词作主语）（我希望每个人都可以参加明天的聚会。）</li>
+<li>There are two different flavors of soda on the table and you may take <u>either</u>.(不定代词作宾语)（有两种不同口味的汽水放在桌子上，你可以随便拿一瓶。）</li>
+<li>I am not <u>somebody</u> I am actually <u>nobody</u>（不定代词作表语）（我不是什么大人物。我其实就是个无名小卒。）</li>
+<li><u>Some </u>unforeseen problems have occurred in <u>both</u> systems.（不定代词作定语）（两个系统都出现了一些始料未及的问题。）</li>
+<li>They <u>each</u> voiced their views on the proposal.（不定代词作同位语）（他们每个人均对这项提议发表了意见。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>翻译以下句子，并分析代词在句中所作的成分</p>
+<ul>
+<li>是经理他自己接的电话。<ul>
+<li>The manager <u>himself</u> answered the phone.（反身代词作同位语）</li>
+</ul>
+</li>
+<li>能不能拿另一件T恤让我看看？<ul>
+<li>Can you show me <u>another</u> T-shirt?（不定代词作定语）</li>
+</ul>
+</li>
+<li>我们每个人都希望去野餐。<ul>
+<li>We <u>each</u> hope to have a picnic.（不定代词作同位语）</li>
+</ul>
+</li>
+<li>Bella是个漂亮的名宇，所以淮备这么叫我女儿。<ul>
+<li>Bella is a beautiful name so I will call my daughter <u>that.</u>（指示代词作补语）</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="主谓一致"><a href="#主谓一致" class="headerlink" title="主谓一致"></a>主谓一致</h2><h3 id="语法一致"><a href="#语法一致" class="headerlink" title="语法一致"></a>语法一致</h3><p><strong>语法一致原则</strong>：主语的单复数决定了谓语动词的单复数。</p>
+<ul>
+<li>动名词、动词不定式、从句、不定代词作主语时，谓语动词常用单数。<ul>
+<li><u>Watching TV</u> <strong>makes</strong> me relaxed after an exhausting day .（看电视使我在筋疲力尽的一天后感到轻松。）</li>
+<li><u>To complete this assignment</u> <strong>is</strong> extremely tough.（完成这项任务极其艰难。）</li>
+<li><u>What he told us </u><strong>is</strong> quite far from the truth.（他告诉我们的与事实相差太远了。）</li>
+<li><u>Everything</u> <strong>is</strong> in a mess, which drives us crazy.（一切都一团糟，让我们抓狂。）</li>
+</ul>
+</li>
+<li>主语后接个词短语或其他插入语，如with&#x2F; together with&#x2F; along with&#x2F; as well as&#x2F; like&#x2F; but&#x2F; except&#x2F; rather than&#x2F; including&#x2F; in addition to等，<strong>谓语动词仍与主语保持一致，不受该类短语的影响。（假性主语）</strong><ul>
+<li><u>Tony</u> with his friends <strong>is</strong> chatting about the TV series.（Tony和他的朋友们正在谈论那部有趣的电视连续剧。）</li>
+<li>I think <u>Mary</u> rather than you <strong>is</strong> responsible for the accident.（我认为是Mary，而不是你对事故负责。）</li>
+<li><u>The teacher</u> as well as his students <strong>was</strong> extremely disappointed.（老师和学生都非常失望。）</li>
+</ul>
+</li>
+<li>and或both.and..连接两个不同的主语，谓语使用复数；但如果and连接的两个名词表示同一概念，含有 “兼具身份”或“匹配”之意时，谓语动词用单数。<ul>
+<li>T<u>he interviewer and the interviewee</u> <strong>are</strong> in the reception room.（面试官和面试者在接待室。）</li>
+<li><u>The poet and writer</u> <strong>has</strong> written quite a lot of popular works.（这位诗人和作家写了许多受欢迎的作品。）</li>
+<li><u>A watch and chain</u> <strong>was</strong> found under the wardrobe.（在衣柜下面发现了一块带链的表。）</li>
+<li>a horse and cart 一辆马车</li>
+<li>a knife and fork 一副刀叉</li>
+</ul>
+</li>
+<li>“many a&#x2F;more than one+单数名词”作主语，谓语动词用单数。<ul>
+<li><u>Many a scientist</u> <strong>is</strong> in search of a solution to this problem.（许多科学家正在寻找解决这个问题的办法。）</li>
+<li><u>More than one survivor</u> **was **sent immediately to the hospital.（不止一名幸存者被立即送往医院。）</li>
+</ul>
+</li>
+<li>cach,every, no所修饰的名词作主语时，即使有and连接，谓语动词仍用单数。<ul>
+<li><u>No pen and no pencil</u> <strong>is</strong> found in the desk.（桌子上没有钢笔和铅笔。）</li>
+<li><u>Every man and every woman</u> <strong>has</strong> the right to voice their opinions.（每个男人和女人都有权发表自己的意见。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>选择括号中恰当的谓语动词形式</p>
+<ul>
+<li>Pancakes and syrup (is &#x2F; are) my favourite breakfast.<ul>
+<li>选择is, pancakes and syrup属于同一概念，表示“薄煎饼和糖浆”，是一道美式早餐，用单数。</li>
+<li>翻译：薄煎饼和糖浆是我最喜欢的早餐。</li>
+</ul>
+</li>
+<li>Every flower and every bush (is to be &#x2F; are to be) cut down.<ul>
+<li>选择is to be,every+名词，即使有and连接，谓语动词用单数。</li>
+<li>翻译：每一朵花和每一棵灌木都要被砍掉。</li>
+</ul>
+</li>
+<li>His friend and fellow author of their book (visits &#x2F; visit) him.<ul>
+<li>选择visits, his friend and fellow author属于同一概念，表示“他的朋友兼共同作者”，谓语动词用单数。</li>
+<li>翻译：他的朋友，也是他们这本书的共同作者，来拜访他。</li>
+</ul>
+</li>
+<li>The ship, with its entire crew and cargo, (was &#x2F; were) mysteriously missing.<ul>
+<li>选择was，主语后有“with的成分”，谓语动词仍与主语ship保持一致，使用单数。</li>
+<li>翻译：这艘船，还有它所有的船员和货物，全部神秘的失踪了。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="意义一致"><a href="#意义一致" class="headerlink" title="意义一致"></a>意义一致</h3><p><strong>意义一致原则</strong>：不管主语是单数还是复数，主语的意义决定了谓语动词的单复数形式</p>
+<ul>
+<li><p><strong>集体名词作主语时，若被看作一个整体，谓语动词用单数形式；若被看作是构成集体的个体成员，谓语动词用复数形式</strong>。常见的集体名词有：family,class, team, group, public, committee, government, audience, crew等。</p>
+<ul>
+<li><u>The class</u>** consists of** 21 boys and 23 girls.（这个班由21个男生和23个女生组成。）</li>
+<li><u>The class</u> <strong>are</strong> listening to the teacher attentively.（全班同学都在专心听老师讲课。）</li>
+<li>She believes that the <u>family</u> <strong>is</strong> the very core ot society.（她认为家庭是社会的核心。）</li>
+<li>No matter what decisions she makes, her <u>family</u> <strong>are</strong> fully supportive.（她无论作出什么决定，她的家人都全力支持。）</li>
+</ul>
+</li>
+<li><p><strong>“the+形容词”，表示”。。。样的一类人“时，谓语动词用复数形式。</strong></p>
+<ul>
+<li><u>The injured</u> <strong>have</strong> been cured and <u>the lost</u> <strong>have</strong> been found.（受伤的人已被治愈，失踪的人也都找到了。）</li>
+<li><u>The rich</u> **are **donating money to <u>the homeless</u> who <strong>have</strong> lost their houses because of flood.（富人正在向因洪水而失去房屋的无家可归者捐款。）</li>
+</ul>
+</li>
+<li><p><strong>以-s&#x2F;-ies结尾的名词，表示“学科”，谓语动词用单数；表示其他意义，则使用复数。</strong></p>
+<ul>
+<li><u>Mathematics </u><strong>is</strong> the science of numbers and shapes.（数学是研究数字和形状的学科。）</li>
+<li>The little boy’s <u>mathematics</u> <strong>are</strong> really poor.（这个小男孩的运算能力真的很差。）</li>
+</ul>
+</li>
+<li><p><strong>number的不同词组：a number of表示“大量”，谓语动词用复数；the number of表示“ •••的数量”，谓语动词用单数。</strong></p>
+<ul>
+<li><u>A number of</u> research studies <strong>have</strong> found the relationship between these two factors.（许多研究发现了这两个因素之问的关系。）</li>
+<li><u>The number of</u> the tigers in the mountain <strong>is</strong> still unknown.（山上老虎的数量仍然不得而知。）</li>
+</ul>
+</li>
+<li><p><strong>表示时间、距离、重量、金额等复数名词作主语时，都被视为一个整体，谓语动词通常用单数形式。</strong></p>
+<ul>
+<li><u>One hundred years</u> <strong>is</strong> only a short period in history.（一百年在历史中也只是短暂的一段时间。）</li>
+<li><u>Four thousand dollars</u> <strong>is</strong> quite a lot of money for this little boy.（对这个小男孩来说，4,000美元是一笔大数目。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>选择括号中恰当的谓语动词形式</p>
+<ul>
+<li>A number of pages (has been &#x2F; have been) badly torn.<ul>
+<li>选择have been,a number of 表示“大量”，谓语动词用复数。</li>
+<li>翻译：好几页被撕破了。</li>
+</ul>
+</li>
+<li>The actual total of the unemployed (reach &#x2F; reaches) 2,000.<ul>
+<li>选择reaches, the total of表示“。。的总量”，谓语动词用单数。</li>
+<li>翻译：实际失业总人数达到2000。</li>
+</ul>
+</li>
+<li>The young (are not &#x2F; is not) always so romantic.<ul>
+<li>选择are not,the young表示”一类人”，谓语动词用复数。</li>
+<li>翻译：年轻人不总是那么浪漫。</li>
+</ul>
+</li>
+<li>Few of my family really (understand &#x2F; understands) my feeling.<ul>
+<li>选择understand， family表示“家庭成员”，谓语动词用复数。</li>
+<li>翻译：家庭成员几乎没有人理解我的惑受。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="临近一致（就近原则）"><a href="#临近一致（就近原则）" class="headerlink" title="临近一致（就近原则）"></a>临近一致（就近原则）</h3><p><strong>临近一致原则</strong>：最近的主语的单复数决定谓语动词的单复数。</p>
+<ul>
+<li><p><strong>由there或here引起不止一个主语时的情况。</strong></p>
+<ul>
+<li>There <strong>are</strong> <u>three pandas</u> and a dragon in the picture.（图中有三只熊猫和一条龙。）</li>
+<li>Here <strong>is</strong> <u>a pen</u>, some paper, a few envelopes and stamps for you.（这是给你的钢笔、一些纸、一些信封和邮票。）</li>
+</ul>
+</li>
+<li><p><strong>由or&#x2F; either..or.&#x2F; neither..nor ..&#x2F; not only..but (also)..&#x2F; not.but.. 等连接的并列主语，谓语动词与最近的主语保持一致。</strong></p>
+<ul>
+<li>One or <u>two experts</u> <strong>are</strong> coming to the conference.(一两个专家来参加会议。)</li>
+<li>Either you or <u>I</u> <strong>am</strong> to report this accident.(不是你就是我要报告这次事故。)</li>
+<li>Neither I nor <u>she</u> <strong>is</strong> against their marriage.(我和她都不反对他们的婚姻。)</li>
+<li>Not only you but also <u>your friend</u> <strong>is</strong> to blame.(不仅是你，还有你的朋友都应该受到责备。)</li>
+<li>Not two bottles ofijuice but only <u>one cup of coffee </u><strong>makes</strong> me delighted.(不用两瓶果汁，而只要一杯咖啡就能让我很高兴。)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在空格处填上正确形式的be动词（均使用现在时）</p>
+<p>Not only you but also all of us <u>are</u> wishing to go there.</p>
+<p>My sisters or my brother <u>is</u> likely to be at home.</p>
+<p>There <u>is</u> a girl and two boys having fun on the playground.</p>
+<p>Where <u>is</u> that ten pounds I lent you?</p>
+<p>Fish and chips <u>is</u> my favourite dish.</p>
+<p>Their family <u>is</u> very big with seven children.</p>
+<p>Many a student <u>is</u> looking forward to visiting Beijing.</p>
+<p>A poet and artist <u>is</u> delivering a speech in the lecture hall.</p>
+<p>Politics <u>is</u> the study of the ways in which countries are governed.</p>
+<p>Sally, as well as her friends, <u>is</u> praised publicly for their brave action.</p>
+</blockquote>
+<h2 id="时、体、态概况"><a href="#时、体、态概况" class="headerlink" title="时、体、态概况"></a>时、体、态概况</h2><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_31.png"><br><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_32.png"></p>
+<h3 id="一般现在时"><a href="#一般现在时" class="headerlink" title="一般现在时"></a>一般现在时</h3><ul>
+<li><strong>一般现在时，用于描述客观真理、自然现象、格言警句等。</strong><ul>
+<li>Light <u>travels</u> faster than sound.（光比声音传播快。）</li>
+<li>Stick to one job; a rolling stone <u>gathers</u> no moss.（坚守一份工作；滚石不生苔，转行不聚财。）</li>
+</ul>
+</li>
+<li><strong>一般现在时，描述习惯性、恒常性的状态或动作。</strong><ul>
+<li>What <u>does</u> your father do, Cami?（凯米，你父亲做什么工作？）</li>
+<li>Every morning he <u>goes</u> to the market to buy fresh fruits and vegetables for his diet.（每天早上他去市场为他的饮食采购新鲜的果蔬。）</li>
+</ul>
+</li>
+<li><strong>一般现在时，用于根据时间表拟定或安排的动作。</strong><ul>
+<li>The plane <u>takes off</u> at half past seven in the evening.（飞机晚上七点半起飞。）</li>
+<li>Our school bus <u>begins</u> at 6:00 in the morning, and <u>continues</u> until 4:00 in the afternoon.（我们的校车从早上6:00开始，一直持续到下午4:00。）</li>
+</ul>
+</li>
+<li><strong>一般现在时，用于时间、条件等状语从句中代替将来时。（主将从现）</strong><ul>
+<li>The sports meeting will be postponed if it <u>rains</u>.（如果下雨，运动会将推迟。）</li>
+<li>When you <u>start</u> making an album, you’d better choose a few representative photos.（当你开始制作相册时，最好选择一些有代表性的照片。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用一般现代时翻译以下句子</p>
+<ul>
+<li>一燕不成夏。<ul>
+<li>One swallow <u>doesn’t</u> make a summer.</li>
+</ul>
+</li>
+<li>如果不下雨，我就去远足。<ul>
+<li>If it <u>doesn ‘t</u> rain, I will go hiking.</li>
+</ul>
+</li>
+<li>他从不做家庭作业，但是每次都考第一。<ul>
+<li>He never <u>does</u> homework but always <u>comes</u> first in the exams.</li>
+</ul>
+</li>
+<li>火车在十分钟后离开北京，晚上九点到达上海。<ul>
+<li>The train <u>leaves</u> Beijing in ten minutes and <u>arrives</u> in Shanghai at nine in the evening.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="一般过去时"><a href="#一般过去时" class="headerlink" title="一般过去时"></a>一般过去时</h3><ul>
+<li><strong>一般过去时，描述过去的动作或状态。</strong><ul>
+<li>They <u>sowed</u> wheat by hand in the past and now they do it using machine.（过去他们手工播种小麦，现在他们用机器播种。）</li>
+<li>This beautiful town <u>was</u> once a famous tourist spot but now everything is gone.（这个美丽的小镇曾经是著名的旅游胜地，但现在一切都不复存在了。）</li>
+</ul>
+</li>
+<li><strong>一般过去时，描述过去一连串具有先后性的动作。</strong><ul>
+<li>My mother gently <u>walked</u> to my bed, <u>stroked</u> my forehead, <u>helped</u> me up, and <u>told</u> me that everything would be all right soon.（妈妈轻轻地走到我的床边，抚摸我的额头，把我扶了起来，告诉我一切很快就会好的。）</li>
+<li>The child <u>went</u> to the blackboard, <u>picked</u> up the chalk, <u>stood</u> on tiptoe, and <u>drew</u> a mountain.（小朋友走到黑板前，拿起粉笔，踮起脚尖，画了一座山。）</li>
+</ul>
+</li>
+<li><strong>一般过去时，用于在提建议时表示婉转的语气，用于want, think, hope,wonder等词。</strong><ul>
+<li>I <u>thought</u> we could have a drink before dinner.（我想我们可以在晚饭前喝一杯。）</li>
+<li>I <u>wondered</u> if you might want to see the concert with me this evening.（我想今晚你是不是可以和我一起看这场演唱会。）</li>
+</ul>
+</li>
+<li><strong>一般过去时，用于表述与现在事实相反的主观设想。用于It’time(是时候…)，I wish(我希望)，I’d rather(我宁愿)等结构之后的从句中。</strong><ul>
+<li><strong>I’d rather</strong> you <u>bought</u> a new house. 我宁愿你买一所新房子。</li>
+<li><strong>It’s time</strong> you <u>had</u> a holiday to relax yourself. 是时候你该去度假放松一下自己了。</li>
+<li><strong>I wish</strong> my daughter <u>lived</u> closer to me. 我希望女儿住得离我近些。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用一般过去时翻译以下句子</p>
+<ul>
+<li>是时候我们休息一下了。<ul>
+<li>It’s time we had a rest.</li>
+</ul>
+</li>
+<li>上周五我们去了伦敦。<ul>
+<li>We visited London last Friday.</li>
+</ul>
+</li>
+<li>我宁愿你立刻离开。<ul>
+<li>I’d rather you left right away.</li>
+</ul>
+</li>
+<li>她起床、刷牙、洗脸，匆匆吃了早饭，就赶往学校了。<ul>
+<li>She got up, brushed her teeth, washed her face, had a quick breakfast and rushed to school.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="一般将来时"><a href="#一般将来时" class="headerlink" title="一般将来时"></a>一般将来时</h3><ul>
+<li><strong>will+do构成的一般将来时，表示将要发生的动作或状态。</strong><ul>
+<li>There <u>will be</u> a concert in our city next week.（我们城市下周有一场音乐会。）</li>
+<li>The manager <u>will tell</u> me the details of the project tomorrow.（经理明天将告诉我项目的具体事项。）</li>
+</ul>
+</li>
+<li><strong>am&#x2F;is&#x2F;are going to do 构成的一般将来时，表示已经安排好的、或有迹象要发生的事情。</strong><ul>
+<li>I <u>am going to collect</u> the data for my paper .（我打算为我的论文收集资料。）</li>
+<li>It <u>is going to be</u> a fantastic party tonight.（今晚（一定）将是一场非常棒的聚会。）</li>
+</ul>
+</li>
+<li><strong>am&#x2F;is&#x2F;are to do构成的一般将来时，用于必定会发生的、或表示职责、义务要求的事情。</strong><ul>
+<li>They <u>are</u> never to <u>meet</u> again.（他们注定以后不会再见面了。）</li>
+<li>The designer <u>is to visit</u> our company the day after tomorrow.（设计师后天要参观我们公司。）</li>
+</ul>
+</li>
+<li><strong>am&#x2F;is&#x2F;are about to do构成的一般将来时，表示客观上动作即将发生。</strong><ul>
+<li>The cherry blossom season <u>is about to begin</u>.（樱花季即将开始。）</li>
+<li>She <u>is about to cry</u>. Don’t annoy her anymore.（她快哭了。别再惹她了。）</li>
+</ul>
+</li>
+<li><strong>现在进行时(am&#x2F;is&#x2F;are doing)表示一般将来时，主要用于位置移动的动词或部分动态动词，如go,come, leave,move, start,arrive, stay, run等。</strong><ul>
+<li>She <u>is leaving</u> for Thailand tonight.（她今晚出发去泰国。）</li>
+<li>Her fathcr <u>is coming</u> cither today or tomorrow.（她父亲不是今天就是明天来。）</li>
+<li>Peter and his family <u>are moving</u> to their new apartment tomorrow.（彼得和他的家人明天要搬去他们的新公寓。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用一般将来时翻译以下向子，注意根据语义选择合适的结构</p>
+<ul>
+<li>他计划今晚复习英语。<ul>
+<li>He <u>is going to review</u> English tonight.</li>
+</ul>
+</li>
+<li>快到吃李子的季节了。<ul>
+<li>The plum season <u>is about to begin</u>.</li>
+</ul>
+</li>
+<li>她后天出发去束埔寨。<ul>
+<li>She <u>is leaving</u> for Cambodia the day after tomorrow.</li>
+</ul>
+</li>
+<li>我知道我们注定会分开的。<ul>
+<li>I know that we<u> are to be</u> apart.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="一般过去将来时"><a href="#一般过去将来时" class="headerlink" title="一般过去将来时"></a>一般过去将来时</h3><p><strong>与一般将来时的区别：</strong></p>
+<ul>
+<li><p>would+do构成的一般过去将来时，表示过去时间范围内将要发生的动作或状态。</p>
+</li>
+<li><p>was&#x2F;were going to do构成的一般过去将来时，表示过去时间范围内已经安排好的、或有迹象要发生的事情。</p>
+</li>
+<li><p>was&#x2F;were to do构成的一般过去将来时，用于过去时间范国内必定会发生的、或表示职责、义务要求的事情。</p>
+</li>
+<li><p>was&#x2F;were about to do枸成的一般过去将来时，表示过去<br>时间范園内客观上动作即将发生。</p>
+</li>
+<li><p>过去进行时(was&#x2F;were doing)表示一般过去将来时。</p>
+</li>
+<li><p><strong>一般过去将来时很多时候都<u>用于宾语从句中</u>，该类宾语从句又属于“间接引语”即引述别人说的话。</strong></p>
+<ul>
+<li>My friend told me that there<u> would be</u> a concert in our city.（我的朋友告诉我，我们城市将有一场音乐会。）</li>
+<li>She said that she <u>was going to collect</u> the data for her paper.（她说她计划为她的论文收集资料。）</li>
+<li>They said goodbye in tears, knowing that they were never<u> to meet</u> again.（他们泪流满面地说再见，知道他们再也见不到了。）</li>
+<li>The teacher mentioned that the cherry blossom season <u>was about to begin.</u>（老师提到樱花季节即将到来。）</li>
+<li>Peter phoned me that he <u>was moving</u> to a new city the next day to start his new life.（彼得打电话给我说他第二天要搬到一个新城市开始他的新生活。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用一般过去将来时翻译以下句子</p>
+<ul>
+<li>他说为了期末考试，他准备好好复习。<ul>
+<li>He said he <u>was going to review</u> attentively for the final exam.</li>
+</ul>
+</li>
+<li>当时，老师告诉我们快到吃李子的季节了。<ul>
+<li>At that time, the teacher told us that the plum season <u>was about to begin.</u></li>
+</ul>
+</li>
+<li>她当时打电话告诉我，她第二天要出发去柬埔寨。<ul>
+<li>She phoned me that she <u>was leaving</u> for Cambodia the next day.</li>
+</ul>
+</li>
+<li>他们挥手告别，知道彼此注定会分开。<ul>
+<li>They waved goodbye, knowing that they <u>were to be</u> apart.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="现在进行时"><a href="#现在进行时" class="headerlink" title="现在进行时"></a>现在进行时</h3><ul>
+<li><strong>现在进行时，表示说话者正在说话时发生的动作。</strong><ul>
+<li>Look! He <u>is</u> now <u>standing</u> there and <u>eating </u>a Japanese rice ball.（看！他现在站在那里吃日本饭团。）</li>
+<li>What <u>are</u> you <u>doing</u>? - I<u>‘m packing</u> the present for my father tomorrow.（你在干什么？-我在包装明天给父亲的礼物。）</li>
+</ul>
+</li>
+<li><strong>现在进行时，表示目前阶段内一直进行着的动作。</strong><ul>
+<li>The author <u>is</u> currently <u>working</u> on his new novel.（这个作者目前正在写他的新小说。）</li>
+<li>I used to teach in college but now I <u>am working</u> as a high school researcher.（我以前在大学教书，但目前我是一名高中教研员。）</li>
+</ul>
+</li>
+<li><strong>现在进行时，表示说话者正在说话时某个动作的不断重复。此类动词限于瞬间性动作，如jump, wink,nod等等。</strong><ul>
+<li>I don’t know why he <u>is winking</u> at me.（我不知道他为什么不停对我眨眼。）</li>
+<li>This quiet girl <u>is jumping</u> with great joy at the sight of her mother’s arrival.（看到母亲的到来，这个安静的女孩高兴得跳个不停。）</li>
+</ul>
+</li>
+<li><strong>现在进行时，与频度副词连用表达说话者的惑情色彩。</strong><ul>
+<li>He <u>braes</u> albout how clever he is.（说明事实：他吹嘘自己有多聪明。）</li>
+<li>He <u>is</u> <strong>continuously</strong> <u>bragging</u> about how clever he is.(表达不满：他不断吹嘘自己有多聪明。）</li>
+<li>She <u>complains</u> about her tcacher.（说明事实：她抱怨她的老师。）</li>
+<li>She <u>is</u> <strong>always</strong> <u>complaining</u> about her teacher（表达不满：她总是抱怨她的老师。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用现在进行时翻译以下句子</p>
+<ul>
+<li>我父亲总是吸雪茄。<ul>
+<li>My father <u>is</u> always <u>smoking</u> cigars.</li>
+</ul>
+</li>
+<li>他正不停地点头以示同意。<ul>
+<li>He <u>is nodding</u> to show his agreement.</li>
+</ul>
+</li>
+<li>听！是谁在唱歌？<ul>
+<li>Listen! Who <u>is singing?</u></li>
+</ul>
+</li>
+<li>我目前正在写我的毕业论文。<ul>
+<li>I <u>am</u> currently <u>working</u> on my graduation thesis.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="过去进行时"><a href="#过去进行时" class="headerlink" title="过去进行时"></a>过去进行时</h3><p><strong>与现在进行时的比较</strong></p>
+<ul>
+<li><p>过去进行时，表示<strong>过去某一时刻</strong>说话者正在说话时发生的动作。</p>
+</li>
+<li><p>过去进行时，表示<strong>过去某一阶段内</strong>一直进行着的动作。</p>
+</li>
+<li><p>过去进行时，表示过<strong>去某一时刻</strong>说话者正在说话时某个动作的不断重复。</p>
+</li>
+<li><p>过去进行时，与频度副词连用，表示说话者对<strong>过去时间范围内发生的动作</strong>的感情色彩。</p>
+</li>
+<li><p>过去进行时表示一般过去将来时。</p>
+</li>
+<li><p>At that time, he <u>was standing</u> there and eating a Japanese rice ball.（那个时候，他正站在那里吃日本饭团。）</p>
+</li>
+<li><p>From 1993 to 2008, I <u>was teaching</u> in college.（1993年至2008年，我一直在大学教书。）</p>
+</li>
+<li><p>This quiet girl <u>was jumping</u> with great joy when she noticed her mother’’s arrival.（当注意到她母亲的到来时，这个安静的女孩高兴得跳个不停。）</p>
+</li>
+<li><p>There was a time when he <u>was</u> <strong>continuously</strong><u> bragging</u> about how clever he was.（曾经有一段时间他不断地吹嘘自己有多聪明。）</p>
+</li>
+</ul>
+<p>使用过去进行时翻译以下句子</p>
+<ul>
+<li>曾经有一段时间我父亲总是吸雪茄。<ul>
+<li>There was a time when my father <u>was</u> always<u> smoking</u> cigars.</li>
+</ul>
+</li>
+<li>那个时候，他正不停地点头以示同意。<ul>
+<li>At that time, he <u>was nodding</u> to show his agreement.</li>
+</ul>
+</li>
+<li>昨晚七点的时候，Lucy正在唱歌。<ul>
+<li>Lucy <u>was singing</u> at seven o’clock last night.</li>
+</ul>
+</li>
+<li>去年10月至12月期间，我一直在写毕业论文。<ul>
+<li>I <u>was working</u> on my graduation thesis from October to December last year.</li>
+</ul>
+</li>
+</ul>
+<h3 id="将来进行时"><a href="#将来进行时" class="headerlink" title="将来进行时"></a>将来进行时</h3><ul>
+<li><strong>将来进行时，表示将来某一特定的时刻正在进行的动作。</strong><ul>
+<li>We <u>will be having </u>a meeting at 8 o’clock tomorrow morning.（我们明天早上8点正在开会。）</li>
+<li>What <u>will</u> you <u>be doing</u> this time tomorrow afternoon?（明天下午这个时候你正在做什么？）</li>
+</ul>
+</li>
+<li><strong>将来进行时，表示将来某个阶段内一直持续的动作</strong>。<ul>
+<li>I <u>will be working</u> in Paris from Saturday to Sunday next week.（下周的星期六至星期日，我将一直在巴黎工作。）</li>
+<li>Miss Shen <u>will be teaching</u> Chinese at the Confucius Institute in Italy next year.（沈老师明年将一直在意大利孔子学院教授汉语。）</li>
+</ul>
+</li>
+<li><strong>将来进行时，用于委婉地询问他人的计划或安排。</strong><ul>
+<li>When <u>will</u> we <u>be meeting</u> again?（我们什么时候再见面？）</li>
+<li><u>Will</u> you <u>be passing</u> by the post office when you are out?（你出去时会经过邮局吗？）</li>
+</ul>
+</li>
+<li><strong>将来进行时与一般将来时的区别。一般将来时会含有一种主观上的“意愿”色彩，但将来进行时是纯粹地客观描述或提问将来的动作。</strong><ul>
+<li><u>Will</u> you<u> perform</u> tonight? （含有主观意愿：你愿意今晚演出吗？）</li>
+<li><u>Will</u> you <u>be performing</u> tonight?（纯粹客观提问：你今晚有演出吗？）</li>
+<li>He <u>won’t send</u> an email to her tonight.（含有主观意愿：他今晚不愿发邮件给她。）</li>
+<li>He <u>won’t be sending</u> an email to her tonight（纯粹客观描述：他今晚不会发邮件给她。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用将来进行时翻译以下句子</p>
+<ul>
+<li>下星期天这个时候，我正在东南亚度假。<ul>
+<li>This time next Sunday, I <u>will be having</u> my holiday in Southeast Asia.</li>
+</ul>
+</li>
+<li>明天一整个下午，我将一直在听讲座。<ul>
+<li>I <u>will be listening</u> to the lecture all afternoon tomorrow.</li>
+</ul>
+</li>
+<li>你去日本的时候会经过免税店吗？<ul>
+<li><u>Will</u> you <u>be passing </u>the duty-free shops when you go to Japan?</li>
+</ul>
+</li>
+<li>今天下午他将亲自写信表示谢意。<ul>
+<li>He <u>will be writing</u> a letter in person this afternoon to show his gratitude.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="现在完成时"><a href="#现在完成时" class="headerlink" title="现在完成时"></a>现在完成时</h3><ul>
+<li><strong>现在完成时，表示过去发生的动作或状态对现在的影响。注意和一般过去时作好对比，一般过去时只是单纯描述某个动作或状态在过去发生。</strong><ul>
+<li>I <u>finished</u> my homework.（一般过去时：单纯描述“过去某个时间我做完了作业”这个动作。）</li>
+<li>I <u>have finished</u> my homework.（现在完成时：描述作业在过去某个时间做完了，而且现在作业仍1旧处于做完”的状态。〕</li>
+<li>All the participants <u>left</u> three minuts ago.（一般过去时：单纯描述三分钟前所有的参赛者全部离开了。）</li>
+<li>All the participants <u>have left</u> since three minuts ago.（现在完成时：描述w所有的参舞者在三分钟之前已经全部离开，且现在是毫无一人”的状态。）</li>
+</ul>
+</li>
+<li><strong>现在完成时，表示过去发生的动作或状态一直持续到现在。</strong><ul>
+<li>I <u>have lived</u> here since I moved here in 2008.（我从2008年搬到这里之后，就一直住在这里。）</li>
+<li>Since the mysterious disappearance of the ship, there<u> have been</u> no new clues at all.（自从船只神秘消失以来，至今毫无任何新的线索。）</li>
+</ul>
+</li>
+<li><strong>现在完成时，表示已经经历过的事情</strong>。<ul>
+<li><u>Have</u> you ever <u>been</u> to Europe before?（你曾经去过欧洲吗？）</li>
+<li>I am so fond of the exhibition that I <u>have been</u> there three times.（我太喜欢这个展览了，已经去过三次了。）</li>
+<li>How many times have you <u>been discouraged</u> by the unexpected hardships?（你有多少次曾因为意料之外的困难而气馁？）</li>
+</ul>
+</li>
+<li><strong>现在完成时，用于It is&#x2F;will be the first time that句型及其类似的句型中。</strong><ul>
+<li><strong>It is the first time</strong> that I <u>have broken</u> the vase.（这是我第一次打碎花瓶。）</li>
+<li><strong>It is the tenth time that</strong> he <u>has been</u> praised.（这是他第十次受到表扬。）</li>
+<li><strong>This will be my second time that</strong> I <u>have performed</u> my favourite Beijing Opera on stage.（这将是我第二次在舞台上表演我最喜欢的京剧。）</li>
+<li><strong>This evening will be my third time that</strong> I <u>have been</u> invited to an academic seminar.（今晚将是我第三次被邀请参加学术研讨会。）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>使用现在完成时翻译以下句子</p>
+<ul>
+<li>今天将是我第一次出席一场正式聚会。<ul>
+<li>Today will be the first time that I <u>have attended</u> a formal party.</li>
+</ul>
+</li>
+<li>你曾经看过那个有趣的 《PPAP》 音乐短片吗？<ul>
+<li><u>Have</u> you ever <u>seen</u> that interesting PPAP music video?</li>
+</ul>
+</li>
+<li>自从我母亲来后，我一直受到很好的照顾。<ul>
+<li>I <u>have been</u> well taken care of since my mother came.</li>
+</ul>
+</li>
+<li>我已经有差不多两三年没见到他了。<ul>
+<li>I <u>haven’t seen</u> him for almost two or three years.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>二外英语</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日语概论笔记</title>
     <url>/2023/03/06/Note_Introduction_to_Japanese/</url>
     <content><![CDATA[<h1 id="绪论：世界上的语言与日语"><a href="#绪论：世界上的语言与日语" class="headerlink" title="绪论：世界上的语言与日语"></a>绪论：世界上的语言与日语</h1><h2 id="日语—SOV形语言"><a href="#日语—SOV形语言" class="headerlink" title="日语—SOV形语言"></a>日语—SOV形语言</h2><p>从句子结构角度看，根据主语（S）、动词（V）、宾语（O）的排列顺序，<strong>日语属于SOV型语言</strong>。</p>
@@ -1502,7 +3788,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/images/Note_Introduction_to_Japanese/Note_Introduction_to_Japanese_4_1.jpg"></p>
+<p><img src="/images/Note_Introduction_to_Japanese/Note_Introduction_to_Japanese_4_1.png"></p>
 <ul>
 <li>索绪尔认为，<u>用什么语音形式是由不同社会集团约定俗成确定的，是任意的（無契的）。</u><ul>
 <li><strong>象声词的音义之间的关系不是绝对任意的</strong>。“喵喵”和「ニャーニャー」</li>
@@ -1557,2292 +3843,6 @@
       </categories>
       <tags>
         <tag>日语概论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基础知识篇</title>
-    <url>/2023/03/06/Note_Second_Language_English_1/</url>
-    <content><![CDATA[<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="句型句式"><a href="#句型句式" class="headerlink" title="句型句式"></a>句型句式</h2><ul>
-<li>Statement陈述<ul>
-<li>说明事实与态度</li>
-</ul>
-</li>
-<li>Question疑问<ul>
-<li>提出问题请对方回答</li>
-</ul>
-</li>
-<li>Command祈使<ul>
-<li>发出指令、要求、劝告</li>
-</ul>
-</li>
-<li>Exclamation感叹<ul>
-<li>强烈抒发内心情感或喜怒哀乐</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="陈述句"><a href="#陈述句" class="headerlink" title="陈述句"></a>陈述句</h3><ul>
-<li>功能<ul>
-<li>说明客观事实<ul>
-<li>The stone will roll down the mountain by gravity.</li>
-<li>The year of 2018 marks the 40th anniversary of <u>the reform and opening-up policy</u> in China.</li>
-</ul>
-</li>
-<li>表达自己的观点<ul>
-<li>March is my favorite month when <u>cherry blossom</u> is in full bloom.</li>
-<li>A successful relationship is basically about having courage and sincerity.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>分类<ul>
-<li>肯定陈述<ul>
-<li>Christmas season is a time full of traditions.</li>
-<li>People in UK drink an average of 1.94kg of tea every year.</li>
-</ul>
-</li>
-<li>否定陈述,带有否定词not<ul>
-<li>Translation should not be too rigid or excessive.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>表达情感态度的“强调”和“削弱”<ul>
-<li>削弱：I’m afraid,I suppose, I suspect, if I am not mistaken等，<strong>削弱说话人的语气，变得更加委婉</strong>。<ul>
-<li>If I am not mistaken, I think you come from Sweden.</li>
-<li>I suspect that she is ill,but I’m not sure.</li>
-</ul>
-</li>
-<li>增强：actually,certainly,really,definitely,without doubt,on no account(绝不),not a single（一个也没有）<ul>
-<li>On no account can we ignore the value of knowledge.</li>
-<li>Certainly nobody could be expected to memorize every detail.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>翻译练习<ul>
-<li>我想你是对的</li>
-<li>毫无疑问，健康是人们最关系的问题</li>
-<li>一百次的尝试中，一次也没有失误（百无一失）</li>
-<li>放心，我肯定会跟那个客户确定具体的发货时间</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>I suppose</strong> you are right.<br><strong>Without doubt</strong>,health is people’s top concern.<br>There is <strong>not a single</strong> miss in a hundred tries.<br>Rest assured, I’m <strong>definitely</strong> going to confirm the specific delivery time with that client.</p>
-</blockquote>
-<h3 id="疑问句"><a href="#疑问句" class="headerlink" title="疑问句"></a>疑问句</h3><ul>
-<li>分类<ul>
-<li><strong>一般疑问句</strong>，询问事情是否属实，<strong>将句子中的be动词、助动词、情态动词提到最前面</strong>，用yes&#x2F;no回答，又称“是非问句”。<ul>
-<li><strong>Is</strong> it about to crash?(Yes,it is.&#x2F;No,it isn’t.)<ul>
-<li>是不是要破产了？</li>
-</ul>
-</li>
-<li><strong>Has</strong> she responded to your letter?(Yes,she has.&#x2F;No,she hasn’t .)<ul>
-<li>她有没有回复你的信？</li>
-</ul>
-</li>
-<li><strong>Can</strong> you point out the man you suspect?(Yes,i can.&#x2F;No,I can’t.)<ul>
-<li>你能把你怀疑的人指出来么？</li>
-</ul>
-</li>
-<li><strong>Did</strong> you reflect on the consequences of your behavior?(Yes.I did.&#x2F;No,I didn’t.)<ul>
-<li>你考虑过你的行为的后果吗？</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>特殊疑问句</strong>，由疑问词（疑问代词who,which,whose,what和疑问副词when,where,why,how等）构成，又称“wh-问句”。<ul>
-<li><strong>What</strong> does he mean by cancelling his performance?<ul>
-<li>他取消他的表演是什么意思？</li>
-</ul>
-</li>
-<li><strong>Why</strong> is there so much noise coming from this classroom?<ul>
-<li>为什么这个教室传来这么大的噪音？</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>选择疑问句—“一般疑问句”构成</strong>，选项用or连接<ul>
-<li><strong>Did you</strong> fly to New York or (**did you )**go there by sea?<ul>
-<li>你去纽约是坐飞机还是乘船？</li>
-</ul>
-</li>
-<li>**Is it **round,square,or triangular?<ul>
-<li>它是圆的，正方形的，还是三角形的？</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>选择疑问句—“特殊疑问句”构成</strong>，选项用or连接<ul>
-<li><strong>How</strong> shall we go to New York,by plane or by sea?<ul>
-<li>我们怎么去纽约，坐飞机还是乘船？</li>
-</ul>
-</li>
-<li><strong>Which</strong> do you like better,laptop or desktop?<ul>
-<li>笔记本电脑和台式机，你更喜欢哪一个？</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>附加疑问句</strong>，由“陈述句+附加问句”构成，附加问句的动词、主语根陈述句的动词、主语相对应。<ul>
-<li>The watch <strong>is</strong> 20 minutes fast, <strong>isn’t</strong> is?<ul>
-<li>手表快了20分钟，不是吗？</li>
-</ul>
-</li>
-<li>Your younger brother <strong>can</strong> swim,**can’t **he?<ul>
-<li>你弟弟会游泳，不是吗？</li>
-</ul>
-</li>
-<li><strong>附加疑问句注意事项</strong><ul>
-<li>陈述句主语表示人的不定代词（everybody,everyone,someone,no one等）附加主语<u>可使用he（侧重个体，正式）&#x2F;they（侧重整体，非正式）</u>。<ul>
-<li><u>Everyone</u> knows the solution to the research,<strong>doesn’t he?&#x2F;don’t they?</strong></li>
-<li><u>No one </u>was absent from this meeting,<strong>was it?&#x2F;were they?</strong></li>
-</ul>
-</li>
-<li>陈述句主语是<u>表示物的不定代词</u>（everything,anything,something,nothing等）时，<u>附加问句主语用it</u>。<ul>
-<li><u>Everything</u> is ready,<strong>isn’t it?</strong></li>
-<li><u>Nothing</u> could stop my yearning for freedom,<strong>could it?</strong></li>
-</ul>
-</li>
-<li>陈述句主语为<u>不定代词one</u>，附加问句<u>主语用one&#x2F;you</u>。<ul>
-<li><u>One</u> should be responsible ,<strong>shouldn’t one&#x2F;you?</strong></li>
-<li><u>One</u> shouldn’t hold a negative attitude towards life,<strong>should one&#x2F;you?</strong></li>
-</ul>
-</li>
-<li>陈述句主语为<u>指示代词this&#x2F;that，附加主语it</u>，陈述句主语为<u>指示代词these&#x2F;those，附加主语为they</u><ul>
-<li><u>This</u> is an excellent time to go outing,**isn’t it? **</li>
-<li><u>Those</u> are courses designed for kids under the age of four,<strong>aren’t they?</strong></li>
-</ul>
-</li>
-<li>主<u>现存句（there be句型）</u>，附加句主语<u>仍用there</u><ul>
-<li><u>There is </u>one problem with this approach,<strong>isn’t there?</strong></li>
-<li><u>There are</u> report of widespread dissatisfaction in the club,<strong>aren’t there?</strong></li>
-</ul>
-</li>
-<li>陈述句为<u>I am </u>，附加句<u>aren’t I</u><ul>
-<li><u>I am </u>late, <strong>aren’t I?</strong></li>
-<li>To a certain extent,<u>I am </u>responsible for the delay,<strong>aren’t I?</strong></li>
-</ul>
-</li>
-<li>陈述句<em>有否定词</em>（no one,nothing,never,seldom,hardly,few,little等），附加句<em>使用肯定</em><ul>
-<li>Lily <u>seldom</u> smiles in her daily life,<strong>does she?</strong></li>
-<li>There is </u>little</u> I can help you,<strong>is there?</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>确定附加问句方法</strong></p>
-<ol>
-<li>确定主语</li>
-<li>确定动词</li>
-<li>确定是否定还是肯定附加句</li>
-</ol>
-<p><strong>加强疑问句语气的方法：</strong></p>
-<p>在疑问词后加上<em>ever,on earth, in the world, the goodness, in heaven’s name等</em>可以<strong>加强疑问句的语气</strong>，可翻译为“究竟&#x2F;到底”。</p>
-<blockquote>
-<p>What <strong>in heaven’s name</strong> are you taking about?<br>你到底在说什么？<br>How <strong>ever</strong> do you find the time to learn cooking?<br>你究竟怎么挤出时间来学习烹饪的？<br>Mary’s dictionary was lost on the street yesterday.</p>
-</blockquote>
-<blockquote>
-<p>改为疑问句形式</p>
-<ol>
-<li><strong>Was</strong> Mary’s dictionary lost on the street yesterday?<br>2.<strong>What</strong> was lost on the street yesterday?<br>3.<strong>Who</strong> was lost a dictionary on the street yesterday?</li>
-<li><strong>Whose</strong> dictionary was lost on the street yesterday?<br>5.<strong>Where</strong> was Mary’s dictionary lost yesterday?<br>6.<strong>When</strong> was Mary’s dictionary lost on the street?<br>7.<strong>Why</strong> was Mary’s dictionary lost on the street yesterday?<br>8.<strong>Which</strong> dictionary was lost on the street yesterday,Chinese <strong>or</strong> Japanese?</li>
-</ol>
-</blockquote>
-<h3 id="祈使句"><a href="#祈使句" class="headerlink" title="祈使句"></a>祈使句</h3><ul>
-<li>定义、分类与构成<ul>
-<li>祈使句是<strong>说话者发出指令、要求、劝告等的句子</strong>，分为第一人称、第二人称、第三人称祈使句<ul>
-<li>第一人称：Let’s do</li>
-<li>第二人称：(You) do&#x2F;(You) let us do&#x2F;(You) let me do</li>
-<li>第三人称：Let him&#x2F;her&#x2F;them&#x2F;it do</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>祈使句的否定<ul>
-<li>句子前加don’t&#x2F;never<ul>
-<li><strong>Don’t</strong> make a fuss about trifles.</li>
-<li>Don’t leave her waiting outside in the rain.</li>
-<li><strong>Never</strong> place the milk out in the sun or it will turn bad.</li>
-<li>Never forget to be thankful to those who have helped you.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>祈使句语气的加强<ul>
-<li>在<strong>句首加重读的do</strong>，使语气强硬<ul>
-<li><strong>Do</strong> be careful with those fireworks!The slightest spark could set them off!</li>
-<li><strong>Do</strong> let me know if there is anything i can do for you.</li>
-</ul>
-</li>
-<li>在句首、句中、句尾<strong>使用呼语</strong>，强调命令向谁发出<ul>
-<li>Don’t <strong>anybody</strong> hit the panic button!<ul>
-<li>别让任何人按紧急按钮！（任何人都不要紧张！）</li>
-</ul>
-</li>
-<li>Stop talking in such a disrespectful way,<strong>Jim!</strong>.</li>
-<li><strong>Everyone</strong> be quite now,and our show will begin soon!</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>祈使句语气的削弱<ul>
-<li>在<strong>句首或句尾加please</strong>，使语气更加委婉<ul>
-<li>A bottle of wine and two plates of beef,<strong>please</strong>.</li>
-<li><strong>Please</strong> be seated,ladies and gentlemen.</li>
-</ul>
-</li>
-<li>在祈使句后<strong>添加附加问句</strong>，此时，整句话变为“附加疑问句”<ul>
-<li>**Let’s **go camping,<strong>shall we?</strong></li>
-<li><strong>Let us</strong> go now,<strong>will you?</strong><ul>
-<li>现在（你）让我们走吧，好吗？</li>
-</ul>
-</li>
-<li><strong>Don’t make</strong> any noise,<strong>will you?</strong></li>
-<li><strong>Help me</strong> with this mathematical problem,<strong>will&#x2F;won’t you?</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>祈使句的附加问句</strong></p>
-<ol>
-<li>第二人称肯定祈使句，加will you 或 won’t you</li>
-<li>第二人称否定祈使句，加will you</li>
-<li>Let’s开头的祈使句，加shall we</li>
-<li>Let us开头的祈使句，加will you</li>
-</ol>
-<blockquote>
-<p>第一人称祈使句：<br>Let’s avoid unrealistic expectations.（让我们避免不切实际的期望）<br>第二人称祈使句：<br>Let me think what to do next.（（你）让我想想接下来干什么）<br>Open your book and turn to page eleven.（（你）打开书本）<br>Show the foreign guests around the factory.（（你）带外宾）<br>Let us have a look at the theory first.（请（你）让我们先看下理论）<br>第三人称祈使句：<br>Let bygones be bygones.（既往不咎）<br>Let boys be boys.（男孩就要有男孩的样子）</p>
-</blockquote>
-<h3 id="感叹句"><a href="#感叹句" class="headerlink" title="感叹句"></a>感叹句</h3><ul>
-<li>What引导的感叹句构成<ul>
-<li>What+a&#x2F;an+形容词+可数名词单数（+主语+谓语）！</li>
-<li>What+形容词+可数名词复数（+主语+谓语）！</li>
-<li>What+形容词+不可数名词（+主语+谓语）！</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>What a capable manager(he is)!<br>What inspiring stories(these are)!<br>What fresh air(it is)!</p>
-</blockquote>
-<ul>
-<li>How<ul>
-<li>How+形容词&#x2F;副词+主语+谓语+其他！</li>
-<li>How+主语+谓语！</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>How glorious the day will be!<br>How quickly a rash thing is done!<br>How diligently he prepares for Graduate Management Admissions Test!</p>
-</blockquote>
-<ul>
-<li>其他形式<ul>
-<li>使用单词表感叹<ul>
-<li>Splendid!</li>
-</ul>
-</li>
-<li>使用词组表感叹<ul>
-<li>Good job!</li>
-</ul>
-</li>
-<li>使用陈述句表感叹<ul>
-<li>He is so hardworking!</li>
-</ul>
-</li>
-<li>使用疑问句表感叹<ul>
-<li>Aren’t these roses beautiful?</li>
-</ul>
-</li>
-<li>使用祈使句表感叹<ul>
-<li>Many happy returns of the day!<ul>
-<li>（生日用词）遐龄永享，康宁如注！</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>这些花多美丽啊！<br>What beautiful flowers there are!<br>今天天气真好啊！<br>what fine weather it is today!<br>这些山多高啊！<br>How high the mountains are!<br>在这样一个凉爽的下午打篮球是多么令人兴奋！<br>How exciting it is to play basketball on such a cool afternoon!</p>
-</blockquote>
-<h2 id="句子成分"><a href="#句子成分" class="headerlink" title="句子成分"></a>句子成分</h2><p>包括主语、谓语、宾语、表语、定语、状语、补语和同位语。</p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_1.jpg"></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_2.jpg"></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_3.jpg"></p>
-<h3 id="可以充当主语的词"><a href="#可以充当主语的词" class="headerlink" title="可以充当主语的词"></a>可以充当主语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_4.jpg"></p>
-<h3 id="可以充当谓语的词"><a href="#可以充当谓语的词" class="headerlink" title="可以充当谓语的词"></a>可以充当谓语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_5.jpg"></p>
-<h3 id="可以充当宾语的词"><a href="#可以充当宾语的词" class="headerlink" title="可以充当宾语的词"></a>可以充当宾语的词</h3><ol>
-<li>at&#x2F;after等介词后的词可以充当宾语</li>
-<li>及物动词后的词</li>
-</ol>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_6.jpg"></p>
-<p><strong>注意区分直接宾语和间接宾语</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_7.jpg"></p>
-<h3 id="可以充当表语的词"><a href="#可以充当表语的词" class="headerlink" title="可以充当表语的词"></a>可以充当表语的词</h3><p><strong>系动词后的成分</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_8.jpg"></p>
-<h3 id="分析划线部分成分"><a href="#分析划线部分成分" class="headerlink" title="分析划线部分成分"></a>分析划线部分成分</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_9.jpg"></p>
-<h3 id="可以充当定语的词"><a href="#可以充当定语的词" class="headerlink" title="可以充当定语的词"></a>可以充当定语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_10.jpg"></p>
-<h3 id="可以充当状语的词"><a href="#可以充当状语的词" class="headerlink" title="可以充当状语的词"></a>可以充当状语的词</h3><p><strong>修饰&#x2F;表状态</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_11.jpg"></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_12.jpg"></p>
-<h3 id="可以充当补语的词"><a href="#可以充当补语的词" class="headerlink" title="可以充当补语的词"></a>可以充当补语的词</h3><p><strong>主语补足语&#x2F;宾语补足语</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_13.jpg"></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_14.jpg"></p>
-<h3 id="可以充当同位语的词"><a href="#可以充当同位语的词" class="headerlink" title="可以充当同位语的词"></a>可以充当同位语的词</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_15.jpg"></p>
-<h3 id="分析句子成分"><a href="#分析句子成分" class="headerlink" title="分析句子成分"></a>分析句子成分</h3><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_16.jpg"></p>
-<h2 id="句子结构"><a href="#句子结构" class="headerlink" title="句子结构"></a>句子结构</h2><p><strong>句子结构成分的缩写</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_17.jpg"></p>
-<p><strong>基本句式结构</strong></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_18.jpg"></p>
-<p><em>分析句子类型</em></p>
-<p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_19.jpg"></p>
-<ul>
-<li>SV基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_20.jpg"></li>
-</ul>
-</li>
-<li>SVP基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_21.jpg"></li>
-</ul>
-</li>
-<li>SVO基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_22.jpg"></li>
-</ul>
-</li>
-<li>SVOO基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_23.jpg"></li>
-</ul>
-</li>
-<li><u>分析长句句子类型</u><ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_24.jpg"></li>
-</ul>
-</li>
-<li>SVOC基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_25.jpg"></li>
-</ul>
-</li>
-<li>SVA基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_26.jpg"></li>
-</ul>
-</li>
-<li>SVOA基本句型<ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_27.jpg"></li>
-</ul>
-</li>
-<li><u>分析长句类型</u><ul>
-<li><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_28.jpg"></li>
-</ul>
-</li>
-</ul>
-<h2 id="词形的句法功能"><a href="#词形的句法功能" class="headerlink" title="词形的句法功能"></a>词形的句法功能</h2><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_29.jpg"><br><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_30.jpg"></p>
-<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><ul>
-<li>名词充当主语。<ul>
-<li><u>Self-confidence</u> is the mainstay of a strong character.（自信是强者之脊梁。）</li>
-<li><u>The lawyer</u> is going to undertake this tough case.（律师将会接受这个棘手的案子。）</li>
-</ul>
-</li>
-<li>名词充当宾语。<ul>
-<li>He braked his car just in time to avoid <u>an accident</u>.（他及时刹车，避免了一次事故。）</li>
-<li>They preferred not to talk about <u>this question</u> at the time.（在这个时刻，他们宁愿不谈这个问题。）</li>
-</ul>
-</li>
-<li>名词充当表语。<ul>
-<li>Tom turned <u>teacher</u>, which he didn’t wish to be.(汤姆成了教师，可那不是他所希望的。)</li>
-<li>What is missing from a lot of lives is <u>romance</u>.(生活中大量缺少的就是浪漫色彩。)</li>
-</ul>
-</li>
-<li>名词充当定语。<ul>
-<li>The woman received a <u>diamond</u> necklace as a gift.(那女人收到一条钻石项链作为礼物。)</li>
-<li>Is that <u>chemistry</u> teacher strict or easy-going?(那位化学老师很严厉还是很好相处？)</li>
-</ul>
-</li>
-<li>名词充当补语。<ul>
-<li>He was elected <u>president</u> of the association.(他被选为协会主席。)</li>
-<li>The strikers constituted him their <u>spokesman</u>.(罢工者任命他为他们的发言人。)</li>
-</ul>
-</li>
-<li>名词充当同位语。<ul>
-<li>We <u>Chinese</u> have the spirit to fight the enemy to the last drop of our blood.(我们中华民族有同自己的敌人血战到底的气概。)</li>
-<li>Miss Ma, <u>our gcography teacher</u>, is highly respected by all.(马老师，我们的地理老师，极受大家的尊敬。)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<ol>
-<li>Can you tell us your <u>(    )</u> for happiness and a long life?</li>
-</ol>
-<ul>
-<li>Living every day to the full, definitely.<br>A. гесіре<br>B. record<br>C. reception<br>D. receipt<br>【答案】A<br>【翻译】一您能告诉我们您幸福与长寿的秘快吗？—确切地说，是充实地过好每一天。<br>根据答语可知，此处问的是幸福与长寿的秘诀。recipe秘诀，決窍，符合句意。record记录;reception接待处；receipt收据，均不符合题意。<br>【成分】recipe作直接宾语。</li>
-</ul>
-<ol start="2">
-<li><p>We can observe that artificial intelligence has already made a(an).<u>(      )</u>on our lives in many ways.<br>A. statement<br>B. impact<br>C. impression<br>D. judgment<br>【答案】B<br>【翻译】我们能够注意到，人工智能在很多方 面已对我们的生活产生了影响。make astatement发表声明；make an impact on对..产生影响；make an impression on给.留下印象;make a judgment作出判断。结合句意可知，应选B。<br>【成分】impact作宾语。</p>
-</li>
-<li><p>The failure was a big <u>(     )</u>to him, but he wasn’t discouraged and soon got as enthusiastic as ever.<br>A. blow<br>B. issue<br>C. excuse<br>D. factor<br>【答案】A<br>【翻译】这次失败对他来说是一次很大的打击，但他没有泄气，很快就变得和以往一样充满热情。blow打击，符合句意。issue问题，议题;excuse借口；factor因素。<br>【成分】blow作表语。</p>
-</li>
-<li><p>When he was running after his brother, the boy lost his<u>(     )</u> and had a bad fall<br>A. balance<br>B. chance<br>C. memory<br>D. ability<br>【答案】A<br>【翻译】当这个男孩追赶哥哥的时候，他失去了平衡，狠狠地摔了一跤。根据句中的 had a bad fall可知，这个男孩之所以摔倒是因为失去了平衡，lose one’s balance意为“失去平衡”。chance机会;memory记忆；ability能力。<br>【成分】balance作宾语。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="数词"><a href="#数词" class="headerlink" title="数词"></a>数词</h3><ul>
-<li>数词充当主语。<ul>
-<li><u>Eight</u> minus three is five.（八减三得五。）</li>
-<li>“<u>The third</u> is a blanket without any thread.” said Mary, looking at the gifis.（“第三件是没有线的毯子，”玛丽看着礼物说道。）</li>
-</ul>
-</li>
-<li>数词充当宾语。<ul>
-<li>Personally speaking, I prefer <u>the second</u> to the third.（就我个人而言，比起第三个，我更喜欢第二个。）</li>
-<li>How many candles do you need? -I need <u>thirty</u>.（你需要多少支蜡烛？-我需要三十支。）</li>
-</ul>
-</li>
-<li>数词充当表语。<ul>
-<li>The zip code is <u>83232</u>.（邮政编码是83232.）</li>
-<li>We were <u>the first</u> to congratulate the bride and groom.（我们是最先向新娘和新郎祝贺的。）</li>
-</ul>
-</li>
-<li>数词充当定语。<ul>
-<li>Attention, please! The bus will leave in <u>ten</u> minutes.（请注意！公共汽车十分钟后开。）</li>
-<li>The <u>second</u> option is technically superior but it demands higher-performance equipment.（第2种选择具有技术优越性，但需要高性能的设备。）</li>
-</ul>
-</li>
-<li>数词充当同位语。<strong>一般在主格代词之后</strong><ul>
-<li>They <u>two</u> are on intimate terms.（他们俩很亲近。）</li>
-<li>We <u>four</u> affectionately watched his back as he stood in the bows looking to scaward.（当他站在船头向海上望去时，我们四个人都热切地朝着他的背影看着。）</li>
-<li>They <u>three</u> get along well with one another; one is married, another is still a bachelor, and the other has a girl friend.（他们三人彼此相处愉快；一个已婚，一个仍是光棍，而另一个已有了女友。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>翻译对话</p>
-<ol>
-<li>第二个是你的。<br><u>The second</u> is yours. <em>作主语</em></li>
-<li>他的父亲今年58岁。<br>His father is <u>fifty-eight</u> this year. <em>作表语</em></li>
-<li>他有三本英汉宇典。<br>He has <u>three</u> English-Chinese dictionaries. <em>作定语</em></li>
-<li>让我们四个人完成这项工作，好吗？<br>Let us <u>four</u> finish the work, will you?<em>作同位语</em>.</li>
-</ol>
-</blockquote>
-<h3 id="介词短语"><a href="#介词短语" class="headerlink" title="介词短语"></a>介词短语</h3><ul>
-<li>介词短语充当表语。<ul>
-<li>Health is <u>above wealth</u>.（健康高于财富。）</li>
-<li>His clinic is <u>near the newlv-built railway station</u>.（他的诊所在新建的火车站附近。）</li>
-</ul>
-</li>
-<li>介词短语充当定语。<ul>
-<li>The lady <u>in the car</u> is from France.（车上的那位女士来自法国。）</li>
-<li>The man <u>in black</u> is Mr. Brown, our literature teacher.（穿黑衣服的人是布朗先生，我们的文学老师。）</li>
-</ul>
-</li>
-<li>介词短语充当状语。<ul>
-<li>Did you do this <u>by design</u> or <u>by accident</u>?（你这样做是有意的还是无意的？）</li>
-<li>You are getting better at eating <u>with chopsticks</u>!（你越来越擅长用筷子吃饭了！）</li>
-</ul>
-</li>
-<li>介词短语充当补语。<ul>
-<li>I found everything <u>in good condition</u>.（我发现一切正常。）</li>
-<li>She pronounced herself <u>against the contract</u>.（她声明反对合同。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<ol>
-<li><p>Favorable policies are <u>(    ) </u>to encourage employees’ professional development.<br>A. in effect<br>B. in command<br>C. in turn<br>D. in shape<br>【答案】A<br>【翻译】优惠政策会有效地促进员工的职业发展。in effect有效；in command应付自如；in tum逐一、轮流；in shape..的模样。<br>【成分】in effect作表语</p>
-</li>
-<li><p>“What a terrible rain we are having!” - “Yes. We are asked to pay more attention to the information about the rain <u>（    ）</u>flood”.<br>A. as well as<br>B. so long as<br>C. because of<br>D. in case of<br>【答案】D<br>【翻译】-“我们马上迎来一场可怕的大雨！“是的。我们被要求更加关注有关这次的降雨以防洪水。”in case of 有两个意思，一表示条件，意为“如果”；二表示目的，意为“以防”。<br>【成分】in case of作状语</p>
-</li>
-<li><p>The Scottish girl <u>(    )</u>blue eyes won the first prize in the Fifth Chinese Speech Contest.<br>A. By<br>B. of<br>C. in<br>D. with<br>【答案】D<br>【翻译】在第五届汉语演讲比赛中，那位蓝眼睛的苏格兰女孩赢得了第一名。所填词介词意思是“有”，用with。<br>【成分】with blue eyes作定语</p>
-</li>
-<li><p>My sister was against my suggestion while my brother was<br>(      ) it.</p>
-</li>
-</ol>
-<p>A. in favour of<br>B. in memory of<br>C. in honour of<br>D. in search of<br>【答案】A<br>【翻译】我姐姐反对我的建议而我的弟弟支持。in favor or支持;in memory of纪念，追念；ihonour of为纪念，为庆祝；in scarch of搜寻，探求。<br>【成分】in favour of作表语</p>
-</blockquote>
-<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><ul>
-<li>形容词充当表语。<ul>
-<li>He was <u>petrified</u> with terror.（他吓得发呆。）</li>
-<li>This may seem <u>impossible</u>, but it is not <u>unprecedented</u>.（这似乎不太实际，但并不是没有先例。）</li>
-</ul>
-</li>
-<li>形容词充当定语。<ul>
-<li><u>Mental</u> models become deeply ingrained as a result of previous experiences.（由于以前的经历，心理模型变得根深蒂固。）</li>
-<li>Accompanied by <u>cheerful</u> music, we began to dance.（伴随着欢乐的音乐，我们跳起舞来。）</li>
-</ul>
-</li>
-<li>形容词充当状语。<ul>
-<li><u>Anxious</u> about her son’s safety, she called him many times.（（因为）担心她儿子的安全，她打了好几次电话给他。）（形容词作原因状语）</li>
-<li>He was coincidentally locked in the dark house, <u>worried</u> and <u>frightened</u>.（他碰巧被锁在黑暗的房子里，既担心又害怕。）（形容词作伴随状语）</li>
-</ul>
-</li>
-<li>形容词充当补语。<ul>
-<li>I think we should leave the door <u>open</u>. It is too hot indoors.（我觉得我们应该把大门开着，室内太热了。）</li>
-<li>What I said just now will probably make some people <u>angry</u>.（我刚才说的话可能会让一些人生气。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<ol>
-<li><p>His comprehensive surveys have provided the most （     ）statements of how, and on what basis,data are collected.<br>A. explicit<br>B. ambiguous<br>C. original<br>D. arbitrary<br>【答案】A<br>【翻译】他全面的调查提供了关于如何收集信息，以及在什么基础上收集信息的最清楚明确的说明。explicit清楚的，明晰的；ambiguous模棱两可的；original起初的；arbitrary任意的。<br>【成分】explicit作定语。</p>
-</li>
-<li><p>Several hours later, with the help of the police, the tourists manage to escape from the dangerous place,（    ）<br>A. hungry and scaring<br>B. hungrily and scared<br>C. hungry and scared<br>D. hungrily and scaring<br>【答案】C<br>【翻译】几个小时后，在警察的帮助下，游客设法从危险的地方逃了出来，感到又饿又怕。<br>【成分】hungry和scared作状语表伴随，位于句首或句末，用逗号隔开。</p>
-</li>
-<li><p>You shouldn’t have said that. Look! She is getting （     ）<br>But I meant no harm.<br>A. unfair<br>B. unconcerned<br>C. unmoved<br>D. uneasy<br>【答案】D<br>【翻译】-你不该那么说。你看，她变得非常不安了。-但我没有恶意啊。unfair不公平的；unconcerned不关心的；unmoved冷漠的；uneasy不安的。<br>【成分】uneasy作表语。</p>
-</li>
-</ol>
-<p>4.In this article, your content is too general and you need to make it （     ）<br>A. specific<br>B. permanent<br>C. abstract<br>D. universal<br>【答案】A<br>【翻译】在本文中，你的内容过于笼统，需要使其具体化。specific具体的；permament永久的；<br>abstract抽象的；universal通用的，普遍的。<br>【成分】specific作补语。</p>
-</blockquote>
-<h3 id="副词"><a href="#副词" class="headerlink" title="副词"></a>副词</h3><ul>
-<li>副词充当表语。一般是表示地点的副词，或与介词同形的副词。<ul>
-<li>My temperature is <u>down</u>, but I am still feeling weak.（我烧是退了，可身上还是没劲儿。）</li>
-<li>He suddenly realizes that their romance is <u>over</u>.(他突然意识到他们的浪漫史结束了。)</li>
-</ul>
-</li>
-<li>副词充当定语。一般是表示地点、时间的副词。<ul>
-<li>It is hoped that you will give due attention to all the points <u>above</u>.(希望您对以上的各个要点给子应有的重视。)</li>
-<li>The temperature <u>today</u> is two degrees higher than yesterday.(今天的气温比昨天高两度。)</li>
-</ul>
-</li>
-<li>副词充当状语。<ul>
-<li>She was reckoned <u>very</u> intelligent.(她被认为很聪明。)</li>
-<li>Though the app may be useful at times, most users do not <u>frequently</u> use it.(尽管这个程序偶尔会有用，但多数用户不会经常使用它。)</li>
-</ul>
-</li>
-<li>副词充当补语。一般是表示地点的副词。<ul>
-<li>The girl was found <u>upstairs</u>, alone.(女孩被发现在楼上，独自一人。)</li>
-<li>Unfortunately, I didn’t see anybody <u>in</u>, so I left.(真不湊巧，我没看到任何人进来，所以我离开了。)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<ol>
-<li><p>They gave money to the old people’s home either (     ) or through their companies.<br>A. legally<br>B. sincerely<br>C. personally<br>D. deliberately<br>【答案】C<br>【翻译】他们或亲自或通过他们的公司给敬老院送钱。legally合法地，法律上；sincerely真诚地;personally亲自，就自己而言；deliberately故意地，谨慎地。根据through their companies可知选择personally。<br>【成分】personally作方式状语。</p>
-</li>
-<li><p>Time is (    ) .Let’s continue our seminar after a short tea break.<br>A. out<br>B. in<br>D. up<br>C. away<br>【答案】D<br>【翻译】时间到了，让我们在短暂的茶歇过后继续我们的研讨会。根据句意选择D，Time is up.<br>是固定用法，意为“时间到了”。<br>【成分】up作表语。</p>
-</li>
-<li><p>I am wondering if Professor C is in the office or not.<br>I saw him (    )half an hour ago. I guess he will be back soon.<br>A. in<br>B. out<br>C. over<br>D. around<br>【答案】B<br>【翻译】-我想知道C教授是否在办公室。-半小时前我看见他出去了。我想他很快就会回来。符合句意的只有B选项。<br>【成分】out作补语。</p>
-</li>
-<li><p>The wardrobe to be repair (    ) is really heavy. I think we need three people to move it down.<br>A.upstair<br>B.downstairs<br>C.upstairs<br>D.downstairs<br>【答案】C<br>【翻译】楼上要修的衣柜真的很重。我想我们需要三个人把它搬下来。A和B为形容词，C和D为副词。根据move it down可知“衣柜在楼上”，选择upstairs。<br>【成分】 upstairs作定语。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><ul>
-<li>“实义动词”单独作谓语。<ul>
-<li>I can’t <u>perceive</u> any differences between these paintings.（我看不出这些画有什么不同。）</li>
-<li>I <u>fasten</u> these papers with a paper clip.（我用回形针把这些试卷固定好。）</li>
-</ul>
-</li>
-<li>“动词短语”作谓语。<ul>
-<li>They <u>make use of</u> advertisements to promote the new product.（他们利用广告推销新产品。）</li>
-<li>If you <u>come across</u> a word whose meaning you have forgotten, consult the dictionary.（如果你遇到一个你忘了意思的词，请查宇典。）</li>
-</ul>
-</li>
-<li>“情态动词＋动词原形”作谓语。<ul>
-<li>All of us <u>shall observe</u> the code of practice.(我们大家都应遵守业务守则。)</li>
-<li>I <u>will not deny</u> that she was delighted after hearing such flattery.(我不否认她听到这样的奉承后感到高兴。)</li>
-</ul>
-</li>
-<li>“助动词+动词的变化形式，作谓语。动词变化形式包括：原形、现在分词、过去分词。<ul>
-<li>He <u>was beaten</u> black and blue.(他被打得鼻青脸肿。)</li>
-<li>She <u>is laughing</u> heartily because of the jokes her boy friend told just now.(因为他男朋友刚说的笑话，她正开怀大笑。)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Last week a tennis ball hit me on the head, but I tried to  ( ) the pain, believing that it would go away sooner or later.<br>A. isolate<br>B. interrupt<br>C. ignore<br>D.intend<br>【答案】C<br>【翻译】上周一个网球打到了我的头上，但我试着无视疼痛，相信它迟早会消失的。<br>isolate隔离；interrupt打断；ignore忽视；intend打算。</p>
-<p>It is widely believed that students should be (  )in terms of overall quality.<br>A. supported<br>B. surrounded<br>C. evaluated<br>D. excluded<br>【答案】C<br>【翻译】人们普遍认为，应该从綜合素质的角度来评价学生。support支持；SurTound包围；<br>evaluate评价；exclude排除。</p>
-<p> Nowadays, more and more wind power stations are ()to meet the demand for clean energy.<br>A. taking up<br>B. clearing up<br>C. holding up<br>D. springing up<br>【答索】D<br>【翻译】如今，越来越多的风力发电站正在兴起，满足人们对清洁能源的需求。take up从事,占据;clear up清理;hold up举起，阻碍;spring up突然兴起。</p>
-<p>Tom kept silent during the early part of the seminar but he eventually( )his opinion on the theme.<br>A. gave voice to<br>B. kept an eye on<br>C. turned a deaf ear to<br>D. set foot on<br>【答案】A<br>【翻译】汤姆在研讨会的初期保持沉默，但他最终就这个主题发表了他的意见。give voice to<br>表达对…的想法；keep an eye on留意；turn a deaf car to对..充耳不闻；set foot on踏上，登上。</p>
-</blockquote>
-<h3 id="非谓语"><a href="#非谓语" class="headerlink" title="非谓语"></a>非谓语</h3><ul>
-<li>非谓语动词充当主语。<ul>
-<li><u>To complete this assignment</u> is quite difficult. (to do不定式）（完成这项任务相当困难。）</li>
-<li><u>Setting your watch three minutes ahead</u> is an effective way to avoid being late. (doing动名词）（把表提前三分钟是避免迟到的有效方法。）</li>
-</ul>
-</li>
-<li>非谓语动词充当宾语。<ul>
-<li>I decided <u>to study English language</u> in college. (to do不定式）（我决定在大学里学习英语。）</li>
-<li>He was in low spirits and even considered <u>going away</u>. (doing动名词）（他情绪低落，甚至考虑离开。）</li>
-</ul>
-</li>
-<li>非谓语动词充当表语。<ul>
-<li>The current situation in our country is <u>encouraging</u>. (doing现在分词）（我国目前的形势令人鼓舞。）</li>
-<li>The next step is <u>to make sure</u> that you know what is needed. (to do不定式）（下一步是确保你知道需要什么。）</li>
-<li>Her mother was <u>pleased</u> that shc chose a college close to home. (done过去分词）（她母亲很高兴她选择了一所离家近的大学。）</li>
-<li>The duty of our organization is <u>serving our customers</u> heart and soul. (doing动名词）（我们組织的职责是全心全意为客户服务。）</li>
-</ul>
-</li>
-<li>非谓语动词充当定语。<ul>
-<li>The desire <u>to love and to be loved</u> is universal. (to do不定式）（对爱和被爱的渴望是普遍的。）</li>
-<li>The suitcase <u>lying on the baggase carousel</u> belongs to me. (doing现在分词）（放在行李传送带上的手提箱是我的。）</li>
-<li>A <u>walking</u> stick is a must for the aged who have difficulty in walking. (doing动名词）（拐杖是行走困难的老年人的必备工具。）</li>
-<li>Some speakers of <u>endangered</u> languages have even produced writing system in order to help secure the survival of their mother tongue. (done过去分词）（一些讲濒危语言的人甚至发明了书写系统，以帮助确保母语的生存。）</li>
-</ul>
-</li>
-<li>非谓语动词充当状语。<ul>
-<li>I went to the station only <u>to find</u> that the train had left. (to do不定式）（我去车站发现火车已经开了。）</li>
-<li><u>Told of</u> the danger, he still risked his life to save the boy in the water. (done过去分词）（听说有危险，他仍然冒着生命危险去救落水的男孩。）</li>
-<li>He spread a rumor that the chairman of the association was going to resign, <u>leading to</u> a great confusion among the members. (doing现在分词）（他散布谣言说协会主席要辞职，导致会员们中间产生一片混乱。）</li>
-</ul>
-</li>
-<li>非谓语动词充当补语。<ul>
-<li>My English teacher encourages me <u>to speak</u> English confidently. (to do不定式）（我的英语老师鼓励我自信地说英语。）</li>
-<li>The police observed the thief <u>entering</u> the fat and got ready to arrest him. (doing现在分词）（警察注意到小偷进入公寓，准备逮捕他。）</li>
-<li>Back from his two-year medical service in Scotland, Dr. Lee was fairly pleased to see his mother <u>taken good care of.</u> (done过去分词）（从他在苏格兰两年的医疗服务回来，李医生很高兴看到他的母亲得到了很好的照顾）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>Have you seen Pico Taro （  ） Pen Pineapple Apple Pen? That’s such a beautiful scene that I dare not have my eyes（  ）on it.<br>A. dancing; fixing<br>B.dance; fixing<br>C. dance; fixed<br>D.to dance; fixed<br>【答索】C<br>【翻译】你看过古坂和仁跳 《PPAP》 的舞蹈吗？那画面太美我不忍直视。see sb. do sth. 表示见过某人做某事 （看完动作的全程）；而第二个空，原本词组为fix one’s eyes on sth.（盯着.看），可见eyes与fix 在逻辑上构成被动关系，因此用过去分词作补语。<br>【成分】dance是不带t的不定式作补语；fixed是过去分词作补语。</p>
-</blockquote>
-<blockquote>
-<p>The knowledge （ ）in my childhood makes a stronger and more lasting impression on me than what I learn at any other life stage.<br>A.acquired<br>B. acquiring<br>C. being acquired<br>D. having acquired<br>【答案】A<br>【翻译】 我在孩提时代时获得的知识比我在其他任何时间获得的知识都印象深刻。acquire和<br>knowledge之问是逻辑上的被动关系，因此使用过去分词。<br>【成分】acquired是过去分词作定语。</p>
-</blockquote>
-<blockquote>
-<p>（），we had to feel the way out.<br>A. The light being gone out<br>C. The light went out<br>B. The light had gone out<br>D. The light going out<br>【答案】D<br>【翻译】因为灯灭了，我们得摸索着出去。The light是go out的逻辑主语，两者构成逻辑上的主动关系，使用现在分词。<br>【成分】going out是现在分词作原因状语。</p>
-</blockquote>
-<blockquote>
-<p>（）to living in the countryside, my parents can’t adapt to living in an apartment at downtown.<br>A. Accustomed<br>C. Accustoming<br>B. Having accustomed<br>D. To be accustomed<br>【答案】A<br>【翻译】由于习惯了住在乡下，我父母不能适应住在市中心的公寓里。非谓语动词accustomed来<br>源于词组be accustomed to，放于句首时去掉be动词，其逻辑主语是my parentso<br>【成分】accustomed是过去分词作原因状语。</p>
-</blockquote>
-<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><ul>
-<li>人称主格代词的句法功能。<ul>
-<li><u>He</u> suddenly realizes that their relationship is over.（主格代词作主语）（他突然意识到他们的感情结束了。）</li>
-<li>Who is knocking at the door? -It is <u>she</u>（主格代词作表语，属于正式情况）（谁在敲门？-是她。）</li>
-<li>They, <u>he and she,</u> showed up at the meeting 20 minutes late•（主格代词作同位语）（他们，就是他和她，迟到了20分钟才出现在会场。）</li>
-</ul>
-</li>
-<li>人称宾格代词的句法功能。<ul>
-<li>Don’t trust <u>him</u> since he is very unreliable and always lies •(宾格代词作宾语）（不要相信他，因为他很不靠谱而且经常撒谎。）</li>
-<li>Who is knocking at the door? -It is <u>her</u>.(宾格代词作表语，属于口语习惯）（谁在敲门？-是她。）</li>
-<li>Come on! This vacation is for us, <u>you and me</u>!(宾格代词作同位语）（相信我吧！这个假期就是给我们的，你和我！）</li>
-</ul>
-</li>
-<li>形容词性物主代词的句法功能，只充当定语。<ul>
-<li>Dancers warmed up excitedly before <u>their</u> performance.（舞蹈演员们在演出前兴奋地热身。）</li>
-<li>If you put yourself in my shoes, you will understand <u>my</u> decision.（如果你换位思考，你就会明白我的决心。）</li>
-</ul>
-</li>
-<li>名词性物主代词的句法功能。<ul>
-<li><u>Theirs</u> is heartfelt happiness.（名词性物主代词作主语）（他们的快乐是由衷的快乐。）</li>
-<li>The jeep in the parking lot is <u>mine</u>. I didn’t see <u>yours</u>. But I know that <u>hers</u> is next to <u>mine</u>.（在停车场停的吉普车是我的。我没看到你的。但我知道她的就在我的旁边。）(mine作表语，yours作宾语，hers作主语，mine作宾语）</li>
-</ul>
-</li>
-<li>反身代词的句法功能。<ul>
-<li>Don’t be so upset. You should pull <u>yourself</u> together!（反身代词作宾语）（别这么难过。你应该振作起来！）</li>
-<li>I don’t know what happened to her. She is not quite <u>herself</u> today（反身代词作表语）（我不知道她发生了什么。她今天十分不舒服。）</li>
-<li>The only thing we have to fear is fear <u>itself</u>（反身代词作同位语）（我们应该恐惧的东西是恐惧本身。）</li>
-</ul>
-</li>
-<li>指示代词的句法功能。<ul>
-<li><u>That</u> is the reason why we have to keep going（指示代词作主语）（这就是我们为什么要坚持下去的理由。）</li>
-<li>This is more expensive than <u>that</u>, but in terms of quality, this is better than <u>that</u>.（指示代词作宾语）（这个比那个贵，但就质量而言，这个比那个好。）</li>
-<li>The best team is <u>that</u> from Liverpool. (指示代词作表语）（最好的球队是那个来自利物浦的。）</li>
-<li><u>Those</u> rooms don’t get the sun all the year round because they face north.(指示代词作定语）（这些房间一年四季都晒不到阳光，因为它们朝北。）</li>
-<li>Tabby cat is her nickname but we never call her <u>that</u>.（指示代词作补语）（大花猫是她的昵称，但我们从来没有这么叫她。）</li>
-</ul>
-</li>
-<li>不定代词的句法功能。<ul>
-<li>I hope that <u>everyone</u> could attend the party tomorrow.（不定代词作主语）（我希望每个人都可以参加明天的聚会。）</li>
-<li>There are two different flavors of soda on the table and you may take <u>either</u>.(不定代词作宾语)（有两种不同口味的汽水放在桌子上，你可以随便拿一瓶。）</li>
-<li>I am not <u>somebody</u> I am actually <u>nobody</u>（不定代词作表语）（我不是什么大人物。我其实就是个无名小卒。）</li>
-<li><u>Some </u>unforeseen problems have occurred in <u>both</u> systems.（不定代词作定语）（两个系统都出现了一些始料未及的问题。）</li>
-<li>They <u>each</u> voiced their views on the proposal.（不定代词作同位语）（他们每个人均对这项提议发表了意见。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>翻译以下句子，并分析代词在句中所作的成分</p>
-<ul>
-<li>是经理他自己接的电话。<ul>
-<li>The manager <u>himself</u> answered the phone.（反身代词作同位语）</li>
-</ul>
-</li>
-<li>能不能拿另一件T恤让我看看？<ul>
-<li>Can you show me <u>another</u> T-shirt?（不定代词作定语）</li>
-</ul>
-</li>
-<li>我们每个人都希望去野餐。<ul>
-<li>We <u>each</u> hope to have a picnic.（不定代词作同位语）</li>
-</ul>
-</li>
-<li>Bella是个漂亮的名宇，所以淮备这么叫我女儿。<ul>
-<li>Bella is a beautiful name so I will call my daughter <u>that.</u>（指示代词作补语）</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="主谓一致"><a href="#主谓一致" class="headerlink" title="主谓一致"></a>主谓一致</h2><h3 id="语法一致"><a href="#语法一致" class="headerlink" title="语法一致"></a>语法一致</h3><p><strong>语法一致原则</strong>：主语的单复数决定了谓语动词的单复数。</p>
-<ul>
-<li>动名词、动词不定式、从句、不定代词作主语时，谓语动词常用单数。<ul>
-<li><u>Watching TV</u> <strong>makes</strong> me relaxed after an exhausting day .（看电视使我在筋疲力尽的一天后感到轻松。）</li>
-<li><u>To complete this assignment</u> <strong>is</strong> extremely tough.（完成这项任务极其艰难。）</li>
-<li><u>What he told us </u><strong>is</strong> quite far from the truth.（他告诉我们的与事实相差太远了。）</li>
-<li><u>Everything</u> <strong>is</strong> in a mess, which drives us crazy.（一切都一团糟，让我们抓狂。）</li>
-</ul>
-</li>
-<li>主语后接个词短语或其他插入语，如with&#x2F; together with&#x2F; along with&#x2F; as well as&#x2F; like&#x2F; but&#x2F; except&#x2F; rather than&#x2F; including&#x2F; in addition to等，<strong>谓语动词仍与主语保持一致，不受该类短语的影响。（假性主语）</strong><ul>
-<li><u>Tony</u> with his friends <strong>is</strong> chatting about the TV series.（Tony和他的朋友们正在谈论那部有趣的电视连续剧。）</li>
-<li>I think <u>Mary</u> rather than you <strong>is</strong> responsible for the accident.（我认为是Mary，而不是你对事故负责。）</li>
-<li><u>The teacher</u> as well as his students <strong>was</strong> extremely disappointed.（老师和学生都非常失望。）</li>
-</ul>
-</li>
-<li>and或both.and..连接两个不同的主语，谓语使用复数；但如果and连接的两个名词表示同一概念，含有 “兼具身份”或“匹配”之意时，谓语动词用单数。<ul>
-<li>T<u>he interviewer and the interviewee</u> <strong>are</strong> in the reception room.（面试官和面试者在接待室。）</li>
-<li><u>The poet and writer</u> <strong>has</strong> written quite a lot of popular works.（这位诗人和作家写了许多受欢迎的作品。）</li>
-<li><u>A watch and chain</u> <strong>was</strong> found under the wardrobe.（在衣柜下面发现了一块带链的表。）</li>
-<li>a horse and cart 一辆马车</li>
-<li>a knife and fork 一副刀叉</li>
-</ul>
-</li>
-<li>“many a&#x2F;more than one+单数名词”作主语，谓语动词用单数。<ul>
-<li><u>Many a scientist</u> <strong>is</strong> in search of a solution to this problem.（许多科学家正在寻找解决这个问题的办法。）</li>
-<li><u>More than one survivor</u> **was **sent immediately to the hospital.（不止一名幸存者被立即送往医院。）</li>
-</ul>
-</li>
-<li>cach,every, no所修饰的名词作主语时，即使有and连接，谓语动词仍用单数。<ul>
-<li><u>No pen and no pencil</u> <strong>is</strong> found in the desk.（桌子上没有钢笔和铅笔。）</li>
-<li><u>Every man and every woman</u> <strong>has</strong> the right to voice their opinions.（每个男人和女人都有权发表自己的意见。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>选择括号中恰当的谓语动词形式</p>
-<ul>
-<li>Pancakes and syrup (is &#x2F; are) my favourite breakfast.<ul>
-<li>选择is, pancakes and syrup属于同一概念，表示“薄煎饼和糖浆”，是一道美式早餐，用单数。</li>
-<li>翻译：薄煎饼和糖浆是我最喜欢的早餐。</li>
-</ul>
-</li>
-<li>Every flower and every bush (is to be &#x2F; are to be) cut down.<ul>
-<li>选择is to be,every+名词，即使有and连接，谓语动词用单数。</li>
-<li>翻译：每一朵花和每一棵灌木都要被砍掉。</li>
-</ul>
-</li>
-<li>His friend and fellow author of their book (visits &#x2F; visit) him.<ul>
-<li>选择visits, his friend and fellow author属于同一概念，表示“他的朋友兼共同作者”，谓语动词用单数。</li>
-<li>翻译：他的朋友，也是他们这本书的共同作者，来拜访他。</li>
-</ul>
-</li>
-<li>The ship, with its entire crew and cargo, (was &#x2F; were) mysteriously missing.<ul>
-<li>选择was，主语后有“with的成分”，谓语动词仍与主语ship保持一致，使用单数。</li>
-<li>翻译：这艘船，还有它所有的船员和货物，全部神秘的失踪了。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="意义一致"><a href="#意义一致" class="headerlink" title="意义一致"></a>意义一致</h3><p><strong>意义一致原则</strong>：不管主语是单数还是复数，主语的意义决定了谓语动词的单复数形式</p>
-<ul>
-<li><p><strong>集体名词作主语时，若被看作一个整体，谓语动词用单数形式；若被看作是构成集体的个体成员，谓语动词用复数形式</strong>。常见的集体名词有：family,class, team, group, public, committee, government, audience, crew等。</p>
-<ul>
-<li><u>The class</u>** consists of** 21 boys and 23 girls.（这个班由21个男生和23个女生组成。）</li>
-<li><u>The class</u> <strong>are</strong> listening to the teacher attentively.（全班同学都在专心听老师讲课。）</li>
-<li>She believes that the <u>family</u> <strong>is</strong> the very core ot society.（她认为家庭是社会的核心。）</li>
-<li>No matter what decisions she makes, her <u>family</u> <strong>are</strong> fully supportive.（她无论作出什么决定，她的家人都全力支持。）</li>
-</ul>
-</li>
-<li><p><strong>“the+形容词”，表示”。。。样的一类人“时，谓语动词用复数形式。</strong></p>
-<ul>
-<li><u>The injured</u> <strong>have</strong> been cured and <u>the lost</u> <strong>have</strong> been found.（受伤的人已被治愈，失踪的人也都找到了。）</li>
-<li><u>The rich</u> **are **donating money to <u>the homeless</u> who <strong>have</strong> lost their houses because of flood.（富人正在向因洪水而失去房屋的无家可归者捐款。）</li>
-</ul>
-</li>
-<li><p><strong>以-s&#x2F;-ies结尾的名词，表示“学科”，谓语动词用单数；表示其他意义，则使用复数。</strong></p>
-<ul>
-<li><u>Mathematics </u><strong>is</strong> the science of numbers and shapes.（数学是研究数字和形状的学科。）</li>
-<li>The little boy’s <u>mathematics</u> <strong>are</strong> really poor.（这个小男孩的运算能力真的很差。）</li>
-</ul>
-</li>
-<li><p><strong>number的不同词组：a number of表示“大量”，谓语动词用复数；the number of表示“ •••的数量”，谓语动词用单数。</strong></p>
-<ul>
-<li><u>A number of</u> research studies <strong>have</strong> found the relationship between these two factors.（许多研究发现了这两个因素之问的关系。）</li>
-<li><u>The number of</u> the tigers in the mountain <strong>is</strong> still unknown.（山上老虎的数量仍然不得而知。）</li>
-</ul>
-</li>
-<li><p><strong>表示时间、距离、重量、金额等复数名词作主语时，都被视为一个整体，谓语动词通常用单数形式。</strong></p>
-<ul>
-<li><u>One hundred years</u> <strong>is</strong> only a short period in history.（一百年在历史中也只是短暂的一段时间。）</li>
-<li><u>Four thousand dollars</u> <strong>is</strong> quite a lot of money for this little boy.（对这个小男孩来说，4,000美元是一笔大数目。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>选择括号中恰当的谓语动词形式</p>
-<ul>
-<li>A number of pages (has been &#x2F; have been) badly torn.<ul>
-<li>选择have been,a number of 表示“大量”，谓语动词用复数。</li>
-<li>翻译：好几页被撕破了。</li>
-</ul>
-</li>
-<li>The actual total of the unemployed (reach &#x2F; reaches) 2,000.<ul>
-<li>选择reaches, the total of表示“。。的总量”，谓语动词用单数。</li>
-<li>翻译：实际失业总人数达到2000。</li>
-</ul>
-</li>
-<li>The young (are not &#x2F; is not) always so romantic.<ul>
-<li>选择are not,the young表示”一类人”，谓语动词用复数。</li>
-<li>翻译：年轻人不总是那么浪漫。</li>
-</ul>
-</li>
-<li>Few of my family really (understand &#x2F; understands) my feeling.<ul>
-<li>选择understand， family表示“家庭成员”，谓语动词用复数。</li>
-<li>翻译：家庭成员几乎没有人理解我的惑受。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="临近一致（就近原则）"><a href="#临近一致（就近原则）" class="headerlink" title="临近一致（就近原则）"></a>临近一致（就近原则）</h3><p><strong>临近一致原则</strong>：最近的主语的单复数决定谓语动词的单复数。</p>
-<ul>
-<li><p><strong>由there或here引起不止一个主语时的情况。</strong></p>
-<ul>
-<li>There <strong>are</strong> <u>three pandas</u> and a dragon in the picture.（图中有三只熊猫和一条龙。）</li>
-<li>Here <strong>is</strong> <u>a pen</u>, some paper, a few envelopes and stamps for you.（这是给你的钢笔、一些纸、一些信封和邮票。）</li>
-</ul>
-</li>
-<li><p><strong>由or&#x2F; either..or.&#x2F; neither..nor ..&#x2F; not only..but (also)..&#x2F; not.but.. 等连接的并列主语，谓语动词与最近的主语保持一致。</strong></p>
-<ul>
-<li>One or <u>two experts</u> <strong>are</strong> coming to the conference.(一两个专家来参加会议。)</li>
-<li>Either you or <u>I</u> <strong>am</strong> to report this accident.(不是你就是我要报告这次事故。)</li>
-<li>Neither I nor <u>she</u> <strong>is</strong> against their marriage.(我和她都不反对他们的婚姻。)</li>
-<li>Not only you but also <u>your friend</u> <strong>is</strong> to blame.(不仅是你，还有你的朋友都应该受到责备。)</li>
-<li>Not two bottles ofijuice but only <u>one cup of coffee </u><strong>makes</strong> me delighted.(不用两瓶果汁，而只要一杯咖啡就能让我很高兴。)</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>在空格处填上正确形式的be动词（均使用现在时）</p>
-<p>Not only you but also all of us <u>are</u> wishing to go there.</p>
-<p>My sisters or my brother <u>is</u> likely to be at home.</p>
-<p>There <u>is</u> a girl and two boys having fun on the playground.</p>
-<p>Where <u>is</u> that ten pounds I lent you?</p>
-<p>Fish and chips <u>is</u> my favourite dish.</p>
-<p>Their family <u>is</u> very big with seven children.</p>
-<p>Many a student <u>is</u> looking forward to visiting Beijing.</p>
-<p>A poet and artist <u>is</u> delivering a speech in the lecture hall.</p>
-<p>Politics <u>is</u> the study of the ways in which countries are governed.</p>
-<p>Sally, as well as her friends, <u>is</u> praised publicly for their brave action.</p>
-</blockquote>
-<h2 id="时、体、态概况"><a href="#时、体、态概况" class="headerlink" title="时、体、态概况"></a>时、体、态概况</h2><p><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_31.png"><br><img src="/images/Note_Second_Language_English/Note_Second_Language_English_1_32.png"></p>
-<h3 id="一般现在时"><a href="#一般现在时" class="headerlink" title="一般现在时"></a>一般现在时</h3><ul>
-<li><strong>一般现在时，用于描述客观真理、自然现象、格言警句等。</strong><ul>
-<li>Light <u>travels</u> faster than sound.（光比声音传播快。）</li>
-<li>Stick to one job; a rolling stone <u>gathers</u> no moss.（坚守一份工作；滚石不生苔，转行不聚财。）</li>
-</ul>
-</li>
-<li><strong>一般现在时，描述习惯性、恒常性的状态或动作。</strong><ul>
-<li>What <u>does</u> your father do, Cami?（凯米，你父亲做什么工作？）</li>
-<li>Every morning he <u>goes</u> to the market to buy fresh fruits and vegetables for his diet.（每天早上他去市场为他的饮食采购新鲜的果蔬。）</li>
-</ul>
-</li>
-<li><strong>一般现在时，用于根据时间表拟定或安排的动作。</strong><ul>
-<li>The plane <u>takes off</u> at half past seven in the evening.（飞机晚上七点半起飞。）</li>
-<li>Our school bus <u>begins</u> at 6:00 in the morning, and <u>continues</u> until 4:00 in the afternoon.（我们的校车从早上6:00开始，一直持续到下午4:00。）</li>
-</ul>
-</li>
-<li><strong>一般现在时，用于时间、条件等状语从句中代替将来时。（主将从现）</strong><ul>
-<li>The sports meeting will be postponed if it <u>rains</u>.（如果下雨，运动会将推迟。）</li>
-<li>When you <u>start</u> making an album, you’d better choose a few representative photos.（当你开始制作相册时，最好选择一些有代表性的照片。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用一般现代时翻译以下句子</p>
-<ul>
-<li>一燕不成夏。<ul>
-<li>One swallow <u>doesn’t</u> make a summer.</li>
-</ul>
-</li>
-<li>如果不下雨，我就去远足。<ul>
-<li>If it <u>doesn ‘t</u> rain, I will go hiking.</li>
-</ul>
-</li>
-<li>他从不做家庭作业，但是每次都考第一。<ul>
-<li>He never <u>does</u> homework but always <u>comes</u> first in the exams.</li>
-</ul>
-</li>
-<li>火车在十分钟后离开北京，晚上九点到达上海。<ul>
-<li>The train <u>leaves</u> Beijing in ten minutes and <u>arrives</u> in Shanghai at nine in the evening.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="一般过去时"><a href="#一般过去时" class="headerlink" title="一般过去时"></a>一般过去时</h3><ul>
-<li><strong>一般过去时，描述过去的动作或状态。</strong><ul>
-<li>They <u>sowed</u> wheat by hand in the past and now they do it using machine.（过去他们手工播种小麦，现在他们用机器播种。）</li>
-<li>This beautiful town <u>was</u> once a famous tourist spot but now everything is gone.（这个美丽的小镇曾经是著名的旅游胜地，但现在一切都不复存在了。）</li>
-</ul>
-</li>
-<li><strong>一般过去时，描述过去一连串具有先后性的动作。</strong><ul>
-<li>My mother gently <u>walked</u> to my bed, <u>stroked</u> my forehead, <u>helped</u> me up, and <u>told</u> me that everything would be all right soon.（妈妈轻轻地走到我的床边，抚摸我的额头，把我扶了起来，告诉我一切很快就会好的。）</li>
-<li>The child <u>went</u> to the blackboard, <u>picked</u> up the chalk, <u>stood</u> on tiptoe, and <u>drew</u> a mountain.（小朋友走到黑板前，拿起粉笔，踮起脚尖，画了一座山。）</li>
-</ul>
-</li>
-<li><strong>一般过去时，用于在提建议时表示婉转的语气，用于want, think, hope,wonder等词。</strong><ul>
-<li>I <u>thought</u> we could have a drink before dinner.（我想我们可以在晚饭前喝一杯。）</li>
-<li>I <u>wondered</u> if you might want to see the concert with me this evening.（我想今晚你是不是可以和我一起看这场演唱会。）</li>
-</ul>
-</li>
-<li><strong>一般过去时，用于表述与现在事实相反的主观设想。用于It’time(是时候…)，I wish(我希望)，I’d rather(我宁愿)等结构之后的从句中。</strong><ul>
-<li><strong>I’d rather</strong> you <u>bought</u> a new house. 我宁愿你买一所新房子。</li>
-<li><strong>It’s time</strong> you <u>had</u> a holiday to relax yourself. 是时候你该去度假放松一下自己了。</li>
-<li><strong>I wish</strong> my daughter <u>lived</u> closer to me. 我希望女儿住得离我近些。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用一般过去时翻译以下句子</p>
-<ul>
-<li>是时候我们休息一下了。<ul>
-<li>It’s time we had a rest.</li>
-</ul>
-</li>
-<li>上周五我们去了伦敦。<ul>
-<li>We visited London last Friday.</li>
-</ul>
-</li>
-<li>我宁愿你立刻离开。<ul>
-<li>I’d rather you left right away.</li>
-</ul>
-</li>
-<li>她起床、刷牙、洗脸，匆匆吃了早饭，就赶往学校了。<ul>
-<li>She got up, brushed her teeth, washed her face, had a quick breakfast and rushed to school.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="一般将来时"><a href="#一般将来时" class="headerlink" title="一般将来时"></a>一般将来时</h3><ul>
-<li><strong>will+do构成的一般将来时，表示将要发生的动作或状态。</strong><ul>
-<li>There <u>will be</u> a concert in our city next week.（我们城市下周有一场音乐会。）</li>
-<li>The manager <u>will tell</u> me the details of the project tomorrow.（经理明天将告诉我项目的具体事项。）</li>
-</ul>
-</li>
-<li><strong>am&#x2F;is&#x2F;are going to do 构成的一般将来时，表示已经安排好的、或有迹象要发生的事情。</strong><ul>
-<li>I <u>am going to collect</u> the data for my paper .（我打算为我的论文收集资料。）</li>
-<li>It <u>is going to be</u> a fantastic party tonight.（今晚（一定）将是一场非常棒的聚会。）</li>
-</ul>
-</li>
-<li><strong>am&#x2F;is&#x2F;are to do构成的一般将来时，用于必定会发生的、或表示职责、义务要求的事情。</strong><ul>
-<li>They <u>are</u> never to <u>meet</u> again.（他们注定以后不会再见面了。）</li>
-<li>The designer <u>is to visit</u> our company the day after tomorrow.（设计师后天要参观我们公司。）</li>
-</ul>
-</li>
-<li><strong>am&#x2F;is&#x2F;are about to do构成的一般将来时，表示客观上动作即将发生。</strong><ul>
-<li>The cherry blossom season <u>is about to begin</u>.（樱花季即将开始。）</li>
-<li>She <u>is about to cry</u>. Don’t annoy her anymore.（她快哭了。别再惹她了。）</li>
-</ul>
-</li>
-<li><strong>现在进行时(am&#x2F;is&#x2F;are doing)表示一般将来时，主要用于位置移动的动词或部分动态动词，如go,come, leave,move, start,arrive, stay, run等。</strong><ul>
-<li>She <u>is leaving</u> for Thailand tonight.（她今晚出发去泰国。）</li>
-<li>Her fathcr <u>is coming</u> cither today or tomorrow.（她父亲不是今天就是明天来。）</li>
-<li>Peter and his family <u>are moving</u> to their new apartment tomorrow.（彼得和他的家人明天要搬去他们的新公寓。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用一般将来时翻译以下向子，注意根据语义选择合适的结构</p>
-<ul>
-<li>他计划今晚复习英语。<ul>
-<li>He <u>is going to review</u> English tonight.</li>
-</ul>
-</li>
-<li>快到吃李子的季节了。<ul>
-<li>The plum season <u>is about to begin</u>.</li>
-</ul>
-</li>
-<li>她后天出发去束埔寨。<ul>
-<li>She <u>is leaving</u> for Cambodia the day after tomorrow.</li>
-</ul>
-</li>
-<li>我知道我们注定会分开的。<ul>
-<li>I know that we<u> are to be</u> apart.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="一般过去将来时"><a href="#一般过去将来时" class="headerlink" title="一般过去将来时"></a>一般过去将来时</h3><p><strong>与一般将来时的区别：</strong></p>
-<ul>
-<li><p>would+do构成的一般过去将来时，表示过去时间范围内将要发生的动作或状态。</p>
-</li>
-<li><p>was&#x2F;were going to do构成的一般过去将来时，表示过去时间范围内已经安排好的、或有迹象要发生的事情。</p>
-</li>
-<li><p>was&#x2F;were to do构成的一般过去将来时，用于过去时间范国内必定会发生的、或表示职责、义务要求的事情。</p>
-</li>
-<li><p>was&#x2F;were about to do枸成的一般过去将来时，表示过去<br>时间范園内客观上动作即将发生。</p>
-</li>
-<li><p>过去进行时(was&#x2F;were doing)表示一般过去将来时。</p>
-</li>
-<li><p><strong>一般过去将来时很多时候都<u>用于宾语从句中</u>，该类宾语从句又属于“间接引语”即引述别人说的话。</strong></p>
-<ul>
-<li>My friend told me that there<u> would be</u> a concert in our city.（我的朋友告诉我，我们城市将有一场音乐会。）</li>
-<li>She said that she <u>was going to collect</u> the data for her paper.（她说她计划为她的论文收集资料。）</li>
-<li>They said goodbye in tears, knowing that they were never<u> to meet</u> again.（他们泪流满面地说再见，知道他们再也见不到了。）</li>
-<li>The teacher mentioned that the cherry blossom season <u>was about to begin.</u>（老师提到樱花季节即将到来。）</li>
-<li>Peter phoned me that he <u>was moving</u> to a new city the next day to start his new life.（彼得打电话给我说他第二天要搬到一个新城市开始他的新生活。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用一般过去将来时翻译以下句子</p>
-<ul>
-<li>他说为了期末考试，他准备好好复习。<ul>
-<li>He said he <u>was going to review</u> attentively for the final exam.</li>
-</ul>
-</li>
-<li>当时，老师告诉我们快到吃李子的季节了。<ul>
-<li>At that time, the teacher told us that the plum season <u>was about to begin.</u></li>
-</ul>
-</li>
-<li>她当时打电话告诉我，她第二天要出发去柬埔寨。<ul>
-<li>She phoned me that she <u>was leaving</u> for Cambodia the next day.</li>
-</ul>
-</li>
-<li>他们挥手告别，知道彼此注定会分开。<ul>
-<li>They waved goodbye, knowing that they <u>were to be</u> apart.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="现在进行时"><a href="#现在进行时" class="headerlink" title="现在进行时"></a>现在进行时</h3><ul>
-<li><strong>现在进行时，表示说话者正在说话时发生的动作。</strong><ul>
-<li>Look! He <u>is</u> now <u>standing</u> there and <u>eating </u>a Japanese rice ball.（看！他现在站在那里吃日本饭团。）</li>
-<li>What <u>are</u> you <u>doing</u>? - I<u>‘m packing</u> the present for my father tomorrow.（你在干什么？-我在包装明天给父亲的礼物。）</li>
-</ul>
-</li>
-<li><strong>现在进行时，表示目前阶段内一直进行着的动作。</strong><ul>
-<li>The author <u>is</u> currently <u>working</u> on his new novel.（这个作者目前正在写他的新小说。）</li>
-<li>I used to teach in college but now I <u>am working</u> as a high school researcher.（我以前在大学教书，但目前我是一名高中教研员。）</li>
-</ul>
-</li>
-<li><strong>现在进行时，表示说话者正在说话时某个动作的不断重复。此类动词限于瞬间性动作，如jump, wink,nod等等。</strong><ul>
-<li>I don’t know why he <u>is winking</u> at me.（我不知道他为什么不停对我眨眼。）</li>
-<li>This quiet girl <u>is jumping</u> with great joy at the sight of her mother’s arrival.（看到母亲的到来，这个安静的女孩高兴得跳个不停。）</li>
-</ul>
-</li>
-<li><strong>现在进行时，与频度副词连用表达说话者的惑情色彩。</strong><ul>
-<li>He <u>braes</u> albout how clever he is.（说明事实：他吹嘘自己有多聪明。）</li>
-<li>He <u>is</u> <strong>continuously</strong> <u>bragging</u> about how clever he is.(表达不满：他不断吹嘘自己有多聪明。）</li>
-<li>She <u>complains</u> about her tcacher.（说明事实：她抱怨她的老师。）</li>
-<li>She <u>is</u> <strong>always</strong> <u>complaining</u> about her teacher（表达不满：她总是抱怨她的老师。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用现在进行时翻译以下句子</p>
-<ul>
-<li>我父亲总是吸雪茄。<ul>
-<li>My father <u>is</u> always <u>smoking</u> cigars.</li>
-</ul>
-</li>
-<li>他正不停地点头以示同意。<ul>
-<li>He <u>is nodding</u> to show his agreement.</li>
-</ul>
-</li>
-<li>听！是谁在唱歌？<ul>
-<li>Listen! Who <u>is singing?</u></li>
-</ul>
-</li>
-<li>我目前正在写我的毕业论文。<ul>
-<li>I <u>am</u> currently <u>working</u> on my graduation thesis.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="过去进行时"><a href="#过去进行时" class="headerlink" title="过去进行时"></a>过去进行时</h3><p><strong>与现在进行时的比较</strong></p>
-<ul>
-<li><p>过去进行时，表示<strong>过去某一时刻</strong>说话者正在说话时发生的动作。</p>
-</li>
-<li><p>过去进行时，表示<strong>过去某一阶段内</strong>一直进行着的动作。</p>
-</li>
-<li><p>过去进行时，表示过<strong>去某一时刻</strong>说话者正在说话时某个动作的不断重复。</p>
-</li>
-<li><p>过去进行时，与频度副词连用，表示说话者对<strong>过去时间范围内发生的动作</strong>的感情色彩。</p>
-</li>
-<li><p>过去进行时表示一般过去将来时。</p>
-</li>
-<li><p>At that time, he <u>was standing</u> there and eating a Japanese rice ball.（那个时候，他正站在那里吃日本饭团。）</p>
-</li>
-<li><p>From 1993 to 2008, I <u>was teaching</u> in college.（1993年至2008年，我一直在大学教书。）</p>
-</li>
-<li><p>This quiet girl <u>was jumping</u> with great joy when she noticed her mother’’s arrival.（当注意到她母亲的到来时，这个安静的女孩高兴得跳个不停。）</p>
-</li>
-<li><p>There was a time when he <u>was</u> <strong>continuously</strong><u> bragging</u> about how clever he was.（曾经有一段时间他不断地吹嘘自己有多聪明。）</p>
-</li>
-</ul>
-<p>使用过去进行时翻译以下句子</p>
-<ul>
-<li>曾经有一段时间我父亲总是吸雪茄。<ul>
-<li>There was a time when my father <u>was</u> always<u> smoking</u> cigars.</li>
-</ul>
-</li>
-<li>那个时候，他正不停地点头以示同意。<ul>
-<li>At that time, he <u>was nodding</u> to show his agreement.</li>
-</ul>
-</li>
-<li>昨晚七点的时候，Lucy正在唱歌。<ul>
-<li>Lucy <u>was singing</u> at seven o’clock last night.</li>
-</ul>
-</li>
-<li>去年10月至12月期间，我一直在写毕业论文。<ul>
-<li>I <u>was working</u> on my graduation thesis from October to December last year.</li>
-</ul>
-</li>
-</ul>
-<h3 id="将来进行时"><a href="#将来进行时" class="headerlink" title="将来进行时"></a>将来进行时</h3><ul>
-<li><strong>将来进行时，表示将来某一特定的时刻正在进行的动作。</strong><ul>
-<li>We <u>will be having </u>a meeting at 8 o’clock tomorrow morning.（我们明天早上8点正在开会。）</li>
-<li>What <u>will</u> you <u>be doing</u> this time tomorrow afternoon?（明天下午这个时候你正在做什么？）</li>
-</ul>
-</li>
-<li><strong>将来进行时，表示将来某个阶段内一直持续的动作</strong>。<ul>
-<li>I <u>will be working</u> in Paris from Saturday to Sunday next week.（下周的星期六至星期日，我将一直在巴黎工作。）</li>
-<li>Miss Shen <u>will be teaching</u> Chinese at the Confucius Institute in Italy next year.（沈老师明年将一直在意大利孔子学院教授汉语。）</li>
-</ul>
-</li>
-<li><strong>将来进行时，用于委婉地询问他人的计划或安排。</strong><ul>
-<li>When <u>will</u> we <u>be meeting</u> again?（我们什么时候再见面？）</li>
-<li><u>Will</u> you <u>be passing</u> by the post office when you are out?（你出去时会经过邮局吗？）</li>
-</ul>
-</li>
-<li><strong>将来进行时与一般将来时的区别。一般将来时会含有一种主观上的“意愿”色彩，但将来进行时是纯粹地客观描述或提问将来的动作。</strong><ul>
-<li><u>Will</u> you<u> perform</u> tonight? （含有主观意愿：你愿意今晚演出吗？）</li>
-<li><u>Will</u> you <u>be performing</u> tonight?（纯粹客观提问：你今晚有演出吗？）</li>
-<li>He <u>won’t send</u> an email to her tonight.（含有主观意愿：他今晚不愿发邮件给她。）</li>
-<li>He <u>won’t be sending</u> an email to her tonight（纯粹客观描述：他今晚不会发邮件给她。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用将来进行时翻译以下句子</p>
-<ul>
-<li>下星期天这个时候，我正在东南亚度假。<ul>
-<li>This time next Sunday, I <u>will be having</u> my holiday in Southeast Asia.</li>
-</ul>
-</li>
-<li>明天一整个下午，我将一直在听讲座。<ul>
-<li>I <u>will be listening</u> to the lecture all afternoon tomorrow.</li>
-</ul>
-</li>
-<li>你去日本的时候会经过免税店吗？<ul>
-<li><u>Will</u> you <u>be passing </u>the duty-free shops when you go to Japan?</li>
-</ul>
-</li>
-<li>今天下午他将亲自写信表示谢意。<ul>
-<li>He <u>will be writing</u> a letter in person this afternoon to show his gratitude.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="现在完成时"><a href="#现在完成时" class="headerlink" title="现在完成时"></a>现在完成时</h3><ul>
-<li><strong>现在完成时，表示过去发生的动作或状态对现在的影响。注意和一般过去时作好对比，一般过去时只是单纯描述某个动作或状态在过去发生。</strong><ul>
-<li>I <u>finished</u> my homework.（一般过去时：单纯描述“过去某个时间我做完了作业”这个动作。）</li>
-<li>I <u>have finished</u> my homework.（现在完成时：描述作业在过去某个时间做完了，而且现在作业仍1旧处于做完”的状态。〕</li>
-<li>All the participants <u>left</u> three minuts ago.（一般过去时：单纯描述三分钟前所有的参赛者全部离开了。）</li>
-<li>All the participants <u>have left</u> since three minuts ago.（现在完成时：描述w所有的参舞者在三分钟之前已经全部离开，且现在是毫无一人”的状态。）</li>
-</ul>
-</li>
-<li><strong>现在完成时，表示过去发生的动作或状态一直持续到现在。</strong><ul>
-<li>I <u>have lived</u> here since I moved here in 2008.（我从2008年搬到这里之后，就一直住在这里。）</li>
-<li>Since the mysterious disappearance of the ship, there<u> have been</u> no new clues at all.（自从船只神秘消失以来，至今毫无任何新的线索。）</li>
-</ul>
-</li>
-<li><strong>现在完成时，表示已经经历过的事情</strong>。<ul>
-<li><u>Have</u> you ever <u>been</u> to Europe before?（你曾经去过欧洲吗？）</li>
-<li>I am so fond of the exhibition that I <u>have been</u> there three times.（我太喜欢这个展览了，已经去过三次了。）</li>
-<li>How many times have you <u>been discouraged</u> by the unexpected hardships?（你有多少次曾因为意料之外的困难而气馁？）</li>
-</ul>
-</li>
-<li><strong>现在完成时，用于It is&#x2F;will be the first time that句型及其类似的句型中。</strong><ul>
-<li><strong>It is the first time</strong> that I <u>have broken</u> the vase.（这是我第一次打碎花瓶。）</li>
-<li><strong>It is the tenth time that</strong> he <u>has been</u> praised.（这是他第十次受到表扬。）</li>
-<li><strong>This will be my second time that</strong> I <u>have performed</u> my favourite Beijing Opera on stage.（这将是我第二次在舞台上表演我最喜欢的京剧。）</li>
-<li><strong>This evening will be my third time that</strong> I <u>have been</u> invited to an academic seminar.（今晚将是我第三次被邀请参加学术研讨会。）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>使用现在完成时翻译以下句子</p>
-<ul>
-<li>今天将是我第一次出席一场正式聚会。<ul>
-<li>Today will be the first time that I <u>have attended</u> a formal party.</li>
-</ul>
-</li>
-<li>你曾经看过那个有趣的 《PPAP》 音乐短片吗？<ul>
-<li><u>Have</u> you ever <u>seen</u> that interesting PPAP music video?</li>
-</ul>
-</li>
-<li>自从我母亲来后，我一直受到很好的照顾。<ul>
-<li>I <u>have been</u> well taken care of since my mother came.</li>
-</ul>
-</li>
-<li>我已经有差不多两三年没见到他了。<ul>
-<li>I <u>haven’t seen</u> him for almost two or three years.</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>二外英语</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络复习</title>
-    <url>/2023/03/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/</url>
-    <content><![CDATA[<p><escape><span id="more"></span></escape></p>
-<h1 id="第一章-引言"><a href="#第一章-引言" class="headerlink" title="第一章 引言"></a>第一章 引言</h1><ul>
-<li><p><strong>网络核心</strong></p>
-<ul>
-<li>目标：将海量的端系统互联起来</li>
-<li>由各类路由器、交换机和链路，构成的网状网络</li>
-</ul>
-</li>
-<li><p><strong>分组交换</strong>（也称包交换）</p>
-<ul>
-<li>主机将数据分成分组，发送到网络</li>
-<li>网络将数据分组从一个路由器转发到下一个路由器，通过从源到目标的路径上的链路，<u>逐跳传输</u>抵达目的地</li>
-</ul>
-</li>
-<li><p><strong>网络核心两大功能</strong></p>
-<ul>
-<li>功能1：<strong>路由</strong><ul>
-<li>全局操作：确定数据分组从源到目标所使用的路径</li>
-<li>需要路由协议和路由算法，产生路由表</li>
-</ul>
-</li>
-<li>功能2：<strong>转发</strong> <ul>
-<li>本地操作：路由器或交换机将接收到的数据分组转发出去（即移动到该设备的某个输出接口）</li>
-<li>确定转发出去的接口&#x2F;链路：根据从 “入接口〞收到分组头中的目的地址，查找本地路由表，确定“出接口”</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>存储转发技术</strong></p>
-<ul>
-<li>数据分组传输延迟<ul>
-<li>需要L&#x2F;R秒才能将L位数据包以Rbps的速率传输(推出）到链路中</li>
-</ul>
-</li>
-<li>存储和转发<ul>
-<li>路由器需要接收到完整的整个数据分组以后，才能开始下一跳发送</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>分组交换</strong></p>
-<ul>
-<li>通信双方以分组为单位、使用存储-转发机制，实现数据交互的通信方式</li>
-<li>以分组作为数据传输单元</li>
-<li>每个分组的首部都含有地址（目的地址和源地址）等控制信息</li>
-<li>每个分组在互联网中独立地选择传输路径</li>
-<li>支持灵活的统计多路复用</li>
-</ul>
-</li>
-<li><p><strong>电路交换主要特点</strong></p>
-<ul>
-<li>电路交换通常采用面向连接方式</li>
-<li>先呼叫建立连接，实现端到端的资源预留</li>
-<li>预留的资源包括：链路带宽资源、交换机的交换能力</li>
-<li>电路交换连接建立后，物理通路被通信 双方独占，资源专用，即使空闲也不与其他连接共享 </li>
-<li>由于建立连接并预留资源，因此传输性能好；但如果传输中发生设备故障，则传输被中断</li>
-</ul>
-</li>
-<li><p><strong>典型交换方式的比较</strong></p>
-<ul>
-<li><strong>报文交换</strong><ul>
-<li>与分组交换类似，采用存储转发方式，但不将应用的大报文拆分成多个分组</li>
-</ul>
-</li>
-<li><strong>三种交换的比较</strong> <ul>
-<li>电路交换需要建立连接并预留资源，难以实现灵活复用 </li>
-<li>报文交换和分组交换较灵活，抗毁性高，在传送突发数据时可提高网络利用率 </li>
-<li>由于分组长度小于报文长度，分组交换比报文交换的时延小，也具有更好的灵活性</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>网络协议设计</strong></p>
-<ul>
-<li><strong>网络协议</strong><ul>
-<li>为进行网络中的数据交换而建立的规则、标准或约定，即网络协议(networkprotocol)</li>
-<li>通信双方需要共同遵守，互相理解</li>
-</ul>
-</li>
-<li><strong>三要素</strong><ul>
-<li>语法：规定传输数据的格式（如何讲）</li>
-<li>语义：规定所要完成的功能（讲什么） </li>
-<li>时序：规定各种操作的顺序（双方讲话的顺序)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>协议层次结构</strong></p>
-<ul>
-<li>层次栈<ul>
-<li>为了降低网络设计的复杂性，大部分网络都组成一个层次栈，每一层都建立在其下一层的基础上</li>
-</ul>
-</li>
-<li>对等实体<ul>
-<li>不同机器上构成相应层次的实体成为对等实体</li>
-</ul>
-</li>
-<li>接口<ul>
-<li>在每一对相邻层次之间的是接口；接口定义了下层向上层提供哪些原语操作与服务</li>
-</ul>
-</li>
-<li>网络体系结构<ul>
-<li>层和协议的集合为网络体系结构，一个特定的为系统所使用的一组协议，即每层的协议，称协议栈</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>服务原语</strong></p>
-<ul>
-<li>两种不同类型的服务：面向连接和无连接<ul>
-<li>面向连接：按照电话系统模型建立的（一个常见的例子）<ul>
-<li><u>每个“请求”或“响应〞后，都在对方产生一个“指示”或“确认”动作</u></li>
-</ul>
-</li>
-<li>无连接：按照邮政系统模型建立的（一个常见的例子）<ul>
-<li><u>邮件携带了完整的目标地址，传输过程不需要应答</u></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>服务</strong></p>
-<ul>
-<li>典型服务：面向连接传输服务，无连接传输服务</li>
-<li>服务由一组可用于用户进程以访问服务的原语（操作）形式指定</li>
-<li>原语告诉服务执行某些操作或报告对等实体所采取的操作</li>
-</ul>
-</li>
-<li><p><strong>六个核心服务原语</strong>(以面向连接服务为例）</p>
-<ol>
-<li>连接请求</li>
-<li>接受响应</li>
-<li>请求数据</li>
-<li>应答</li>
-<li>请求断开</li>
-<li>断开连接</li>
-</ol>
-</li>
-<li><p><strong>服务与协议的关系</strong></p>
-<ul>
-<li>协议是“水平”的，服务是“垂直”的</li>
-<li>实体使用协议来实现其定义的服务</li>
-<li>上层实体通过接口使用下层实体的服务</li>
-</ul>
-</li>
-<li><p><strong>OSI和TCP&#x2F;IP参考模型</strong></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">OSI7层模型</th>
-<th align="center">OSI定义</th>
-<th align="center">TCP&#x2F;IP4层模型</th>
-<th>TCP&#x2F;IP定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">应用层</td>
-<td align="center">通过应用层协议，提供应用程序便捷的网络服务调用</td>
-<td align="center"></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">表示层</td>
-<td align="center">关注所传递信息的语法和语义，管理数据的表示方法，传输的数据结构</td>
-<td align="center">应用层</td>
-<td>传输层之上的所有高层协议：DNS、HTTP、FTP、SMTP……</td>
-</tr>
-<tr>
-<td align="center">会话层</td>
-<td align="center">利用传输层提供的服务，在应用程序之间建立和维护会话，并能使得会话获得同步</td>
-<td align="center"></td>
-<td></td>
-</tr>
-<tr>
-<td align="center">传输层</td>
-<td align="center">（进程到进程）将数据从源端口发送到目的端口（可靠传输和不可靠传输）</td>
-<td align="center">传输层</td>
-<td>允许源主机与目标主机上的对等实体，进行端到端的数据传输：TCP&#x2F;UDP</td>
-</tr>
-<tr>
-<td align="center">网络层</td>
-<td align="center">路由（定位主机），将数据包跨越网络从原设备发送到目的设备</td>
-<td align="center">网络层（互联网层）</td>
-<td>允许主机将数据包注入网络，让这些数据包独立的传输到目的地，并定义了数据包格式和协议（IPV4，IPV6）</td>
-</tr>
-<tr>
-<td align="center">数据会话层</td>
-<td align="center">成帧，实现相邻网络实体间的数据传输，从物理层的比特流中提取出完整的帧</td>
-<td align="center">网络接口层（链路层）</td>
-<td>描述了为满足无连接的互联网网络层需求，链路必须具备的功能</td>
-</tr>
-<tr>
-<td align="center">物理层</td>
-<td align="center">定义如何在信道上传输0和1</td>
-<td align="center"></td>
-<td></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>ARPNET最终采用TCP和IP为主要协议<br>先有TCP&#x2F;IP协议栈，然后有TCP&#x2F;IP协议模型，协议模型只是来描述协议栈的</p>
-</blockquote>
-<ul>
-<li><p><strong>TCP&#x2F;IP协议模型</strong></p>
-<ul>
-<li>模型特点<ul>
-<li>摒弃电话系统中“笨终端&amp;聪明网络〞的设计思路</li>
-<li>采用聪明终端&amp;简单网络，由端系统TCP负责丢失恢复等，简单的网络大大提升了可扩展性</li>
-<li>实现了建立在简单的、不可靠部件上的可靠系统</li>
-</ul>
-</li>
-<li><strong>IP分组交换的特点</strong><ul>
-<li>可在各种底层物理网络上运行(IPovereverything)</li>
-<li>可支持各类上层应用(EverythingoverIP)</li>
-<li>每个IP分组携带各自的目的地址，网络核心功能简单（通过路由表转发分组），适应爆炸性增长</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>OSI模型与TCP&#x2F;IP模型比较</strong></p>
-<ul>
-<li><strong>7层与4层的异同</strong><ul>
-<li>ICP&#x2F;IP模型的网络接口层定义主机与传输线路之间的接口，描述了链路为无连接的互联网层必须提供的基本功能 </li>
-<li>TCP&#x2F;IP模型的互联网层、传输层与OSI模型的网络层、传输层大致对应</li>
-<li>TCP&#x2F;IP模型的应用层包含了OSI模型的表示层与会话层</li>
-</ul>
-</li>
-<li><strong>基本设计思想：通用性和实用性</strong><ul>
-<li>OSI：先有模型后设计协议，不局限于特定协议，<u>明确了服务、协议、接口等概念</u>，更具通用性</li>
-<li>TCP&#x2F;IP模型：仅仅是对已有协议的描述</li>
-</ul>
-</li>
-<li><strong>无连接和面向连接</strong><ul>
-<li>OSI模型网络层能够支持无连接和面向连接通信</li>
-<li>TCP&#x2F;IP模型的网络层仅支持无连接通信(IP）</li>
-</ul>
-</li>
-<li>两者的不足<ul>
-<li>OSI<ul>
-<li>从未真正被实现：TCP&#x2F;IP已成为事实标准，OSI缺少厂家支持</li>
-<li>技术实现糟糕 ：OSI分层欠缺技术考虑：会话层、表示层很少内容；数据链路层、网络层内容繁杂。模型和协议过于复杂。<br>  分层间功能重复：差错控制、流量控制等在不同层反复出现</li>
-<li>非技术因素：TCP&#x2F;IP实现为UNIX一部分，免费；OSI被认为是政府和机构的强加标</li>
-</ul>
-</li>
-<li>TCP&#x2F;IP<ul>
-<li>核心概念未能体现：未明确区分服务、接口和协议等核心概念</li>
-<li>不具备通用性：不适于描述TCP&#x2F;IP之外的其它协议栈</li>
-<li>混用接口与分层的设计：链路层和物理层一起被定义为网络接口层，而非真正意思上的分层</li>
-<li>模型欠缺完整性：未包含物理层与数据链路层；物理层与数据链路层是至关重要的部分</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>  <img src="/images/ComputerNetwork/1.PNG"></p>
-</li>
-<li><p><strong>计算机网络度量单位</strong></p>
-<ul>
-<li><p><strong>速率</strong></p>
-<ul>
-<li>单位是<em>bit&#x2F;s</em>，表示的是<strong>二进制数字</strong>，提到的网络速率往往是<em>额定速率</em>或<em>标称速率</em>，并非网络实际运行的速率。</li>
-</ul>
-</li>
-<li><p><strong>带宽</strong></p>
-<ul>
-<li>通用：某个信号具有的频带宽度，即<strong>表明某信道允许通过的信号频带范围</strong>就称为该信道的带宽（通频带）</li>
-<li>计算机网络：某个<em>通道传送数据的能力</em>，表示<strong>单位时间内网络中某信道所能通过的“最高数据量”</strong></li>
-</ul>
-</li>
-<li><p><strong>包转发率</strong></p>
-<ul>
-<li>Packet Per Second（包&#x2F;秒）</li>
-<li><strong>线速转发</strong>：交换机端口在满负载的情况下，对帧进行转发时能够达到端口线路最高速度。</li>
-<li>在交换机上，与小包相比，大包更容易实现线速（同等条件下，大包数据多，分发量小）</li>
-</ul>
-</li>
-<li><p><strong>时延</strong><br>  数据从网络（链路）的一端到另一段的时间。也可称为<em>延迟</em>或<em>迟延</em>。</p>
-<ul>
-<li><strong>发送时延</strong>（传输时延）<ul>
-<li>主机或路由器发送数据帧所需要的时间（数据帧第一比特开始到最后一比特发送完毕）。<strong>发送时延&#x3D;数据帧长度(bit)&#x2F;发送速率(bit)</strong></li>
-</ul>
-</li>
-<li><strong>传播时延</strong>电磁波在波道上传播一定距离需要花费的时间。（波道可分不同介质）<ul>
-<li><strong>传播时延&#x3D;信道长度(m)&#x2F;电磁波在波道上的传播速率(m&#x2F;s)</strong></li>
-<li>电磁波在自由空间传播速率为光速（3x10^5km&#x2F;s），在铜线电缆中约为2.3x10^5km&#x2F;s，光纤中约为2.0x10km&#x2F;s</li>
-</ul>
-</li>
-<li>发送时延产生于<em>机器内部发送器中（一般为网络适配器）</em>，<strong>与传输信道长度无关</strong>，传播时延发生在<em>机器外的传输信道媒体</em>，<strong>与发送速率无关，信号传送距离越远，传播时延越大</strong>。</li>
-<li><strong>处理时延</strong>：主机或路由器收到分组后需要花费时间进行处理。如分析分组首部、提取数据部分、进行差错检验或查找路由等</li>
-<li><strong>排队时延</strong>：分组进入路由器后要<em>先在输入队列中排队等待处理</em>，路由器确定转发接口后还需<em>在输入队列排队转发</em>。排队时延取决于网络的通信量。</li>
-<li><strong>网络总时延</strong>&#x3D;发送时延+传播时延+处理时延+排队时延</li>
-</ul>
-<p>  <img src="/images/ComputerNetwork/2.JPG"></p>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>数据传输过程量（工业）单位</strong></p>
-<p>k(kilo)&#x3D;10^3&#x3D;千  M(Mega)&#x3D;10^6&#x3D;兆  G(Giga)&#x3D;10^9&#x3D;吉   T(Tera)&#x3D;10^12&#x3D;太  P(Peta)&#x3D;10^15&#x3D;拍   E(Exa)&#x3D;10^18.&#x3D;艾  Z(Zetta)&#x3D;10^21&#x3D;泽   Y(Yotta)&#x3D;10^24&#x3D;尧</p>
-<p><strong>存储数据量（学术）单位</strong></p>
-<p>K&#x3D;2^10&#x3D;1024.   M&#x3D;2^20.    G&#x3D;2^30.   T&#x3D;2^40……往往以<strong>字节B(byte)作为度量单位</strong>，1byte&#x3D;8bit<br><strong>在通信领域中，只有“1000”使用小写k</strong></p>
-<p><strong>15GB的数据以10G的速率传输</strong>&#x3D;15x2^30x8比特的数据以10x10^9bit&#x2F;s的速率传送</p>
-</blockquote>
-<h1 id="第二章-物理层"><a href="#第二章-物理层" class="headerlink" title="第二章 物理层"></a>第二章 物理层</h1><ul>
-<li><p><strong>物理层功能</strong></p>
-<ul>
-<li><strong>位置</strong>：物理层是网络体系结构中的最低层<ul>
-<li>是连接计算机的具体物理设备吗？×不是</li>
-<li>是负责信号传输的具体物理媒体吗？x不是</li>
-</ul>
-</li>
-<li><strong>功能</strong>：如何在连接各计算机的传输媒体上传输数据比特流<ul>
-<li>数据链路层将数据比特流传送给物理层</li>
-<li>物理层将比特流按照传输媒体的需要进行编码</li>
-<li>然后将信号通过传输媒体传输到下一个节点的物理层</li>
-</ul>
-</li>
-<li><strong>作用</strong>：尽可能地<u>屏蔽掉不同传输媒体和通信手段的差异</u><ul>
-<li>为数据链路层提供一个统一的数据传输服务</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>物理层的接口特性</strong></p>
-<ul>
-<li>数据终端设备(DataTerminalEguipment,DTE)<ul>
-<li>一种具有一定的数据处理和转发能力的设备</li>
-<li>可以是数据的源点或终点</li>
-</ul>
-</li>
-<li><strong>标准化的DTE&#x2F;DCE接口具有</strong>：机械特性、电气特性、功能特性、过程特性</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>常用以太网IEEE802.3协议，用传输率Mbps+传输方式+介质类型的格式表示（T双绞线，C、S、F光纤）<br>传统以太网：10Base-T（10Mbps+基带传输+双绞线）<br>千兆以太网：1000<br>万兆以太网：10000</p>
-</blockquote>
-<ul>
-<li><strong>物理层特性</strong></li>
-</ul>
-<ol>
-<li>机械特性：<em>指明</em>接口所用接线器的形状和尺寸、引脚数目和排列、固定和锁定装置</li>
-<li>电气特征：指明在接口电缆的各条线上出现的电压范围，如<em>发送信号电平、发送器和接收器的输出抗阻、平衡特性</em>等</li>
-<li>功能特征：指明某条线出现某一电平的电压的意义</li>
-<li>过程特征：指明不同功能的各种可能时间出现的顺序<br>物理连接方式：点对点通信和多点连接（广播连接）<br>点对点通信线路：直接连接两个节点<br>广播连接：使用公共通信线路连接多个节点</li>
-</ol>
-<ul>
-<li><strong>通信、消息、信息、数据、信号</strong></li>
-</ul>
-<ol>
-<li>通信：在源点和终点之间传递消息或信息</li>
-<li>消息：能向人们表达客观物质运动和主观思维活动的文字、符号、数据、语音、图像等，其特点为<strong>能被通信双方所理解、可以相互传递</strong>。<ol>
-<li>信息：消息中对通信者有意义的内容。<u>消息是信息的载体，消息中可能含有信息</u></li>
-</ol>
-</li>
-<li>数据：对某一事实的不经解释并赋予一定含义的数字、字母、文字等符号及其组合的原始表达。<u>数据是消息的一种表达形式，是传达某种意义或信息的实体。</u></li>
-<li><strong>信号是消息的载体</strong>（光信号、电信号等）</li>
-</ol>
-<ul>
-<li><p><strong>信息的度量</strong></p>
-<ul>
-<li>二元判断信息量<ul>
-<li>8只灯泡，1只灯丝断，用一节电池来测，问测几次就可解除其不确定度<ul>
-<li>等概率事件，概率为1&#x2F;2，不确定度大小为log2(1(1&#x2F;8))&#x3D;3bit</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>  <a href="https://www.doc88.com/p-703592201695.html">信息度量例题</a>
-  </p>
-</li>
-<li><p><strong>数据的传输方式</strong></p>
-<ul>
-<li><strong>模拟通信和数字通信</strong><ul>
-<li>以模拟信号来传送消息的通信方式称为模拟通信，而传输模拟信号的通信系统称为模拟通信系统。 </li>
-<li>以数字信号来传送消息的通信方式称为数字通信，而传输数字信号的通信系统称为数字通信系统。 </li>
-<li>模拟信号和数字信号在传输过程中可以相互变换，即A&#x2F;D和D&#x2F;A。</li>
-</ul>
-</li>
-<li><strong>基带传输和频带传输</strong><ul>
-<li>按照传输系统在传输数据信号过程中是否搬其频谱，传输方式可分两类：<ul>
-<li>基带传输指不搬移信号频谱的传输体制</li>
-<li>频带传输指利用调制解调器搬移信号频谱的传输体制</li>
-</ul>
-</li>
-<li><strong>搬移频谱的目的</strong>是为了适应信道的频率特性</li>
-</ul>
-</li>
-<li>串行和并行传输<ul>
-<li>按照传输数据的时空顺序，传输方式可分为两类：<ul>
-<li>串行传输指数据在一个信道上按位依次传输的方式，其特点是：<br>  ①所需线路数少，投资省，线路利用率高；②在发送和接收端需要分别进行并&#x2F;串和串&#x2F;并转换：③收发之间必须实施同步。适用于远距离数据传输。</li>
-<li>并行传输：指数据在多个信道上同时传输的方式，其特点是：<br>  ①在终端装置和线路之间不需要对传输代码作时序变换 ②需要n条信道的传输设施，故其成本较高，适用于要求传输速率高的短距离数据传输。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>异步和同步传输<ul>
-<li>异步传输被传送的每一个字符一般都附加有1个起始位和1个停止位，起始位与停止位的极性不同，为了保证正确接收，利用一个频率为传输比特率的八(&#x3D;16)倍的时钟，在每一个比特周期的中心采样</li>
-<li>同步传输每一个字符使用起止位按位进行传送，数据块以帧作为整体传输，并做到：<br>  ①发&#x2F;收之间的位同步；<br>  ②每一帧建立同步标志，建立帧同步</li>
-<li><strong>区别</strong>：异步传输的发送器的接收器的时钟是不同步的，而同步传输两者的时钟是同步的</li>
-</ul>
-</li>
-<li>单工、半双工、全双工<ul>
-<li>单工指两个站之间只能沿一个指定的方向传送数据信号</li>
-<li>半双工指两个站之间可以在两个方向上传送数据信号，但不能同时进行，又称“双向交替”模式，发&#x2F;收之间的转向时间为20～50 ms - </li>
-<li>全双工指两个站之间可以在两个方向上同时传送数据信号</li>
-</ul>
-</li>
-<li><strong>传输损伤</strong><ul>
-<li>误码(Error）。指信号在传输过程中码元（<strong>0&#x2F;1</strong>）发生的差错，即接收与发送数字信号的单个数宇之间的差异</li>
-<li>抖动(Jitter）。指码元出现的时刻随时间频繁地变化，也就是各有效瞬间相对于理想时间位置的短时间偏移（<strong>提前或落后</strong>）</li>
-<li>漂移(Nander）。指码元各有效瞬间相对于理想时间位置的长期缓慢偏移（<strong>累计偏差</strong>）</li>
-<li>滑动(S1ip）。指一个信号序列在传输过程中，不可恢复地丟失或增加若干码元（<strong>数量改变</strong>）</li>
-<li>时延(Delay）。指信号的各有效瞬间相对于理想时间位置的滞后或推迟</li>
-<li><u>信号的高频分量在传输中受到衰减，接收端的信号波形就失去的码间的清晰界限，称为<strong>码间串扰</strong>。</u><ul>
-<li>当信道码元传输的速率超过了上限，就会出现此问题。</li>
-<li>干扰：环境干扰（大气环境）、人为恶意干扰</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>性能度量</strong></p>
-<ul>
-<li>传输速率指单位时间内传送的信息量，是衡量数据通信系统传输能力的一个重要指标。常用的传输速率有两种：<ul>
-<li>调制速率(或波特率、码元速率〕指单位时间内调制信号波形的变换次数，其单位是波特：R&#x3D;1&#x2F;T(S)(Baud)</li>
-<li>数据信号速率(或传信率、比特率）指单位时间内通过信道的信息量，其单位是比特&#x2F;秒</li>
-<li><strong>调制速率与数据信号速率的关系</strong>：<br>  <img src="/images/ComputerNetwork/3.PNG"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>带宽(bandwidth)<br>带宽有两种不同的意义:</p>
-<ul>
-<li>在通信领域（模拟传输），带宽指某个信号具有的频带宽度。单位是 赫(或千赫、兆赫、吉赫、太赫等）。如话音信号的带宽是3.1KHz(300Hz3400Hz)。</li>
-<li>在计算机领域(数宇传输），带宽指计算机网络的通信线路所能传送数据的能力，即在单位时间内从网络中的某一点到另一点所能达到的“最高数据速率〞。单位是b&#x2F;s(bit&#x2F;s)。</li>
-</ul>
-</li>
-<li><p><strong>数字通信与模拟通信相比较</strong></p>
-<ul>
-<li>优点：抗干扰性强，保密性好，设备易于集成，便于计算机处理等。</li>
-<li>缺点：占用较多的带宽，信道利用率低。</li>
-</ul>
-</li>
-<li><p><strong>模拟信道的容量</strong></p>
-<ul>
-<li>香农定律指出：在信号平均功率受限的高斯白噪声信道中，计算信道容量的理论公式为：<br>   C&#x3D;Blog2(1+S&#x2F;N)<br>式中B是信道带宽（单位为Hz)，S&#x2F;N是平均信号噪声功率比，S为接收信号功率，N为噪声功率(指正态分布的加性高斯白噪声）<ul>
-<li><strong>提升模拟信道容量方式：增加系统带宽、提升源端信号发射功率(增加中继)、降低噪声等</strong></li>
-</ul>
-</li>
-<li>奈奎斯特认为，即使是理想信道（无噪声、无码间串扰），它的传输能力也是有限的。对于一条有限带宽、无噪声的理想信道信道容量的计算公式（简称奈奎斯特公式）<br>   C&#x3D;2Blog2(M)(b&#x2F;s)<ul>
-<li><strong>此式表明，对于给定的带宽可以通过增加信号取值的状态数来提高信 道容量。但这将会加重接收器的负担</strong>。意即在每个信号码元时间内， 必须从M个可能的状态中区分出一个来。同时，传输线上的噪声和其他损伤也将会限制M的实际取值。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>传输质量</p>
-<ul>
-<li><strong>信噪比SNR</strong>：信号通路某一点上的信号功率S,与混在信号中的噪声功率N之比值（常用对数表示）。SNR用来描述信号在传输过程中受到噪声影响的度量<br>  SNR&#x3D;10 lg（S&#x2F;N）<br>  S&#x2F;N&#x3D;10，SNR&#x3D;10dB<br>  S&#x2F;N&#x3D;1000，SNR&#x3D;30dB</li>
-</ul>
-</li>
-<li><p><u><strong>复用技术</strong></u><br><img src="/images/ComputerNetwork/4.PNG"><br><img src="/images/ComputerNetwork/5.PNG"><br><img src="/images/ComputerNetwork/6.PNG"><br><img src="/images/ComputerNetwork/7.PNG"><br><img src="/images/ComputerNetwork/8.PNG"><br><img src="/images/ComputerNetwork/9.PNG"><br><img src="/images/ComputerNetwork/10.PNG"><br><img src="/images/ComputerNetwork/11.PNG"></p>
-</li>
-</ul>
-<h1 id="第三章-数据链路层"><a href="#第三章-数据链路层" class="headerlink" title="第三章 数据链路层"></a>第三章 数据链路层</h1><p><img src="/images/ComputerNetwork/12.PNG"><br><img src="/images/ComputerNetwork/13.PNG"></p>
-<ul>
-<li>数据链路层使用的信道<ul>
-<li>点对点信道</li>
-<li>广播信道</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>复习总结</category>
-      </categories>
-      <tags>
-        <tag>计算机网络</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构复习</title>
-    <url>/2023/03/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/</url>
-    <content><![CDATA[<p><img src="/images/SQL/8.JPG"><br><img src="/images/SQL/12.JPG"></p>
-<span id="more"></span>
-<h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><h2 id="1-1数据库系统概论"><a href="#1-1数据库系统概论" class="headerlink" title="1.1数据库系统概论"></a>1.1数据库系统概论</h2><ol>
-<li><strong>数据</strong>是数据库中存储的基本对象。</li>
-<li><strong>数据的定义</strong>：描述事物的符号记录</li>
-<li><strong>数据库定义</strong>：<u>长期存储在计算机内、有组织、可共享的大量数据的集合</u>。</li>
-<li><strong>数据库的数据</strong><u>按一定的数据模型组织、描述和存储</u>，具有<u>较小的冗余度、较高的数据独立性和易扩展性</u>，并可为各种用户共享。</li>
-<li><strong>数据库管理系统作用</strong>：在数据库建立、运用和维护时对数据库进行统一控制，以保证数据的完整性和安全性，并在多用户同时使用时进行并发控制，在发生故障时对数据库进行恢复。</li>
-<li><strong>数据库管理系统用途</strong>：科学地组织和存储数据、高效地获取和维护数据。</li>
-<li><strong>数据库主要功能</strong>：<ul>
-<li>数据定义功能</li>
-<li>数据组织、存储和管理</li>
-<li>数据操纵功能：<u>实现数据库的基本操作：查询、插入、删除和修改等。</u></li>
-<li>数据库的事务管理和运行管理</li>
-<li>数据库的建立和维护功能</li>
-<li>其他功能：数据库管理系统与其他软件系统的通信，与另一个数据库关系系统或文件系统的数据转换功能</li>
-</ul>
-</li>
-<li><strong>数据库系统</strong>：由数据库、数据库管理系统、应用程序和数据库管理员组成的<u>存储、管理、处理和维护数据的系统</u>。</li>
-<li><strong>数据库管理技术</strong>经历了：<u>人工管理、文件系统、数据库系统三个阶段</u>。<ul>
-<li>人工管理阶段<ul>
-<li>数据不保存：用于科学计算，不需要长期存储</li>
-<li>应用程序管理数据：应用规定数据的逻辑结构和设计物理结构，程序员负担很重</li>
-<li>数据无共享，冗余度极大：一组数据智能对应一个程序，多个程序涉及相同的数据必须各自定义，产生大量冗余</li>
-<li>数据不独立，完全依赖于程序：数据的逻辑结构或物理结构发生变化后，必须对程序做相应更改</li>
-</ul>
-</li>
-<li>文件系统<ul>
-<li>数据可以长期保存</li>
-<li>由文件系统管理数据：<u>利用“按文件名访问，按记录进行存取”的管理技术，<strong>实现了记录内的结构性</strong></u>。</li>
-<li>数据共享性差，冗余度大：文件仍然面向应用，不能共享相同的数据，造成冗余；相同的数据重复存储<u>容易造成数据的不一致性</u>。</li>
-<li>数据独立性差：<strong>文件系统的文件是为某一特定应用服务的，文件的逻辑结构是针对具体的应用来设计和优化的</strong>，因此想对文件内的数据增加一些新的应用会很困难。</li>
-</ul>
-</li>
-<li>数据库系统阶段<ul>
-<li>参照二维表的设计结构，组织结构相同。</li>
-<li>共享性高，冗余度小</li>
-<li>具有高度的物理独立性和一定的逻辑独立性</li>
-<li>整体结构化，用数据模型描述（二维表）</li>
-<li>由数据库管理系统提供数据安全性、完整性、并发控制和恢复能力</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>数据库系统的特点</strong>：<ul>
-<li>数据结构化：实现整体数据的结构化，<u>数据库系统与文件系统的本质区别</u><ul>
-<li>不再针对某一应用，而是面向整个组织；数据的内部和整体均为结构化，<u>数据之间具有联系</u>。</li>
-</ul>
-</li>
-<li>数据的共享性高，冗余地且易扩充<ul>
-<li><u>数据共享可以大大减少数据冗余，节约存储空间，避免数据之间的不相容性和不一致性。</u></li>
-<li>有结构的数据可以被多个应用共享使用，<u>使得数据库弹性大，异于扩充</u>。</li>
-</ul>
-</li>
-<li>数据独立性高<ul>
-<li><strong>物理独立性</strong>：用户的应用程序与数据库中的数据的物理存储是相互独立的。（使得数据的物理存储改变时应用不用改变）</li>
-<li><strong>逻辑独立性</strong>：用户的应用程序和数据库的逻辑结构是相互独立的。（数据的逻辑结构改变时程序也不用改变）</li>
-</ul>
-</li>
-<li>数据由数据库管理系统统一管理和控制<ul>
-<li>数据的安全性保护</li>
-<li>数据的完整性检查</li>
-<li>并发控制</li>
-<li>数据库恢复</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="1-2数据模型"><a href="#1-2数据模型" class="headerlink" title="1.2数据模型"></a>1.2数据模型</h2><ol>
-<li><strong>两类数据模型</strong><ul>
-<li>第一类：概念模型</li>
-<li>第二类：逻辑模型和物理模型（DBMS）</li>
-</ul>
-</li>
-<li><strong>实体之间的联系</strong>：一对一、一对多、多对多</li>
-<li><strong>数据模型三要素</strong>：由数据结构、数据操作和数据的完整性约束组成</li>
-<li><strong>数据库领域中主要的逻辑数据模型</strong>：层次、网状、关系模型</li>
-<li><strong>数据的操作</strong>：增、删、改、查</li>
-<li><strong>数据的完整性约束条件</strong>：实体、参照、用户自定义完整性</li>
-<li><u><strong>什么是关系型数据模型？</strong></u>从用户观点看，关系模型由一组关系组成，<u>每个关系的数据结构是一张规范化的二维表</u>。</li>
-<li><strong>关系模型的由缺点</strong>：<ul>
-<li>优点<ul>
-<li>关系模型与格式化模型不同，他是建立在严格的数学概念的基础上的</li>
-<li>关系模型的概念单一，无论实体还是实体间的联系都可以用关系表示。数据结构简单、清晰，用户易懂易用</li>
-<li>关系模式的存取路径对用户透明，从而具有更高的数据独立性，更好的安全保密性，简化了程序员的工作和数据库开发建立的工作</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>查询效率不如格式化数据模型，数据库管理系统必须对用户的查询请求进行优化，增加了开发数据库管理系统的难度</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="1-3数据库系统的结构"><a href="#1-3数据库系统的结构" class="headerlink" title="1.3数据库系统的结构"></a>1.3数据库系统的结构</h2><ol>
-<li><strong>数据库系统模式的概念</strong>：数据模型中有“型（type）”和“值（value）”的概念</li>
-<li><strong>数据库系统的三级模式结构</strong>：外模式、模式、内模式</li>
-<li><u><strong>如何理解模式？</strong></u>模式也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户数据的公共数据视图。<u>是基本的逻辑表结构</u></li>
-<li><u><strong>如何理解外模式？</strong></u>外模式也称子模式或用户模式，它是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述，是<u>数据库用户的数据视图</u>，是与某一应用有关的数据的逻辑表示。</li>
-<li><u><strong>如何理解内模式？</strong></u>内模式也称存储模式，<u>一个数据库只能有一个内模式</u>，它是数据物理结构和存储方式的描述，是数据在数据库内部的组织方式。<u>表结构的实现（物理存储的数据库）</u></li>
-<li><strong>数据库的二级映像功能与数据独立性</strong><ul>
-<li><u>外模式&#x2F;模式映像</u>：当模式改变时，数据库管理员对映像做相应更改，使得外模式保持不变，<u>保证了数据与程序的逻辑独立性</u></li>
-<li><u>模式&#x2F;内模式映像</u>：当数据库的存储模式结构改变时，数据库管理员对映像做相应改变，使得模式保持不变，<u>保证了数据与程序的物理独立性</u></li>
-</ul>
-</li>
-</ol>
-<h1 id="第二章-关系数据库"><a href="#第二章-关系数据库" class="headerlink" title="第二章 关系数据库"></a>第二章 关系数据库</h1><h2 id="2-1-关系数据结构及形式化定义"><a href="#2-1-关系数据结构及形式化定义" class="headerlink" title="2.1 关系数据结构及形式化定义"></a>2.1 关系数据结构及形式化定义</h2><ol>
-<li><strong>域</strong>：一组具有相同数据类型的值的集合</li>
-<li><strong>笛卡尔积</strong>：所有可能的集合组合，是一个固定关系的有序集合，元组次序不能任意交换。</li>
-<li><strong>关系</strong>：关系是笛卡尔积的子集合<ul>
-<li>关系是一张二维表，表的每一行表示一个元组（记录）</li>
-<li>每一列对应一个域，域可以相同，必须对每列起一个名字，称为属性</li>
-<li>n目关系必有n个属性</li>
-</ul>
-</li>
-<li><strong>候选码</strong>：关系中某一属性组的值能唯一地标识一个元组，而其子集不能的属性组<ul>
-<li>一个关系有多个候选码，则选其中一个为<u>主码</u></li>
-<li>候选码的诸属性称为<u>主属性</u>，其他的为<u>非主属性&#x2F;非码属性</u></li>
-<li>关系模式中所有的属性都是这个关系模式的候选码，称为<u>全码</u></li>
-</ul>
-</li>
-<li><strong>关系可以有三种类型</strong>：基本关系（基本表或基表）、查询表和视图表。<ul>
-<li>基本表是实际存在的表，是实际存储数据的逻辑表示</li>
-<li>查询表是查询结果对应的表</li>
-<li>视图表是虚表，不对应实际存在的数据</li>
-</ul>
-</li>
-<li><strong>基本关系具有6条性质</strong><ol>
-<li>无限关系在数据库系统中是无意义的</li>
-<li><u>通过为关系的每一列附加一个属性名取消关系属性的有序性</u></li>
-<li>列的顺序无所谓，可任意交换</li>
-<li>任意两个元组的候选码不能取相同的值（主键，相同则不能为候选码）</li>
-<li>分量必须取原子值，每一个分量都是不可分的数据项（第一范式原则）</li>
-<li>行的顺序无所谓，可任意交换</li>
-</ol>
-</li>
-<li><u>关系表中不允许表中有表</u></li>
-<li><u>表是关系数据的逻辑模型</u></li>
-</ol>
-<h2 id="2-2-关系操作"><a href="#2-2-关系操作" class="headerlink" title="2.2 关系操作"></a>2.2 关系操作</h2><ol>
-<li><strong>基本的关系操作</strong>：选择、投影、并、差、笛卡尔积</li>
-<li><strong>关系操作的特点</strong>：集合操作方式，即一次一集合的方式。非关系数据模型的数据操作方法为一次一记录</li>
-</ol>
-<h2 id="2-3-关系的完整性（结合第五章）"><a href="#2-3-关系的完整性（结合第五章）" class="headerlink" title="2.3 关系的完整性（结合第五章）"></a>2.3 关系的完整性（结合第五章）</h2><ol>
-<li><strong>关系模型有三类完整性约束</strong>：实体完整性、参照完整性、用户定义的完整性<ul>
-<li>实体完整性和参照完整性是<u>关系模型必须满足的完整性约束</u>，被称作<u>关系的两个不变性</u>。</li>
-<li>用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</li>
-</ul>
-</li>
-<li><strong>实体完整性规则</strong>：若属性A是基本关系R的主属性，则<u>A不能取空值</u></li>
-<li><strong>外码</strong>：F是基本关系R的一个&#x2F;组属性，但不是R的码，K是S的主码，若F与K相对应，则F是R的外码。R为参照关系，S为被参照关系。</li>
-<li><strong>参照完整性规则</strong>：属性F是基本关系R的外码，与基本关系S的主码K相对应，则R中每个元组在F上的值必须为：<ul>
-<li>空值（F的每个属性值均为空）</li>
-<li>等于S中某个元组的主码值</li>
-</ul>
-</li>
-</ol>
-<h2 id="2-4-关系代数"><a href="#2-4-关系代数" class="headerlink" title="2.4 关系代数"></a>2.4 关系代数</h2><ol>
-<li><strong>（网络找题）传统集合运算</strong>：二目运算，并、差、交、笛卡尔积</li>
-<li><strong>（网络找题）专门的关系运算</strong>：选择、投影、连接、除运算（不考）</li>
-</ol>
-<h1 id="第三章-关系数据库标准语言SQL"><a href="#第三章-关系数据库标准语言SQL" class="headerlink" title="第三章 关系数据库标准语言SQL"></a>第三章 关系数据库标准语言SQL</h1><h2 id="3-1-SQL概述"><a href="#3-1-SQL概述" class="headerlink" title="3.1 SQL概述"></a>3.1 SQL概述</h2><ol>
-<li><strong>SQl特点</strong><ul>
-<li>综合统一</li>
-<li>高度非过程化</li>
-<li>面向集合的操作方式，采用集合操作方式，一次一集合</li>
-<li>以同一种语法结构提供多种使用方式</li>
-<li>语言简洁，易学易用</li>
-</ul>
-</li>
-</ol>
-<h2 id="3-3-数据定义-（SQL语句）"><a href="#3-3-数据定义-（SQL语句）" class="headerlink" title="3.3 数据定义 （SQL语句）"></a>3.3 数据定义 （SQL语句）</h2><p>SQL语句进行创建、修改、删除</p>
-<h2 id="3-4-数据查询（SQL语句）"><a href="#3-4-数据查询（SQL语句）" class="headerlink" title="3.4 数据查询（SQL语句）"></a>3.4 数据查询（SQL语句）</h2><p>单表查询</p>
-<h2 id="3-5-数据更新（SQL语句）"><a href="#3-5-数据更新（SQL语句）" class="headerlink" title="3.5 数据更新（SQL语句）"></a>3.5 数据更新（SQL语句）</h2><p>UPDATE、INSERT、DELETE</p>
-<h2 id="3-6-空值的处理-（SQL语句）"><a href="#3-6-空值的处理-（SQL语句）" class="headerlink" title="3.6 空值的处理 （SQL语句）"></a>3.6 空值的处理 （SQL语句）</h2><p>NULL的使用</p>
-<h2 id="3-7-视图-（SQL语句）"><a href="#3-7-视图-（SQL语句）" class="headerlink" title="3.7 视图 （SQL语句）"></a>3.7 视图 （SQL语句）</h2><p><strong>视图的作用</strong>：</p>
-<ol>
-<li>视图能够简化用户的操作</li>
-<li>视图使用户能够以多种角度看待同一数据</li>
-<li>视图对重构数据库提供了<u>一定程度的逻辑独立性</u></li>
-<li><u>视图能够对机密数据提供安全保护</u>：对不同用户定义不同的视图，设置查询和修改视图的权限</li>
-<li>适当利用视图可以更清晰的表达查询</li>
-</ol>
-<h1 id="第四章-数据库安全性"><a href="#第四章-数据库安全性" class="headerlink" title="第四章 数据库安全性"></a>第四章 数据库安全性</h1><h2 id="4-1-数据库安全性概述"><a href="#4-1-数据库安全性概述" class="headerlink" title="4.1 数据库安全性概述"></a>4.1 数据库安全性概述</h2><ol>
-<li><strong>数据库的安全性</strong>是指保护数据库以防不合法使用所造成的数据泄露、更改或破坏</li>
-<li><strong>数据库的不安全因素</strong><ul>
-<li>非授权用户对数据库的恶意存取和破坏</li>
-<li>数据库中重要或敏感的数据被泄露</li>
-<li>安全环境的脆弱性</li>
-</ul>
-</li>
-<li><strong>TCSEC&#x2F;TDI(紫皮书</strong> 定义了数据库管理系统的设计与实现中需要满足和用以进行安全性级别评估的标准<ul>
-<li>从四个方面描述安全性级别划分的指标：安全策略、责任、保证和文档</li>
-</ul>
-</li>
-<li><strong>TCSEC&#x2F;TDI的7级安全级别划分</strong><ul>
-<li>常用的商用安全软件级别：B1&#x2F;C2</li>
-<li><img src="/images/SQL/1.JPG"></li>
-<li><img src="/images/SQL/2.JPG"></li>
-</ul>
-</li>
-</ol>
-<h2 id="4-2-数据库安全性控制"><a href="#4-2-数据库安全性控制" class="headerlink" title="4.2 数据库安全性控制"></a>4.2 数据库安全性控制</h2><ol>
-<li>C2级别的数据库管理系统支持<strong>自主存取控制</strong>，B1级别的数据库管理系统支持<strong>强制存取控制</strong>。</li>
-<li><strong>自主存取控制</strong>：用户对于不同的数据库对象有不同的存取权限，不同的用户对同一对象也有不同的权限，而且用户还可以将拥有的存取权限转授给其他用户，因此自主存取控制比较灵活<ul>
-<li>GRANT和REVOKE语句</li>
-<li>权限授予为级联形式，同时不可循环授权</li>
-<li>缺陷：可能存在数据的“无意识”泄露<ul>
-<li>甲对乙授权，乙就可以将数据备份，获得自身权限（主人）的副本，在不征得甲同意的情况下进行传播。</li>
-<li><u>仅仅通过对数据的存取权限来进行安全控制，而数据本身无安全性标记</u></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>强制存取控制</strong>：每个数据库的对象被标以一定的密级，每一个用户也被授予某一个级别的许可证。对于任意一个对象，只有具有合法许可证的用户才可以存取，因此强制存取控制比较严格<ul>
-<li>数据库管理系统的所有实体被分为<u>主体和客体</u><ul>
-<li><strong>主体</strong>是系统的活动实体，即包括数据库关系系统所管理的实际用户，也包括代表用户的各个进程</li>
-<li><strong>客体</strong>是系统中的被动实体，是受主体操作的，包括文件、基本表、索引、视图等</li>
-</ul>
-</li>
-<li>对于主体和客体，数据库管理系统为他们的每个实例指派一个<strong>敏感度标记</strong><ul>
-<li>绝密（TS）、机密（S）、可信（C）、公开（P）。<strong>密级的次序为：TS&gt;&#x3D;S&gt;&#x3D;C&gt;&#x3D;P</strong></li>
-<li>主体的敏感度标记为<u>许可证级别</u>，客体的敏感度标记为<u>密级</u></li>
-</ul>
-</li>
-<li>强制存取控制机制就是通过<u>对比主体的敏感度和客体的敏感度标记，确定主体能否存取客体</u></li>
-<li>是对数据本身的密级标记，无论数据如何复制，也只有符合对应密级要求的主体才能存取，提高了更高级别的安全性</li>
-</ul>
-</li>
-<li><strong>强制存取控制中，主体对任何客体的存取必须遵循以下规则</strong><ol>
-<li>仅当主体的许可证级别大于等于客体密级时，主体能够读取相应客体</li>
-<li>仅当主体的许可证级别小于等于客体级别时，主体才能写相应客体<ul>
-<li>违反会造成数据从高流向低，造成数据泄漏（TS主体把TS的客体修改为P，导致泄漏）</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="4-3-视图机制（SQL语句）"><a href="#4-3-视图机制（SQL语句）" class="headerlink" title="4.3 视图机制（SQL语句）"></a>4.3 视图机制（SQL语句）</h2><p>视图的定义和查询</p>
-<h1 id="第五章-数据库完整性"><a href="#第五章-数据库完整性" class="headerlink" title="第五章 数据库完整性"></a>第五章 数据库完整性</h1><p><strong>为实现数据库的完整性，数据库必须能够实现如下功能</strong>：</p>
-<ol>
-<li>提供定义完整性约束条件的机制</li>
-<li>提供完整性检查的方法</li>
-<li>进行违约处理</li>
-</ol>
-<h2 id="5-1-实体完整性"><a href="#5-1-实体完整性" class="headerlink" title="5.1 实体完整性"></a>5.1 实体完整性</h2><ol>
-<li><u><strong>实体完整性检查</strong></u>：<ul>
-<li>检查主码值是否唯一，如果不唯一拒绝插入或修改</li>
-<li>检查主码的各个属性是否为空，若为空拒绝插入或修改<ul>
-<li>检查方法：全表扫描（唯一方法）<ul>
-<li>方式：建立索引，排序后折半查找</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="5-2-参照完整性"><a href="#5-2-参照完整性" class="headerlink" title="5.2 参照完整性"></a>5.2 参照完整性</h2><ol>
-<li><strong>可能破坏参照完整性的操作以及违约处理</strong></li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>被参照表（Student）</th>
-<th>参照表（SC）</th>
-<th>违约处理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>可能破坏参照完整性</td>
-<td>插入元组</td>
-<td>拒绝</td>
-</tr>
-<tr>
-<td>可能破坏参照完整性</td>
-<td>修改外码值</td>
-<td>拒绝</td>
-</tr>
-<tr>
-<td>删除元组</td>
-<td>可能破坏参照完整性</td>
-<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
-</tr>
-<tr>
-<td>修改主码值</td>
-<td>可能破坏参照完整性</td>
-<td>拒绝（默认）&#x2F;级联删除&#x2F;设为空值</td>
-</tr>
-</tbody></table>
-<ol start="2">
-<li><strong>参照关系属性的定义有不同的要求</strong><ul>
-<li>如果外码的属性为非主码，可以设置默认为Null</li>
-<li>如果外码的属性为主码，必须有取值</li>
-</ul>
-</li>
-</ol>
-<h2 id="5-3-用户定义的完整性-（SQL语句）"><a href="#5-3-用户定义的完整性-（SQL语句）" class="headerlink" title="5.3 用户定义的完整性 （SQL语句）"></a>5.3 用户定义的完整性 （SQL语句）</h2><ol>
-<li><strong>属性上的约束条件</strong><ol>
-<li>列值非空 NOT NULL</li>
-<li>列值唯一 UNIQUE</li>
-<li>检查列值是否满足某一个条件（CHECK语句）</li>
-</ol>
-</li>
-</ol>
-<h2 id="5-4-完整性约束命名子句-（SQL语句）"><a href="#5-4-完整性约束命名子句-（SQL语句）" class="headerlink" title="5.4 完整性约束命名子句 （SQL语句）"></a>5.4 完整性约束命名子句 （SQL语句）</h2><p>CONSTRAINT</p>
-<h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><h2 id="6-1-问题的提出"><a href="#6-1-问题的提出" class="headerlink" title="6.1 问题的提出"></a>6.1 问题的提出</h2><ol>
-<li><strong>数据依赖</strong>：一个关系内部属性与属性之间的一种约束关系，通过属性间值的相等与否体现出的数据间的相关联系<ol>
-<li>多值依赖</li>
-<li>函数依赖<blockquote>
-<p>建立一个描述学校教务的数据库，该数据库涉区的对象包括学生的学号(Sno)、所在系（Sdept)、系主任姓名（Mname)、課程号（Cno）和成绩（Grade）。假设用一个单一的关系模式 Student 来表示，则该关系模式的属性集合为<br> U&#x3D; {Sno, Sdept, Mname, Cno, Grade}<br> 现实世界的已知事实（语义）告诉我们：</p>
-</blockquote>
-</li>
-<li>﻿一个系有若干学生，但一个学生只属于一个系。</li>
-<li>﻿一个系只有一名（正职）负责人。</li>
-<li>﻿﻿一个学生可以选修多门课程，每门课程有若干学生选修。</li>
-<li>﻿﻿每个学生学习每一门课程有一个成绩。<br> 于是得到属性组U上的一组函数依赖F&#x3D;{Sno-&gt;Sdept,Sdept-&gt;Sname,(Sno,Cno)-&gt;Grade}<blockquote>
-<blockquote>
-<p> 合成一张大表后存在的问题：</p>
-</blockquote>
-</blockquote>
-</li>
-<li>数据冗余（大量的重复数据）</li>
-<li>更新异常（更新系主任后必须更新所有学生信息）</li>
-<li>插入异常（新建立的系若没有学生则无法插入）</li>
-<li>删除异常（学生毕业后系的信息也无法保留）<br> <strong>一个好的模式应当不会发生更新、插入、删除异常，并尽可能减少数据冗余</strong></li>
-</ol>
-</li>
-</ol>
-<h2 id="6-2-规范化"><a href="#6-2-规范化" class="headerlink" title="6.2 规范化"></a>6.2 规范化</h2><ol>
-<li><p><strong>函数依赖</strong>：R（U）是属性集U上的关系模式，X，Y为U的子集，对于R（U）可能的关系r，r不存在两个可能的元组在X上属性值相等，在Y上不等的，则<u>X函数确定Y或Y函数依赖于X</u>。</p>
-</li>
-<li><p><strong>评价数据库设计</strong></p>
-<p> <img src="/images/SQL/3.JPG"></p>
-</li>
-</ol>
-<p><img src="/images/SQL/4.JPG"><br><img src="/images/SQL/5.JPG"><br><img src="/images/SQL/6.JPG"><br><img src="/images/SQL/7.JPG"></p>
-<ol>
-<li><strong>规范化小结</strong><ol>
-<li>1NF-&gt;2NF：消除非主属性对码的部分函数依赖</li>
-<li>2NF-&gt;3NF：消除非主属性对码的传递函数依赖</li>
-<li>3NF-&gt;BCNF：消除主属性对码的部分和传递函数依赖</li>
-</ol>
-</li>
-</ol>
-<h1 id="第七章-数据库设计"><a href="#第七章-数据库设计" class="headerlink" title="第七章 数据库设计"></a>第七章 数据库设计</h1><h2 id="7-1-数据库设计概述"><a href="#7-1-数据库设计概述" class="headerlink" title="7.1 数据库设计概述"></a>7.1 数据库设计概述</h2><ol>
-<li><u><strong>数据库设计的6个阶段</strong></u><ul>
-<li>需求分析</li>
-<li>概念结构设计（E—R图）</li>
-<li>逻辑结构设计（规则）</li>
-<li>物理结构设计（SQL？）</li>
-<li>数据库实施（SQL？）</li>
-<li>数据库运行和维护</li>
-</ul>
-</li>
-</ol>
-<h2 id="7-3-概念结构设计"><a href="#7-3-概念结构设计" class="headerlink" title="7.3 概念结构设计"></a>7.3 概念结构设计</h2><ol>
-<li><strong>E-R图的画法</strong></li>
-</ol>
-<h2 id="7-4-逻辑结构设计"><a href="#7-4-逻辑结构设计" class="headerlink" title="7.4 逻辑结构设计"></a>7.4 逻辑结构设计</h2><ol>
-<li><strong>E-R图向关系模型的转换</strong><ul>
-<li>一个1:1联系可以转换为一个独立的关系模式，也可以与任意一端对应的关系模式合并</li>
-<li>一个1:n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并</li>
-<li>一个n:m联系转换为一个关系模式</li>
-<li>三个或三个以上实体间的一个多元联系可以转换为一个关系模式</li>
-<li>具有相同码的关系模式可以合并<br><a href="https://blog.csdn.net/liaoai/article/details/123282513">实例</a></li>
-</ul>
-</li>
-</ol>
-<h1 id="第九章-关系查询处理和查询优化"><a href="#第九章-关系查询处理和查询优化" class="headerlink" title="第九章 关系查询处理和查询优化"></a>第九章 关系查询处理和查询优化</h1><h2 id="9-3-代数优化"><a href="#9-3-代数优化" class="headerlink" title="9.3 代数优化"></a>9.3 代数优化</h2><ol>
-<li><strong>查询树的启发式优化</strong><ol>
-<li><u>选择运算应尽可能先做</u>（结合代数运算，需先计算选择）</li>
-<li>把投影运算和选择运算同时进行</li>
-<li>把投影同起前或后的双目运算结合起来</li>
-<li>把某些选择同在它前面要执行的笛卡尔积结合起来成为一个选择运算</li>
-</ol>
-</li>
-</ol>
-<h1 id="第十章-数据库恢复技术"><a href="#第十章-数据库恢复技术" class="headerlink" title="第十章 数据库恢复技术"></a><u>第十章 数据库恢复技术</u></h1><h2 id="10-1-事务的基本概念"><a href="#10-1-事务的基本概念" class="headerlink" title="10.1 事务的基本概念"></a>10.1 事务的基本概念</h2><ol>
-<li><strong>事务</strong>是用户定义的一个数据库操作序列，这些操作要么全做，要不全不做，是<u>一个不可分割的工作单位</u></li>
-<li>事务和程序是两个概念，一般一个程序包含多个事务</li>
-<li><strong>事务的ACID特性</strong>：原子性（A）、一致性（C）、隔离性（I）、持续性（D）。ACD为数据库恢复的要求。<ul>
-<li>原子性：事务是数据库的逻辑工作单位，事务中的操作要么全做要么都不做</li>
-<li>一致性：数据库必须由一个一致性状态变为另一个一致性状态（事务的执行完成或回滚完成等状态）</li>
-<li>隔离性：一个事务的执行不能被其他事务干扰</li>
-<li>持续性&#x2F;永久性：一个事务一旦提交，他对数据库中的数据的改变应该是永久性的。</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>COMMIT表示提交事务的所有操作，将事务对数据库的更新写回到磁盘上的物理数据库中；ROLLBACK表示回滚，将事务对数据库的所有已完成操作全部撤销，回滚到事务刚开始的状态。</p>
-</blockquote>
-<h2 id="10-2-数据库恢复概述"><a href="#10-2-数据库恢复概述" class="headerlink" title="10.2 数据库恢复概述"></a>10.2 数据库恢复概述</h2><ol>
-<li>数据库系统所采用的恢复技术是否行之有效，不仅对<strong>系统的可靠程度起决定性作用</strong>，而且对系统的运行效率也有很大影响，<strong>是衡量系统性能优劣的重要指标</strong>。（所以要定期备份）</li>
-<li>数据库管理系统必须具有把数据库从错误状态恢复到某一已知的正确状态的功能，就是<strong>数据库的恢复</strong></li>
-</ol>
-<h2 id="10-3-故障的种类"><a href="#10-3-故障的种类" class="headerlink" title="10.3 故障的种类"></a>10.3 故障的种类</h2><ol>
-<li><strong>事务内部的故障</strong><ul>
-<li>事务内部的故障不影响其他事务的执行，<u>更多的是非预期的，不能由应用程序处理</u>。</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>BEGIN TRANSACTION<br>读账户甲的余额为x；<br>x&#x3D;x-a; &#x2F;&#x2F;a转账金额<br>IF(x&lt;0) THEN<br>{打印‘金额不足，不能转账’；<br>ROLLBACK；}<br>ELSE<br>{写回x；读账户乙的余额y；<br>y&#x3D;y+a；<br>写回y；<br>COMMIT；}<br>这段程序中若账户甲余额不足，程序可以发现并让事务滚回，撤销已做的修改，是数据恢复到正确状态。<br>事务故障意味着事务没有达到预期的终点（COMMIT或者显示ROLLBACK），因此数据库可能处于不正确状态。恢复程序要在不影响其他事务的运行情况下，强行滚回该事务，即撤销该事务已经做出的任何对数据库的修改，<strong>这类恢复操作称为事务撤销（UNDO）。</strong> 此操作为自主操作。</p>
-</blockquote>
-<blockquote>
-<p><strong>事务撤销的恢复步骤</strong>：<br>    1. 反向扫描文件日志（从后往前扫描），查找该事务的更新操作<br>    2、对该事务的更新操作执行逆操作，即将日志记录中“更新前的值”写入数据库<br>    3、继续反向扫描日志文件，查找该事务的其他更新操作，并做同样处理。<br>    4、如此处理下去，直至读到此事务的开始标记，事务故障恢复就完成了。</p>
-</blockquote>
-<ol>
-<li><p><strong>系统故障</strong>：造成系统停止运转的任何时间，使得系统要重新启动</p>
-<ul>
-<li>影响并发执行的所有操作，所有事务都非正常中止</li>
-<li>恢复子系统必须在系统重启时让所有非正常终止的事务回滚（UNDO），已完成但仍未写入磁盘的事务全部<strong>重做（REDO）</strong></li>
-<li>检查点处恢复<blockquote>
-<ol>
-<li>正向扫描日志文件（将在故障发生前已经提交的事务加入重做（REDO）队列，这些事务既有begin transaction记录，也有commit记录；将在故障发生时未完成的事务加入撤销（Undo）队列，这些事务中只有begin transaction记录，无相应的commit记录）</li>
-<li>对撤销（Undo）队列事务进行撤销（Undo）处理（1.反向扫描日志文件，对每个undo事务的更新操作进行逆操作；2.将日志记录中“更新前的值”写入数据库）</li>
-<li>对重做（Redo）队列事务进行重做（Redo）处理（正向扫描日志文件，对每个REDO事务重新执行登记的操作；将日志记录中“更新后的值”写入数据库）</li>
-</ol>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p><strong>介质故障</strong>：系统故障通常称为<strong>软故障</strong>，此类为<strong>硬故障</strong>，如磁盘损坏等。</p>
-<ul>
-<li>不考虑检查点，采取<strong>备份+日志文件恢复</strong>，同时日志文件中修改的新值要重新覆写一遍<blockquote>
-<p>  (1） 装入最新的数据库后备副本（离故障发生时刻最近的转储副本），使数据库恢复到最近一次转储时的一致性状态。<br>(2） 转入相应的日志文件副本，重做已完成的事务。即首先扫描日志文件，找出故障发生时已提交的事物的标识，将其记入重做队列；然后正向扫描日志文件，对重做队列中的所有事务进行重做处理。即将日志记录中“更新后的值”写入数据库。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>计算机病毒，参考介质故障</p>
-</li>
-<li><p><strong>各类故障对数据库的影响</strong>：数据库本身被损坏、数据库没有被破坏但数据可能不正确</p>
-</li>
-<li><p><strong>恢复的基本原理</strong>：冗余（备份+日志文件）</p>
-</li>
-</ol>
-<h2 id="10-4-恢复的实现技术"><a href="#10-4-恢复的实现技术" class="headerlink" title="10.4 恢复的实现技术"></a>10.4 恢复的实现技术</h2><ol>
-<li><p>建立冗余数据最常用的技术是<strong>数据转储和登记日志文件</strong>。</p>
-</li>
-<li><p>转储可分为静态转储和动态转储</p>
-<ul>
-<li><strong>静态转储</strong>是在系统无运行事务时进行转储，转储期间不允许对数据库进行任何存取、修改活动<ul>
-<li><u>降低数据库的可用性</u></li>
-</ul>
-</li>
-<li><strong>动态转储</strong>是转储期间允许对数据库进行存取或修改。<ul>
-<li>必须把转储期间各事务对数据库的修改记录，建立<u>日志文件</u>，便于备份完成后进行恢复</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>转储也可分为增量转储和海量转储</p>
-<ul>
-<li><strong>海量转储</strong>是每次转储所有数据库</li>
-<li><strong>增量转储</strong>是只转储上一次转储后更新的数据<blockquote>
-<p>动态海量转储、动态增量转储、静态海量转储、静态增量转储</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p><strong>每个日志记录的内容</strong></p>
-<ul>
-<li>操作的类型</li>
-<li>操作对象</li>
-<li>更新前的旧值</li>
-<li>更新后的新值<blockquote>
-<p><strong>日志重写覆盖的意义</strong>：回写数据库存在更新延迟（写入磁盘的速度原小于内存），提交后可能存在尚未写入磁盘的情况。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="10-6-具有检查点的恢复技术"><a href="#10-6-具有检查点的恢复技术" class="headerlink" title="10.6 具有检查点的恢复技术"></a>10.6 具有检查点的恢复技术</h2><ol>
-<li><strong>建立检查点的意义</strong>：改善恢复效率，系统强制对该点之前的事务进行提交，避免在恢复时对已执行完毕的事务重复提交。<strong>只针对系统故障</strong></li>
-<li><strong>检查点记录的内容</strong>：<ul>
-<li>建立检查点时所有正在执行的事务</li>
-<li>这些事务最近一个日志记录的地址</li>
-</ul>
-</li>
-<li><strong>系统使用检查点方法进行恢复的步骤是</strong>：<ol>
-<li>从重新开始文件中找到最后一个检查点记录在日志文件中的地址，由该地址在日志文件中找到最后一个检查点记录。</li>
-<li>由该检查点记录得到检查点建立时刻所有正在执行的事务清单 ACTIVE-LIST。<br>这里建立两个事务队列：<br>•UNDO-LIST：需要执行 UNDO 操作的事务集合；<br>•REDO-LIST：需要执行 REDO 操作的事务集合。<br>把ACTIVE-LIST 暂时放入 UNDO-LIST 队列，REDO队列暂为空。</li>
-<li>从检查点开始正向扫描日志文件。<ol>
-<li>如有新开始的事务T,把T暂时放入UNDO-LIST 队列;</li>
-<li>如有提交的事务J,把J从UNDO-LIST队列移到 REDO-LIST队列；直到日志文件结束。</li>
-</ol>
-</li>
-<li>对 UNDO-LIST 中的每个事务执行 UNDO 操作，对 REDO-LIST 中的每个事务执行REDO 操作。<br><img src="/images/SQL/9.JPG"></li>
-</ol>
-</li>
-</ol>
-<h1 id="第十一章-并发控制"><a href="#第十一章-并发控制" class="headerlink" title="第十一章 并发控制"></a><u>第十一章 并发控制</u></h1><blockquote>
-<p><strong>并发</strong>是指在一个时间段内有多个进程在执行。<br><strong>并行</strong>指的是在同一时刻有多个进程在同时执行。</p>
-</blockquote>
-<ol>
-<li><strong>什么是并发？</strong> 是指一个时间段中有几个事务都处于已启动运行到运行完毕之间，且这几个事务都是在同一个处理机上运行，但任一个时刻点上只有一个事务在处理机上运行。**</li>
-<li><strong>并发的要求</strong>：一致性、隔离性</li>
-</ol>
-<h2 id="11-1-并发控制概述"><a href="#11-1-并发控制概述" class="headerlink" title="11.1 并发控制概述"></a>11.1 并发控制概述</h2><ol>
-<li><strong>事务是并发控制的基本单位</strong></li>
-<li><strong>并发操作带来的问题</strong><ol>
-<li><strong>丢失修改</strong>：两个事务T1和T2读入同一数据并修改，先后提交了结果，前提交的数据会丢失</li>
-<li><strong>不可重复读</strong>：<ol>
-<li>事务T1读取某一数据后，T2对其进行修改，当T1再次读取时得到了与第一次不同的结果</li>
-<li>事务T1按一定条件读取某些数据记录，T2删除了其中一部分，当T1再次按相同条件读取数据时会发现某些记录神秘消失了</li>
-<li>事务T1按一定条件读取某些数据记录，T2插入了一些记录，当T1再次按相同条件读取数据时发现多了一些记录</li>
-</ol>
-</li>
-<li><strong>读“脏”数据</strong>：事务T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1因为某种原因被撤销，T2读取的数据就与数据库中的不一致。<br> <img src="/images/SQL/10.JPG"></li>
-</ol>
-</li>
-</ol>
-<h2 id="11-2-封锁"><a href="#11-2-封锁" class="headerlink" title="11.2 封锁"></a>11.2 封锁</h2><ol>
-<li><strong>基本的封锁类型</strong>：排他锁（X）、共享锁（S）<ol>
-<li><strong>排他锁（写锁）</strong>：若事务T对数据对象A加上X锁，<u>则只允许T读取和修改A</u>，其他任何事务<u>都不能再对A加任何类型的锁</u>，直到T释放A</li>
-<li><strong>共享锁（读锁）</strong>：T对A加S锁，<u>则T可以读A但不能修改A</u>，<u>其他事务只能在对A加S锁，而不能加X锁</u>，直到T释放A为止</li>
-</ol>
-</li>
-</ol>
-<h2 id="11-3-封锁协议"><a href="#11-3-封锁协议" class="headerlink" title="11.3 封锁协议"></a>11.3 封锁协议</h2><ol>
-<li><strong>封锁协议</strong>：在运用X和S锁时需要遵守的规则，<u>用于解决并发操作的3个问题</u><ol>
-<li><strong>一级封锁协议</strong>：事务T在<u>修改数据R</u>之前必须对其加X锁，直到事务结束才释放。<u>可防止丢失修改</u>，只针对读数据。</li>
-<li><strong>二级封锁协议</strong>：在一级封锁协议的基础上增加事务T在<u>读取数据R</u>之前必须先对其加S锁，读完后释放。<u>除防止丢失修改外，还可进一步防止读“脏”数据</u>，由于读完数据后立即释放S，不能保证可重复读。</li>
-<li><strong>三级封锁协议</strong>：在一级封锁协议的基础上增加事务T<u>在读取数据R</u>之前必须先对事务加S锁，<u>直到事务结束释放</u>，解决了并发操作的3个问题。<br> <img src="/images/SQL/11.JPG"></li>
-</ol>
-</li>
-</ol>
-<h2 id="11-4-活锁和死锁"><a href="#11-4-活锁和死锁" class="headerlink" title="11.4 活锁和死锁"></a>11.4 活锁和死锁</h2><ol>
-<li><strong>死锁</strong>：事务T1封锁了数据R1，T2封锁了R2，T1又申请封锁R2，造成T1和T2两个事务永远不能结束</li>
-<li><strong>活锁</strong>：T1封锁了R1，T2申请R1，T3也申请R1后得到系统批准，T2继续等待，可能造成永远等待。</li>
-<li><strong>预防死锁的方法</strong><ol>
-<li>一次封锁法：每个事务必须一次将所有要使用的数据全部加锁。<u>扩大了封锁的范围，降低了系统的并发度</u></li>
-<li>顺序封锁法：预先对数据对象规定一个封锁顺序，所有事务按照这个顺序实施封锁。<u>要求动态处理，实现困难，成本很高，同时事务的随机性高，难以按预先规定实施</u></li>
-</ol>
-</li>
-<li><strong>数据库解决死锁的方法</strong>：选择一个处理死锁代价最小的事务，将其撤销，释放此事务所有的锁，使得其他事务可以继续运行下去。</li>
-</ol>
-<h2 id="11-6-两段锁协议"><a href="#11-6-两段锁协议" class="headerlink" title="11.6 两段锁协议"></a>11.6 两段锁协议</h2><ol>
-<li><p><strong>两段锁协议</strong>：所有事务必须分两个阶段对数据项加锁和解锁</p>
-<ol>
-<li>对任何数据进行读、写操作之前，首先要申请并获得该数据的封锁</li>
-<li>在释放一个封锁后，事务不再申请和获得任何其他封锁</li>
-</ol>
-<p> 即事务分两个阶段，<strong>第一阶段是获得封锁，也称扩展过程</strong>，这个阶段事务可以申请任何数据的任何类型的锁，但不能释放锁；<strong>第二阶段锁释放封锁，也称收缩过程</strong>，在这个阶段，事务可以释放任何数据项上任何类型的锁，但是不能再申请封锁。<br> 若事务遵守两段锁协议，<u>则对这些事务的任何并发调度策略都是可串行化的，可以进行可串行化调度</u>。
- </p>
-</li>
-<li><p>事务遵循两段锁协议是可串行化调度的<strong>充分条件</strong>，而非必要条件。</p>
-</li>
-<li><p><strong>两段锁协议和一次封锁法的区别</strong>：一次封锁法要求事务必须一次将要使用的数据全部加锁，否则不能继续执行。因此<u>一次封锁法遵循两段锁协议</u>。但是两段锁协议并不要求事务必须一次将所有要使用的数据加锁，因此<u>遵守两段锁协议的事务可能发生死锁</u>。目的是<strong>保证了并发调度的正确性</strong>。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>复习总结</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>
